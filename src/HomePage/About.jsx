@@ -5,16 +5,17 @@ import { motion } from "framer-motion";
 const About = () => {
   return (
     <div className="w-full overflow-visible relative z-20">
-      <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between px-4 sm:px-6 md:px-20 py-11  md:py-16 md:mt-11 gap-8 md:gap-10">
+      <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between px-4 sm:px-6 md:px-20 py-12 sm:py-14 md:py-16 md:mt-11 gap-10">
         {/* Left side */}
         <motion.div
-          className="flex flex-col gap-4 sm:gap-6 md:w-1/2 w-full max-w-full md:max-w-xl break-words"
+          className="flex flex-col gap-5 sm:gap-6 md:w-1/2 w-full max-w-full md:max-w-xl break-words 
+                     text-center md:text-left items-center md:items-start"
           initial={{ opacity: 0, y: 50, scale: 0.95 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          <p className="text-black text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed max-w-full md:max-w-xl break-words">
+          <p className="text-black text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed">
             Hi! I’m Tooba, a dedicated web developer with a passion for crafting
             beautiful and functional websites. I enjoy transforming ideas into
             seamless digital experiences and continuously exploring new
@@ -34,13 +35,13 @@ const About = () => {
 
         {/* Right side */}
         <motion.div
-          className="md:w-1/2 flex justify-center max-w-md w-full mt-6 md:mt-0"
+          className="md:w-1/2 flex justify-center w-full mt-4 md:mt-0"
           initial={{ opacity: 0, y: 50, scale: 0.9 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.9, delay: 0.2, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          <div className="w-full max-w-sm h-[420px] overflow-hidden rounded-lg shadow-lg pointer-events-none select-none">
+          <div className="w-full max-w-xs sm:max-w-sm md:max-w-sm h-[320px] sm:h-[380px] md:h-[420px] overflow-hidden rounded-lg shadow-lg pointer-events-none select-none">
             <img
               src="/assets/profile.jpg"
               alt="About Me"
