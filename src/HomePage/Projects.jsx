@@ -1,31 +1,31 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom"; // 👈 add this
 import Button from "../components/Button";
 
 const projects = [
   {
     img: "/assets/thedesignspark.png",
     title: "Thedesignspark",
-    // description: "Creative design and branding website",
+    path: "/thedesignspark", // 👈 add path
   },
   {
     img: "/assets/lm.aivonx.com.png",
     title: "lm.aivonx",
-    // description: "AI based marketing platform",
   },
   {
     img: "/assets/https___store.shoppsm.com_.jpg",
     title: "store.shoppsm",
-    // description: "Ecommerce clothing store",
   },
   {
     img: "/assets/globalworkdigital.png",
     title: "Globalworkdigital",
-    // description: "Digital agency website",
   },
 ];
 
 const Projects = () => {
+  const navigate = useNavigate(); // 👈 init
+
   return (
     <div className="w-full bg-white text-black py-10 px-4 md:py-16 md:px-20">
       <motion.h2
@@ -49,7 +49,10 @@ const Projects = () => {
             viewport={{ once: true }}
           >
             {/* Image */}
-            <div className="w-full h-[420px] rounded-xl overflow-hidden shadow-lg">
+            <div
+              className="w-full h-[420px] rounded-xl overflow-hidden shadow-lg cursor-pointer"
+              onClick={() => project.path && navigate(project.path)} // 👈 image clickable
+            >
               <img
                 src={project.img}
                 alt={project.title}
@@ -60,8 +63,11 @@ const Projects = () => {
             {/* Text + Button */}
             <div className="mt-6 text-center w-full flex flex-col items-center">
               <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
-              <p className="text-gray-600 mb-4">{project.description}</p>
-              <Button text="View Project" />
+
+              <Button
+                text="View Project"
+                onClick={() => project.path && navigate(project.path)} // 👈 button navigation
+              />
             </div>
           </motion.div>
         ))}

@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom"; // for navigation
 import Button from "../components/Button";
 import IdeaSection from "../components/IdeaSection";
 
@@ -7,6 +8,7 @@ const projects = [
   {
     img: "/assets/thedesignspark.png",
     title: "Thedesignspark",
+    path: "/thedesignspark", // route to open on button click
   },
   {
     img: "/assets/lm.aivonx.com.png",
@@ -23,6 +25,8 @@ const projects = [
 ];
 
 const Projects = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="w-full bg-white text-black mt-40">
@@ -66,7 +70,11 @@ const Projects = () => {
                 <div className="mt-8 text-center w-full flex flex-col items-center text-white">
                   <h3 className="text-3xl font-bold mb-4">{project.title}</h3>
 
-                  <Button text="View Project" />
+                  <Button
+                    text="View Project"
+                    variant="dark"
+                    onClick={() => project.path && navigate(project.path)}
+                  />
                 </div>
               </motion.div>
             ))}
