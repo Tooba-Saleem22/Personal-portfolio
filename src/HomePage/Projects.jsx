@@ -5,20 +5,20 @@ import Button from "../components/Button";
 
 const projects = [
   {
-    img: "/assets/thedesignspark.png",
+    img: "/assets/img1.png",
     title: "Thedesignspark",
     path: "/thedesignspark", // 👈 add path
   },
   {
-    img: "/assets/lm.aivonx.com.png",
+    img: "/assets/img2.png",
     title: "lm.aivonx",
   },
   {
-    img: "/assets/https___store.shoppsm.com_.jpg",
+    img: "/assets/img3.png",
     title: "store.shoppsm",
   },
   {
-    img: "/assets/globalworkdigital.png",
+    img: "/assets/img4.png",
     title: "Globalworkdigital",
   },
 ];
