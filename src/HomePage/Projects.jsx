@@ -11,7 +11,8 @@ const projects = [
   },
   {
     img: "/assets/img2.png",
-    title: "lm.aivonx",
+    title: "etec",
+    path: "/Etec",
   },
   {
     img: "/assets/img3.png",

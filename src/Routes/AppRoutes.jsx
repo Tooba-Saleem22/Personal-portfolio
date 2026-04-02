@@ -6,14 +6,16 @@ import Home from "../Pages/Home";
 import Projects from "../Pages/Projects";
 import Services from "../Pages/Services";
 import About from "../Pages/About";
-import TheDesignSpark from "../Pages/TheDesignSpark"; // correct import
+import TheDesignSpark from "../Pages/TheDesignSpark";
+import Etec from "../Pages/Etec"; // correct import
 
 const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/projects" element={<Projects />} />
-      <Route path="/thedesignspark" element={<TheDesignSpark />} />{" "}
+      <Route path="/thedesignspark" element={<TheDesignSpark />} />
+      <Route path="/Etec" element={<Etec />} />
       {/* use correct component */}
       <Route path="/services" element={<Services />} />
       <Route path="/about" element={<About />} />
