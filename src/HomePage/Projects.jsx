@@ -1,31 +1,21 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom"; // 👈 add this
+import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 
 const projects = [
-  {
-    img: "/assets/img1.png",
-    title: "Thedesignspark",
-    path: "/thedesignspark", // 👈 add path
-  },
-  {
-    img: "/assets/img2.png",
-    title: "etec",
-    path: "/Etec",
-  },
-  {
-    img: "/assets/img3.png",
-    title: "store.shoppsm",
-  },
+  { img: "/assets/img1.png", title: "Thedesignspark", path: "/thedesignspark" },
+  { img: "/assets/img2.png", title: "etec", path: "/Etec" },
+  { img: "/assets/img3.png", title: "store.shoppsm", path: "/store-shoppsm" },
   {
     img: "/assets/img4.png",
     title: "Globalworkdigital",
+    path: "/globalworkdigital",
   },
 ];
 
 const Projects = () => {
-  const navigate = useNavigate(); // 👈 init
+  const navigate = useNavigate();
 
   return (
     <div className="w-full bg-white text-black py-10 px-4 md:py-16 md:px-20">
@@ -43,21 +33,25 @@ const Projects = () => {
         {projects.map((project, idx) => (
           <motion.div
             key={idx}
-            className="flex flex-col items-center"
+            className="flex flex-col items-center cursor-pointer"
             initial={{ y: 50, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.7, delay: idx * 0.15 }}
             viewport={{ once: true }}
+            onClick={() => project.path && navigate(project.path)}
           >
-            {/* Image */}
-            <div
-              className="w-full h-[420px] rounded-xl overflow-hidden shadow-lg cursor-pointer"
-              onClick={() => project.path && navigate(project.path)} // 👈 image clickable
-            >
-              <img
+            {/* Image with hover pop-out effect */}
+            <div className="w-full h-[420px] rounded-xl overflow-hidden shadow-lg relative">
+              <motion.img
                 src={project.img}
                 alt={project.title}
-                className="w-full h-full object-cover object-top"
+                className="w-full h-full object-cover object-top rounded-xl"
+                whileHover={{
+                  scale: 1.08,
+                  boxShadow: "0px 20px 40px rgba(0,0,0,0.4)",
+                }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 200, damping: 15 }}
               />
             </div>
 
@@ -67,7 +61,10 @@ const Projects = () => {
 
               <Button
                 text="View Project"
-                onClick={() => project.path && navigate(project.path)} // 👈 button navigation
+                onClick={(e) => {
+                  e.stopPropagation();
+                  project.path && navigate(project.path);
+                }}
               />
             </div>
           </motion.div>

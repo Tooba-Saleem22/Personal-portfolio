@@ -1,27 +1,17 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom"; // for navigation
+import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import IdeaSection from "../components/IdeaSection";
 
 const projects = [
-  {
-    img: "/assets/img1.png",
-    title: "Thedesignspark",
-    path: "/thedesignspark", // 👈 add path
-  },
-  {
-    img: "/assets/img2.png",
-    title: "etec",
-    path: "/Etec",
-  },
-  {
-    img: "/assets/img3.png",
-    title: "store.shoppsm",
-  },
+  { img: "/assets/img1.png", title: "Thedesignspark", path: "/thedesignspark" },
+  { img: "/assets/img2.png", title: "etec", path: "/Etec" },
+  { img: "/assets/img3.png", title: "store.shoppsm", path: "/store-shoppsm" },
   {
     img: "/assets/img4.png",
     title: "Globalworkdigital",
+    path: "/globalworkdigital",
   },
 ];
 
@@ -48,24 +38,28 @@ const Projects = () => {
             {projects.map((project, idx) => (
               <motion.div
                 key={idx}
-                className="flex flex-col items-center"
+                className="flex flex-col items-center cursor-pointer"
                 initial={{ y: 60, opacity: 0 }}
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.7, delay: idx * 0.15 }}
                 viewport={{ once: true }}
+                onClick={() => project.path && navigate(project.path)}
               >
-                {/* Image with hover animation */}
-                <motion.div
-                  whileHover={{ scale: 1.05, y: -10 }}
-                  transition={{ type: "spring", stiffness: 200, damping: 12 }}
-                  className="w-[90%] md:w-[85%] h-[450px] rounded-2xl overflow-hidden shadow-2xl shadow-white/15 cursor-pointer"
-                >
-                  <img
+                {/* Image with proper hover pop-out */}
+                <div className="w-[90%] md:w-[85%] h-[450px] rounded-2xl overflow-hidden relative shadow-lg">
+                  <motion.img
                     src={project.img}
                     alt={project.title}
-                    className="w-full h-full object-cover object-top"
+                    className="w-full h-full object-cover object-top rounded-2xl"
+                    whileHover={{
+                      scale: 1.08,
+                      y: -12,
+                      boxShadow: "0px 20px 40px rgba(255,255,255,0.25)",
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 15 }}
                   />
-                </motion.div>
+                </div>
 
                 {/* Text + Button */}
                 <div className="mt-8 text-center w-full flex flex-col items-center text-white">
@@ -74,7 +68,10 @@ const Projects = () => {
                   <Button
                     text="View Project"
                     variant="dark"
-                    onClick={() => project.path && navigate(project.path)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      project.path && navigate(project.path);
+                    }}
                   />
                 </div>
               </motion.div>
@@ -83,7 +80,6 @@ const Projects = () => {
         </div>
       </div>
 
-      {/* Idea Section at bottom */}
       <IdeaSection />
     </>
   );
