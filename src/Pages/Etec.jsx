@@ -26,7 +26,7 @@ const EtecStore = () => {
         <img
           src="/assets/https___etec-store.vercel.app_.jpg"
           alt="Etec Store"
-          className="w-full max-w-[95%] md:max-w-[1100px] h-[300px] md:h-[550px] object-contain bg-gray-100 rounded-2xl shadow-lg"
+          className="w-full max-w-[95%] md:max-w-[1100px] h-[300px] md:h-[550px] object-contain bg-gray-100 rounded-2xl shadow-[0_8px_15px_rgba(0,0,0,0.06)]"
           draggable={false}
         />
       </motion.div>
@@ -100,7 +100,7 @@ const EtecStore = () => {
         <img
           src="/assets/https___etec-store.vercel.app_ (1).jpg"
           alt="Etec UI"
-          className="w-full max-w-[95%] md:max-w-[1100px] h-[300px] md:h-[550px] object-contain bg-gray-100 rounded-2xl shadow-lg"
+          className="w-full max-w-[95%] md:max-w-[1100px] h-[300px] md:h-[550px] object-contain bg-gray-100 rounded-2xl shadow-[0_8px_15px_rgba(0,0,0,0.06)]"
           draggable={false}
         />
       </motion.div>
@@ -112,12 +112,12 @@ const EtecStore = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.7 }}
       >
-        <img
+        {/* <img
           src="/assets/https___etec-store.vercel.app_ (2).jpg"
           alt="Etec UI 2"
-          className="w-full max-w-[95%] md:max-w-[1100px] h-[300px] md:h-[550px] object-contain bg-gray-100 rounded-2xl shadow-lg"
+          className="w-full max-w-[95%] md:max-w-[1100px] h-[300px] md:h-[550px] object-contain bg-gray-100 rounded-2xl shadow-[0_8px_15px_rgba(0,0,0,0.06)]"
           draggable={false}
-        />
+        /> */}
       </motion.div>
 
       {/* Tech Stack */}
