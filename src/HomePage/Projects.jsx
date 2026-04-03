@@ -6,7 +6,7 @@ import Button from "../components/Button";
 const projects = [
   { img: "/assets/img1.png", title: "Thedesignspark", path: "/thedesignspark" },
   { img: "/assets/img2.png", title: "etec", path: "/Etec" },
-  { img: "/assets/img3.png", title: "store.shoppsm", path: "/store-shoppsm" },
+  { img: "/assets/img3.png", title: "store.shoppsm", path: "/shoppsmstore" },
   {
     img: "/assets/img4.png",
     title: "Globalworkdigital",
