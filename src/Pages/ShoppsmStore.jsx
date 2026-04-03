@@ -24,7 +24,7 @@ const Store = () => {
         transition={{ duration: 0.8, delay: 0.2 }}
       >
         <img
-          src="/assets/shoppsm-cover.jpg" // apni screenshot lagani hai
+          src="/assets/https___store.shoppsm.com_ (1).jpg"
           alt="Shoppsm Store"
           className="w-full max-w-[95%] md:max-w-[1100px] h-[300px] md:h-[550px] object-cover rounded-2xl"
           draggable={false}
@@ -94,7 +94,7 @@ const Store = () => {
         transition={{ duration: 0.8, delay: 0.6 }}
       >
         <img
-          src="/assets/shoppsm-mock.jpg" // second image
+          src="/assets/https___store.shoppsm.com_ (2).jpg" // second image
           alt="Shoppsm UI"
           className="w-full max-w-[95%] md:max-w-[1100px] h-[300px] md:h-[550px] object-cover rounded-2xl"
           draggable={false}
