@@ -8,6 +8,7 @@ import About from "../Pages/About";
 import TheDesignSpark from "../Pages/TheDesignSpark";
 import Etec from "../Pages/Etec";
 import ShoppsmStore from "../Pages/ShoppsmStore";
+import College from "../Pages/College";
 
 const AppRoutes = () => {
   return (
@@ -19,6 +20,7 @@ const AppRoutes = () => {
       <Route path="/thedesignspark" element={<TheDesignSpark />} />
       <Route path="/etec" element={<Etec />} />
       <Route path="/shoppsmstore" element={<ShoppsmStore />} />
+      <Route path="/College" element={<College />} />
 
       {/* Other Pages */}
       <Route path="/services" element={<Services />} />
