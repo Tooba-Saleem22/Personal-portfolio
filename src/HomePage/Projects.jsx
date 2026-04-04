@@ -9,8 +9,8 @@ const projects = [
   { img: "/assets/img3.png", title: "store.shoppsm", path: "/shoppsmstore" },
   {
     img: "/assets/img4.png",
-    title: "Globalworkdigital",
-    path: "/globalworkdigital",
+    title: "The College Cafe",
+    path: "/College",
   },
 ];
 
