@@ -32,8 +32,9 @@ const Intro = () => {
             presence look great and work smoothly.
           </motion.p>
 
+          {/* Button */}
           <motion.div
-            className="mt-6"
+            className="mt-6 flex justify-center md:justify-start"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -41,7 +42,7 @@ const Intro = () => {
           >
             <Button
               text="Contact Now"
-              className="w-36 h-11 justify-center md:justify-end px-4 py-2 text-sm"
+              className="w-36 h-11 px-4 py-2 text-sm"
               onClick={() =>
                 (window.location.href =
                   "mailto:toobasaleem190@gmail.com?subject=Contact Inquiry&body=Hi Tooba,")
@@ -52,7 +53,7 @@ const Intro = () => {
 
         {/* RIGHT SIDE */}
         <motion.div
-          className="flex-1 flex justify-center md:justify-end "
+          className="flex-1 flex justify-center md:justify-end md:pl-6"
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
