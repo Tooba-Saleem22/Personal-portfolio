@@ -2,8 +2,8 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const icons = [
-  "/assets/ServicesPage/consignment_3045517.png",
-  "/assets/ServicesPage/contact-form.png",
+  "/assets/ServicesPage/Gemini_Generated_Image_6fq86k6fq86k6fq8.png",
+  "/assets/ServicesPage/Gemini_Generated_Image_q0m39kq0m39kq0m3.png",
   "/assets/ServicesPage/web-design_9103694.png",
   "/assets/ServicesPage/web-development_17365114.png",
   "/assets/ServicesPage/wordpress.png",
@@ -13,7 +13,7 @@ const Available = () => {
   return (
     <div className="w-full bg-white py-20 mb-16 text-black">
       <motion.h2
-        className="text-5xl md:text-9xl font-bold uppercase text-center mt-11 md:mt-10 mb-20 leading-none"
+        className="text-5xl md:text-8xl font-bold uppercase text-center mt-11 md:mt-10 mb-20 leading-none"
         initial={{ scale: 0.8, opacity: 0 }}
         whileInView={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.8 }}
