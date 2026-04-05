@@ -7,7 +7,7 @@ const Intro = () => {
     <section className="w-full min-h-screen bg-white flex flex-col items-center justify-center px-4 py-20 text-black">
       {/* Heading */}
       <motion.h1
-        className="text-5xl md:text-9xl md:mt-11 font-bold uppercase text-center  leading-tight"
+        className="text-5xl md:text-7xl md:mt-11 font-bold uppercase text-center  leading-tight"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
