@@ -43,7 +43,7 @@ const About = () => {
         >
           <div className="w-full max-w-xs sm:max-w-sm md:max-w-sm h-[320px] sm:h-[380px] md:h-[420px] overflow-hidden rounded-lg shadow-lg pointer-events-none select-none">
             <img
-              src="/assets/profile.jpg"
+              src="/assets/Gemini_Generated_Image_nj0qienj0qienj0q.png"
               alt="About Me"
               draggable="false"
               className="w-full h-full object-cover object-top"
