@@ -1,19 +1,21 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const icons = [
-  "/assets/ServicesPage/Gemini_Generated_Image_6fq86k6fq86k6fq8.png",
-  "/assets/ServicesPage/Gemini_Generated_Image_q0m39kq0m39kq0m3.png",
-  "/assets/ServicesPage/web-design_9103694.png",
-  "/assets/ServicesPage/web-development_17365114.png",
-  "/assets/ServicesPage/wordpress.png",
+const services = [
+  "React",
+  "MERN Stack",
+  "Frontend Development",
+  "Web Design",
+  "WordPress",
+  "SEO",
 ];
 
 const Available = () => {
   return (
-    <div className="w-full bg-white py-20 mb-16 text-black">
+    <div className="w-full bg-white py-12 mb-10 text-black">
+      {/* Heading */}
       <motion.h2
-        className="text-5xl md:text-8xl font-bold uppercase text-center mt-11 md:mt-10 mb-20 leading-none"
+        className="text-4xl md:text-7xl font-bold uppercase text-center mt-14 mb-14 leading-none"
         initial={{ scale: 0.8, opacity: 0 }}
         whileInView={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -22,31 +24,28 @@ const Available = () => {
         What’s <br /> Available?
       </motion.h2>
 
-      <div className="overflow-hidden relative w-full">
+      {/* Marquee Text */}
+      <div className="w-full overflow-hidden border-t border-b border-black/40 py-2">
         <motion.div
-          className="flex w-[200%] gap-0"
+          className="flex whitespace-nowrap"
           animate={{ x: ["0%", "-50%"] }}
           transition={{
             repeat: Infinity,
-            repeatType: "loop",
-            duration: 15,
+            duration: 6, // ⚡ faster (pehle 12 tha)
             ease: "linear",
           }}
         >
-          {[...icons, ...icons].map((icon, idx) => (
-            <motion.div
-              key={idx}
-              className="flex-none w-[15%] md:w-[10%] h-[80px] md:h-[150px] overflow-hidden"
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 200, damping: 12 }}
-            >
-              <img
-                src={icon}
-                alt={`Available ${idx}`}
-                className="w-full h-full object-contain"
-              />
-            </motion.div>
-          ))}
+          {[...Array(2)].map((_, dup) =>
+            services.map((item, index) => (
+              <div
+                key={`${dup}-${index}`}
+                className="flex items-center space-x-2 px-3 text-sm md:text-base"
+              >
+                <span>{item}</span>
+                <span className="font-light">+++</span>
+              </div>
+            )),
+          )}
         </motion.div>
       </div>
     </div>
