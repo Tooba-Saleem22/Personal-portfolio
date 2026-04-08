@@ -31,7 +31,7 @@ const Available = () => {
           animate={{ x: ["0%", "-50%"] }}
           transition={{
             repeat: Infinity,
-            duration: 6, // ⚡ faster (pehle 12 tha)
+            duration: 5, // ⚡ faster (pehle 12 tha)
             ease: "linear",
           }}
         >
