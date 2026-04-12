@@ -23,7 +23,7 @@ const Projects = () => {
       <div className="w-full bg-white text-black mt-40">
         {/* Center Heading */}
         <motion.h2
-          className="text-5xl md:text-9xl font-bold uppercase text-center mb-20 leading-none"
+          className="text-5xl md:text-7xl font-bold uppercase text-center mb-20 leading-none"
           initial={{ scale: 0.7, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.8 }}
