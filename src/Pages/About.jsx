@@ -12,7 +12,7 @@ const About = () => {
       <Skills />
       <WhyChooseMe />
 
-      <div className="w-full bg-black text-white py-10 px-4 md:py-16 md:px-10 lg:px-20 rounded-t-[40px] md:rounded-t-[140px]">
+      <div className="w-full bg-black text-white py-10 px-7 md:py-16 md:px-10 lg:px-20 rounded-t-[40px] md:rounded-t-[140px]">
         <WorkExperience bgColor="bg-black" textColor="text-white" />
       </div>
       <IdeaSection />
