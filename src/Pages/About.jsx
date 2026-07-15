@@ -125,7 +125,7 @@ const About = () => {
               <div className="absolute -inset-4 rounded-2xl bg-gradient-to-tr from-[#B08D57]/15 to-transparent blur-xl -z-10" />
               <div className="w-64 h-80 md:w-72 md:h-96 overflow-hidden rounded-2xl shadow-2xl border-4 border-white">
                 <img
-                  src="/assets/Gemini_Generated_Image_nj0qienj0qienj0q.png"
+                  src="/assets/dp.jfif"
                   alt="Tooba Saleem"
                   className="w-full h-full object-cover object-top filter brightness-[1.01]"
                 />
