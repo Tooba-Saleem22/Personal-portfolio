@@ -22,7 +22,6 @@ function Navbar() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       if (currentScrollY > lastScrollY + 20 && currentScrollY > 80) {
-        // Dropdowns closed on scroll hide
         if (!mobileMenu) {
           setShowNavbar(false);
         }
@@ -110,11 +109,11 @@ function Navbar() {
 
           {/* Right: Desktop Contact Button + Hamburger */}
           <div className="flex items-center gap-2">
-            {/* Desktop Contact Button */}
+            {/* Desktop Contact Button - Fixed Text Visibility */}
             <div className="hidden md:flex">
               <Button
                 text="Contact"
-                className="bg-[#B76E79] text-black hover:bg-[#8C4A56] transition-all rounded-full px-5 py-1.5 text-xs font-semibold tracking-wider"
+                className="bg-[#B76E79] text-white hover:bg-[#8C4A56] hover:text-white transition-all rounded-full px-5 py-2 text-xs font-semibold tracking-wider shadow-sm"
                 onClick={() =>
                   (window.location.href =
                     "mailto:toobasaleem190@gmail.com?subject=Contact%20Inquiry&body=Hi%20Tooba,")
@@ -122,7 +121,7 @@ function Navbar() {
               />
             </div>
 
-            {/* Mobile Hamburger (Now has high z-index when open to stay on top of the drawer) */}
+            {/* Mobile Hamburger */}
             <div className="md:hidden z-55">
               <button
                 onClick={() => setMobileMenu(!mobileMenu)}
