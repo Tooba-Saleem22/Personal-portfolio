@@ -21,7 +21,7 @@ function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY + 20) {
+      if (currentScrollY > lastScrollY + 20 && currentScrollY > 80) {
         setShowNavbar(false);
       } else if (currentScrollY < lastScrollY - 10) {
         setShowNavbar(true);
@@ -34,64 +34,83 @@ function Navbar() {
   }, [lastScrollY]);
 
   // Animated desktop links
-  const AnimatedLink = ({ to, children }) => (
-    <Link
-      to={to}
-      onClick={() => setMobileMenu(false)}
-      className="relative block overflow-hidden group mt-1"
-    >
-      <span className="block transition-transform duration-300 transform group-hover:-translate-y-full text-black">
-        {children}
-      </span>
-      <span className="absolute left-0 top-full block transition-transform duration-300 transform group-hover:-translate-y-full text-black">
-        {children}
-      </span>
-    </Link>
-  );
+  const AnimatedLink = ({ to, children }) => {
+    const isActive = location.pathname === to;
+    return (
+      <Link
+        to={to}
+        onClick={() => setMobileMenu(false)}
+        className="relative block overflow-hidden group mt-1"
+      >
+        <span
+          className={`block transition-transform duration-300 transform group-hover:-translate-y-full ${isActive ? "text-[#B76E79] font-semibold" : "text-[#261214]"}`}
+        >
+          {children}
+        </span>
+        <span className="absolute left-0 top-full block transition-transform duration-300 transform group-hover:-translate-y-full text-[#B76E79]">
+          {children}
+        </span>
+      </Link>
+    );
+  };
 
   return (
     <>
-      {/* Navbar */}
+      {/* Floating Capsule Navbar */}
       <div
-        className={`fixed top-0 left-0 w-full z-50 bg-white border-b border-black/10 shadow-[0_1px_2px_rgba(0,0,0,0.05)] px-6 py-4 md:py-3 transition-transform duration-300 ${
-          showNavbar ? "translate-y-0" : "-translate-y-full"
+        className={`fixed top-4 left-1/2 -translate-x-1/2 w-[92%] md:w-[85%] max-w-[1200px] z-50 
+        bg-[#FFF5F6]/85 backdrop-blur-xl border border-[#B76E79]/20 px-6 py-3 md:py-2.5 rounded-full 
+        shadow-[0_10px_35px_rgba(183,110,121,0.08)] transition-all duration-500 ease-in-out ${
+          showNavbar
+            ? "translate-y-0 opacity-100"
+            : "-translate-y-28 opacity-0 pointer-events-none"
         }`}
       >
-        <div className="max-w-[1400px] mx-auto flex items-center justify-between relative">
+        <div className="flex items-center justify-between relative">
           {/* Logo */}
-          <div className="text-3xl text-black md:ml-11 font-bold z-50 relative">
-            Tooba
-          </div>
+          <Link
+            to="/"
+            className="text-xl md:text-2xl text-[#261214] font-serif italic tracking-wide font-normal z-50 hover:text-[#B76E79] transition-colors pl-2"
+          >
+            Tooba<span className="text-[#B76E79] font-sans not-italic">.</span>
+          </Link>
 
-          {/* Desktop Menu */}
-          <ul className="hidden md:flex gap-7 md:mt-2 absolute left-1/2 transform -translate-x-1/2">
+          {/* Desktop Menu - Perfectly Centered */}
+          <ul className="hidden md:flex gap-8 md:mt-0.5 absolute left-1/2 transform -translate-x-1/2">
             {pages
               .filter((page) => page.name !== "Contact")
-              .map((page, idx) => (
-                <li key={idx} className="relative">
-                  <AnimatedLink to={page.path}>{page.name}</AnimatedLink>
-                </li>
-              ))}
+              .map((page, idx) => {
+                const isActive = location.pathname === page.path;
+                return (
+                  <li key={idx} className="relative flex flex-col items-center">
+                    <AnimatedLink to={page.path}>{page.name}</AnimatedLink>
+                    {isActive && (
+                      <span className="absolute -bottom-1 w-1 h-1 rounded-full bg-[#B76E79]" />
+                    )}
+                  </li>
+                );
+              })}
           </ul>
 
           {/* Right: Desktop Contact Button + Hamburger */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             {/* Desktop Contact Button */}
             <div className="hidden md:flex">
               <Button
                 text="Contact"
+                className="bg-[#B76E79] text-white hover:bg-[#8C4A56] transition-all rounded-full px-5 py-1.5 text-xs font-semibold tracking-wider"
                 onClick={() =>
                   (window.location.href =
-                    "mailto:toobasaleem190@gmail.com?subject=Contact Inquiry&body=Hi Tooba,")
+                    "mailto:toobasaleem190@gmail.com?subject=Contact%20Inquiry&body=Hi%20Tooba,")
                 }
               />
             </div>
 
             {/* Mobile Hamburger */}
-            <div className="md:hidden ml-2">
+            <div className="md:hidden z-50">
               <button
                 onClick={() => setMobileMenu(!mobileMenu)}
-                className="text-2xl z-50 relative"
+                className="text-2xl text-[#261214] hover:text-[#B76E79] transition-colors p-2 flex items-center justify-center"
               >
                 {mobileMenu ? <FiX /> : <FiMenu />}
               </button>
@@ -100,53 +119,56 @@ function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Overlay */}
+      {/* Mobile Blur Overlay */}
       {mobileMenu && (
         <div
-          className="fixed inset-0 bg-black/40 z-40 md:hidden"
+          className="fixed inset-0 bg-[#3D1E22]/30 backdrop-blur-md z-40 md:hidden transition-opacity duration-300"
           onClick={() => setMobileMenu(false)}
         />
       )}
 
-      {/* Mobile Menu */}
+      {/* Mobile Drawer Menu */}
       <div
-        className={`fixed top-0 right-0 h-screen w-full bg-white z-40 
-        transform transition-transform duration-300 ease-in-out md:hidden
+        className={`fixed top-0 right-0 h-screen w-[80vw] max-w-[320px] bg-[#FFF5F6] border-l border-[#B76E79]/10 shadow-2xl z-45 
+        transform transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:hidden
         ${mobileMenu ? "translate-x-0" : "translate-x-full"}`}
       >
-        <div className="flex flex-col h-full px-6 py-6">
-          {/* Close button */}
-          <div className="flex justify-end mb-6">
-            <button onClick={() => setMobileMenu(false)} className="text-3xl">
-              <FiX />
-            </button>
-          </div>
-
-          {/* Links */}
-          <div className="flex flex-col gap-6 mt-4">
-            {pages.map((page, idx) =>
-              page.name === "Contact" ? (
-                <Button
-                  key={idx}
-                  text="Contact"
-                  className="w-full"
-                  onClick={() => {
-                    setMobileMenu(false);
-                    window.location.href =
-                      "mailto:toobasaleem190@gmail.com?subject=Contact Inquiry&body=Hi Tooba,";
-                  }}
-                />
-              ) : (
+        <div className="flex flex-col h-full px-8 py-24 justify-between">
+          {/* Menu Items */}
+          <div className="flex flex-col gap-6">
+            <span className="text-[10px] uppercase tracking-[0.3em] text-[#B76E79] font-bold mb-2 block">
+              Navigation
+            </span>
+            {pages.map((page, idx) => {
+              const isActive = location.pathname === page.path;
+              return page.name === "Contact" ? null : (
                 <Link
                   key={idx}
                   to={page.path}
-                  className="text-lg font-medium"
+                  className={`text-lg font-normal tracking-wide py-2 border-b border-[#B76E79]/5 transition-colors ${
+                    isActive
+                      ? "text-[#B76E79] font-medium"
+                      : "text-[#261214] hover:text-[#B76E79]"
+                  }`}
                   onClick={() => setMobileMenu(false)}
                 >
                   {page.name}
                 </Link>
-              ),
-            )}
+              );
+            })}
+          </div>
+
+          {/* Mobile Footer Contact Button */}
+          <div className="w-full">
+            <Button
+              text="Get in Touch"
+              className="w-full py-3 bg-[#B76E79] text-white rounded-full font-medium tracking-wider shadow-lg shadow-[#B76E79]/20"
+              onClick={() => {
+                setMobileMenu(false);
+                window.location.href =
+                  "mailto:toobasaleem190@gmail.com?subject=Contact%20Inquiry&body=Hi%20Tooba,";
+              }}
+            />
           </div>
         </div>
       </div>

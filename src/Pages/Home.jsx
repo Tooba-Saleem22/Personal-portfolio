@@ -1,27 +1,77 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { FiPlus, FiMinus, FiArrowUpRight } from "react-icons/fi";
+import {
+  FiPlus,
+  FiMinus,
+  FiArrowUpRight,
+  FiArrowRight,
+  FiLayers,
+  FiCheckCircle,
+  FiCompass,
+  FiCpu,
+  FiAward,
+  FiMail,
+} from "react-icons/fi";
 import Button from "../components/Button";
-import IdeaSection from "../components/IdeaSection";
 
 /* ==================================================================== */
-/* DESIGN TOKENS                                                      */
-/* rose      #B76E79   signature accent — ties into Rankify brand hue  */
-/* roseDeep  #8C4A56   accent hover / emphasis                        */
-/* One easing curve used everywhere so motion feels like one voice.    */
+/* QUIET-LUXURY DESIGN TOKENS — Ivory / Espresso / Antique Gold        */
 /* ==================================================================== */
-
 const EASE = [0.16, 1, 0.3, 1];
-const ROSE = "#B76E79";
-const ROSE_DEEP = "#8C4A56";
+const GOLD = "#B08D57"; // Antique brass gold — primary accent
+const GOLD_LIGHT = "#D9C08C"; // Champagne highlight
+const ESPRESSO = "#171210"; // Warm near-black, not pure black
+const ESPRESSO_DEEP = "#0F0B09"; // Darkest section (FAQ)
+const TEXT_DARK = "#1E1712";
+const TEXT_MUTED = "#7C7266";
 
-/* Data used inside the component below */
 const numbersData = [
   { value: "2+", label: "Years of Freelancing" },
   { value: "10+", label: "Projects Completed" },
   { value: "3+", label: "Industries Served" },
   { value: "100%", label: "Client Satisfaction" },
+];
+
+const processData = [
+  {
+    step: "01",
+    title: "Discovery & Strategy",
+    desc: "Understanding your brand vision, target audience, and structuring a tailored layout and information map.",
+  },
+  {
+    step: "02",
+    title: "Aesthetic Web Design",
+    desc: "Crafting refined premium interfaces with restrained tones, sleek typography, and pixel-perfect responsiveness.",
+  },
+  {
+    step: "03",
+    title: "Clean Code Execution",
+    desc: "Developing with blazing fast React architectures or versatile custom WordPress structures.",
+  },
+];
+
+const valuesData = [
+  {
+    icon: FiCompass,
+    title: "Clear Direction",
+    desc: "Every project starts with a strategy, not a template — so the final site actually serves your goals.",
+  },
+  {
+    icon: FiCpu,
+    title: "Engineering Rigour",
+    desc: "Clean, maintainable code across React and WordPress, built to stay fast as it scales.",
+  },
+  {
+    icon: FiAward,
+    title: "Considered Craft",
+    desc: "Nothing ships until the spacing, type, and motion feel deliberate — not just finished.",
+  },
+  {
+    icon: FiCheckCircle,
+    title: "Dependable Delivery",
+    desc: "Transparent timelines and ongoing support, so launch day isn't the end of the relationship.",
+  },
 ];
 
 const servicesData = [
@@ -69,12 +119,43 @@ const servicesData = [
   },
 ];
 
-/* naye project isi array mn add krna — pattern neeche comment mn hai */
 const projectsData = [
-  { img: "/assets/img1.png", title: "Thedesignspark", path: "/thedesignspark" },
-  { img: "/assets/img2.png", title: "etec", path: "/Etec" },
-  { img: "/assets/img3.png", title: "store.shoppsm", path: "/shoppsmstore" },
-  { img: "/assets/img4.png", title: "The College Cafe", path: "/College" },
+  {
+    img: "/assets/img1.png",
+    title: "Thedesignspark",
+    category: "Web Development",
+    path: "/thedesignspark",
+  },
+  {
+    img: "/assets/img2.png",
+    title: "Etec Website",
+    category: "Custom Frontend",
+    path: "/Etec",
+  },
+  {
+    img: "/assets/img3.png",
+    title: "store.shoppsm",
+    category: "E-Commerce",
+    path: "/shoppsmstore",
+  },
+  {
+    img: "/assets/img4.png",
+    title: "The College Cafe",
+    category: "Brand Website",
+    path: "/College",
+  },
+  {
+    img: "/assets/img5.png",
+    title: "Upcoming Premium Project 01",
+    category: "UI & Design",
+    path: "#",
+  },
+  {
+    img: "/assets/img6.png",
+    title: "Upcoming Premium Project 02",
+    category: "WordPress Custom",
+    path: "#",
+  },
 ];
 
 const faqsData = [
@@ -111,32 +192,25 @@ const parseNumberValue = (value) => {
   return { num, suffix };
 };
 
-/* ==================================================================== */
-/* HOME — one single component, everything written inline              */
-/* ==================================================================== */
-
 const Home = () => {
   const navigate = useNavigate();
-
-  // FAQ accordion
   const [activeFAQ, setActiveFAQ] = useState(null);
-
-  // Numbers count-up — all four animate together once the section is seen
   const [numbersInView, setNumbersInView] = useState(false);
   const [counts, setCounts] = useState(numbersData.map(() => 0));
 
   useEffect(() => {
     if (!numbersInView) return;
-    const duration = 1200;
+    const duration = 2000;
     const startTime = performance.now();
     let raf;
 
     const step = (now) => {
       const progress = Math.min((now - startTime) / duration, 1);
+      const easeProgress = 1 - Math.pow(1 - progress, 5);
       setCounts(
         numbersData.map((item) => {
           const { num } = parseNumberValue(item.value);
-          return Math.floor(progress * num);
+          return Math.floor(easeProgress * num);
         }),
       );
       if (progress < 1) raf = requestAnimationFrame(step);
@@ -146,251 +220,323 @@ const Home = () => {
   }, [numbersInView]);
 
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-[#FAF6EF] text-[#1E1712] selection:bg-[#B08D57]/20 font-sans antialiased">
       {/* ================================================================ */}
-      {/* HERO                                                              */}
+      {/* HERO SECTION                                                     */}
       {/* ================================================================ */}
-      <div className="w-full flex items-center justify-center px-6 pt-32 md:pt-40 pb-20 relative overflow-hidden">
-        <motion.div
-          aria-hidden
-          className="pointer-events-none absolute -top-24 right-[6%] w-[420px] h-[420px] rounded-full blur-[90px]"
-          style={{
-            background: `radial-gradient(circle, ${ROSE}22, transparent 70%)`,
-          }}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.6, ease: EASE }}
-        />
+      <div className="w-full min-h-screen flex items-center justify-center px-6 pt-32 pb-20 relative overflow-hidden">
+        <div className="absolute top-[-15%] left-[-10%] w-[700px] h-[700px] rounded-full blur-[160px] bg-[#B08D57]/12 pointer-events-none" />
+        <div className="absolute bottom-[10%] right-[-10%] w-[600px] h-[600px] rounded-full blur-[140px] bg-[#D9C08C]/15 pointer-events-none" />
 
-        <div className="max-w-[1400px] w-full text-center flex flex-col items-center justify-center relative">
+        <div className="max-w-[1200px] w-full text-center flex flex-col items-center justify-center relative z-10">
           <motion.div
-            className="flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-neutral-200"
-            initial={{ opacity: 0, y: -10 }}
+            className="flex items-center gap-2.5 mb-8 px-6 py-2 rounded-full border border-[#B08D57]/25 bg-white/70 backdrop-blur-xl shadow-[0_4px_20px_rgba(176,141,87,0.08)]"
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: EASE }}
+            transition={{ duration: 0.9, ease: EASE }}
           >
             <span className="relative flex h-2 w-2">
-              <span
-                className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-60"
-                style={{ backgroundColor: ROSE }}
-              />
-              <span
-                className="relative inline-flex rounded-full h-2 w-2"
-                style={{ backgroundColor: ROSE }}
-              />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#B08D57] opacity-70" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#B08D57]" />
             </span>
-            <span className="text-xs md:text-sm text-neutral-600 tracking-wide">
-              Available for new projects
+            <span className="text-[10px] uppercase tracking-[0.25em] text-[#7C7266] font-bold">
+              Available for Bespoke High-End Development
             </span>
           </motion.div>
 
           <motion.h4
-            className="text-2xl md:text-4xl text-black mb-4 font-normal"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: EASE }}
+            className="text-2xl md:text-3xl font-light tracking-wide text-[#7C7266] mb-3"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
           >
-            Hello, I'm{" "}
-            <span className="italic font-serif" style={{ color: ROSE_DEEP }}>
+            Hello, I am{" "}
+            <span className="font-serif italic font-normal text-[#8A6C3F]">
               Tooba
             </span>
           </motion.h4>
 
           <motion.h1
-            className="text-[2.4rem] sm:text-4xl md:text-5xl lg:text-8xl font-bold text-black leading-[0.95] max-w-6xl uppercase tracking-tight"
-            initial={{ opacity: 0, y: 24 }}
+            className="text-[2.7rem] sm:text-6xl md:text-7xl lg:text-[6rem] font-extrabold text-[#1E1712] leading-[1.02] tracking-tight max-w-5xl uppercase"
+            initial={{ opacity: 0, y: 35 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.25, ease: EASE }}
+            transition={{ duration: 1.1, delay: 0.3, ease: EASE }}
           >
-            Bringing ideas to life with code and design.
+            Crafting Digital Elegant{" "}
+            <span className="font-serif italic font-light text-[#B08D57] lowercase">
+              solutions
+            </span>{" "}
+            & Code.
           </motion.h1>
 
           <motion.p
-            className="mt-8 max-w-xl text-neutral-500 text-base md:text-lg"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.55, ease: EASE }}
+            className="mt-8 max-w-xl text-[#7C7266] text-base md:text-lg font-light leading-relaxed tracking-wide"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.6 }}
           >
-            Web developer building clean, fast, and functional websites for
-            small businesses and brands.
+            A premium portfolio space tailored for custom web development, clean
+            MERN deployments, and immaculate WordPress layouts.
           </motion.p>
         </div>
       </div>
 
       {/* ================================================================ */}
-      {/* ABOUT                                                            */}
+      {/* PHILOSOPHY QUOTE SECTION                                         */}
       {/* ================================================================ */}
-      <div className="w-full overflow-visible relative z-20 bg-white">
-        <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between px-4 sm:px-6 md:px-20 py-16 sm:py-20 md:py-28 gap-10">
+      <div className="w-full bg-gradient-to-b from-[#FAF6EF] to-white py-16 px-6 text-center">
+        <div className="max-w-4xl mx-auto border-y border-[#B08D57]/20 py-12">
+          <p className="font-serif italic text-2xl md:text-3xl text-[#3A2E1F] font-light leading-relaxed">
+            "Design is not just what it looks like and feels like. Design is how
+            it seamlessly functions under elegant lines of code."
+          </p>
+        </div>
+      </div>
+
+      {/* ================================================================ */}
+      {/* ABOUT SECTION                                                    */}
+      {/* ================================================================ */}
+      <div className="w-full bg-white relative z-20 py-24 shadow-[0_-10px_40px_rgba(176,141,87,0.03)]">
+        <div className="max-w-[1300px] mx-auto flex flex-col lg:flex-row items-center justify-between px-6 lg:px-16 gap-16">
           <motion.div
-            className="flex flex-col gap-5 sm:gap-6 md:w-1/2 w-full max-w-full md:max-w-xl break-words
-                       text-center md:text-left items-center md:items-start"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.8, ease: EASE }}
+            className="flex flex-col gap-6 lg:w-1/2 w-full text-center lg:text-left items-center lg:items-start"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: EASE }}
           >
-            <div className="flex items-center gap-2 mb-4 justify-center md:justify-start">
-              <span
-                className="h-[6px] w-[6px] rounded-full"
-                style={{ backgroundColor: ROSE }}
-              />
-              <span className="text-xs md:text-sm tracking-[0.25em] uppercase font-medium text-neutral-500">
-                About Me
+            <div className="flex items-center gap-2 px-3 py-1 bg-[#F1E9DA] rounded-md">
+              <span className="text-xs tracking-[0.3em] uppercase font-bold text-[#B08D57]">
+                The Designer & Dev
               </span>
             </div>
 
-            <p className="text-black text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed">
-              <span
-                className="text-2xl md:text-3xl font-serif italic mr-1"
-                style={{ color: ROSE_DEEP }}
-              >
-                Hi!
-              </span>{" "}
-              I'm Tooba, a dedicated web developer with a passion for crafting
-              beautiful and functional websites. I enjoy transforming ideas into
-              seamless digital experiences and continuously exploring new
-              technologies to enhance my skills. My goal is to create clean,
-              user-friendly designs that leave a lasting impression.
+            <h2 className="text-3xl md:text-5xl font-extrabold uppercase tracking-tight text-[#1E1712]">
+              Aesthetically Driven, <br />
+              Driven By Code.
+            </h2>
+
+            <p className="text-[#7C7266] text-base md:text-lg leading-relaxed font-light">
+              I am a specialized web developer focusing on premium layouts and
+              seamless modern interfaces. My vision pairs restrained, elevated
+              tones and clean grids with pixel-perfect frontend engineering to
+              provide businesses an unforgettable brand identity online.
             </p>
 
             <Button
-              text="Contact Now"
-              className="w-32 h-10 px-3 py-1.5 text-sm"
+              text="Let's Collaborate"
+              className="mt-4 shadow-lg shadow-[#B08D57]/15 bg-[#B08D57] text-white hover:bg-[#8A6C3F] transition-all duration-300"
               onClick={() =>
-                (window.location.href =
-                  "mailto:toobasaleem190@gmail.com?subject=Contact Inquiry&body=Hi Tooba,")
+                (window.location.href = "mailto:toobasaleem190@gmail.com")
               }
             />
           </motion.div>
 
           <motion.div
-            className="md:w-1/2 flex justify-center w-full mt-4 md:mt-0 relative"
-            initial={{ opacity: 0, y: 50, scale: 0.94 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 1, ease: EASE }}
+            className="lg:w-1/2 flex justify-center w-full relative"
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, ease: EASE }}
             viewport={{ once: true }}
           >
-            <div
-              className="absolute -inset-3 rounded-xl -z-10 hidden md:block"
-              style={{ border: `1px solid ${ROSE}55` }}
-            />
-            <div className="w-full max-w-xs sm:max-w-sm md:max-w-sm h-[320px] sm:h-[380px] md:h-[420px] overflow-hidden rounded-lg shadow-xl pointer-events-none select-none">
+            <div className="absolute -inset-4 rounded-2xl bg-gradient-to-tr from-[#B08D57]/15 to-transparent blur-xl -z-10" />
+            <div className="w-full max-w-sm h-[470px] overflow-hidden rounded-2xl shadow-2xl border-4 border-white">
               <img
                 src="/assets/Gemini_Generated_Image_nj0qienj0qienj0q.png"
-                alt="About Me"
-                draggable="false"
-                className="w-full h-full object-cover object-top"
+                alt="Tooba Saleem Portfolio"
+                className="w-full h-full object-cover object-top filter brightness-[1.01]"
               />
             </div>
+
+            {/* Signature monogram seal */}
+            <motion.div
+              className="absolute -bottom-6 -left-6 w-28 h-28 rounded-full bg-[#171210] border border-[#B08D57]/40 flex flex-col items-center justify-center shadow-xl"
+              initial={{ opacity: 0, rotate: -15, scale: 0.8 }}
+              whileInView={{ opacity: 1, rotate: 0, scale: 1 }}
+              transition={{ duration: 1, delay: 0.3, ease: EASE }}
+              viewport={{ once: true }}
+            >
+              <span className="font-serif italic text-2xl text-[#D9C08C]">
+                T·S
+              </span>
+              <span className="text-[8px] uppercase tracking-[0.2em] text-[#B08D57] mt-1">
+                Est. Freelance
+              </span>
+            </motion.div>
           </motion.div>
         </div>
       </div>
 
       {/* ================================================================ */}
-      {/* NUMBERS                                                        */}
+      {/* THE PROCESS SECTION                                              */}
       {/* ================================================================ */}
-      <div className="w-full bg-white py-16 px-4 md:px-20 flex flex-col md:flex-row gap-10 rounded-t-lg md:rounded-t-[180px] overflow-hidden">
-        <motion.h2
-          className="text-4xl md:text-6xl md:leading-[0.9] font-bold uppercase flex-1 text-black text-center md:text-left md:self-start"
-          initial={{ opacity: 0, y: -40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: EASE }}
-          viewport={{ once: true }}
-        >
-          Some <br /> Numbers
-        </motion.h2>
+      <div className="w-full bg-[#FAF6EF] py-24 px-6 lg:px-20 border-t border-[#B08D57]/15">
+        <div className="max-w-[1300px] mx-auto">
+          <div className="text-center mb-16">
+            <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#B08D57] mb-2 block">
+              Methodology
+            </span>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-[#1E1712]">
+              How I Work
+            </h2>
+          </div>
 
-        <motion.div
-          className="flex-1 grid grid-cols-2 gap-6 mt-5 relative"
-          onViewportEnter={() => setNumbersInView(true)}
-          viewport={{ once: true, amount: 0.6 }}
-        >
-          {numbersData.map((item, idx) => {
-            const { suffix } = parseNumberValue(item.value);
-            return (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {processData.map((item, idx) => (
               <div
                 key={idx}
-                className={`flex flex-col items-center justify-center py-7 border-neutral-200 ${
-                  idx % 2 === 0 ? "border-r" : ""
-                }`}
+                className="bg-white p-8 rounded-2xl border border-[#B08D57]/15 relative shadow-sm group hover:shadow-md transition-all duration-300"
               >
-                <span className="text-4xl md:text-6xl font-bold text-black tabular-nums">
-                  {counts[idx]}
-                  <span style={{ color: ROSE_DEEP }}>{suffix}</span>
+                <span className="text-5xl font-serif italic text-[#D9C08C]/60 font-light block mb-4 group-hover:text-[#B08D57]/70 transition-colors">
+                  {item.step}
                 </span>
-                <span className="text-sm text-neutral-500 mt-2">
-                  {item.label}
-                </span>
+                <h3 className="text-lg font-bold text-[#1E1712] mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-[#7C7266] text-sm font-light leading-relaxed">
+                  {item.desc}
+                </p>
               </div>
-            );
-          })}
-          <div className="absolute left-2 right-2 top-[50%] border-t border-neutral-200 -translate-y-1/2" />
-        </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* ================================================================ */}
-      {/* SERVICES                                                       */}
+      {/* WHY WORK WITH ME — VALUES STRIP                                  */}
       {/* ================================================================ */}
-      <div className="w-full bg-black text-white py-10 px-4 md:py-16 md:px-10 lg:px-20 rounded-t-[40px] md:rounded-t-[140px]">
-        <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-start gap-10">
-          <motion.div
-            className="w-full md:w-1/4 flex justify-center md:justify-start"
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: EASE }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl md:text-6xl md:mt-14 font-bold uppercase text-center md:text-left">
-              Services
+      <div className="w-full bg-white py-24 px-6 lg:px-20 border-t border-[#B08D57]/10">
+        <div className="max-w-[1300px] mx-auto">
+          <div className="text-center mb-16">
+            <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#B08D57] mb-2 block">
+              The Difference
+            </span>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-[#1E1712]">
+              Why Work With Me
             </h2>
-          </motion.div>
+          </div>
 
-          <div className="w-full md:w-3/4 flex flex-col md:mt-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {valuesData.map((item, idx) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  className="p-7 rounded-2xl bg-[#FAF6EF] border border-[#B08D57]/10 hover:border-[#B08D57]/30 hover:shadow-md transition-all duration-300"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: idx * 0.05, ease: EASE }}
+                  viewport={{ once: true }}
+                >
+                  <div className="w-11 h-11 rounded-full bg-[#171210] flex items-center justify-center mb-5">
+                    <Icon className="text-[#D9C08C] text-lg" />
+                  </div>
+                  <h3 className="text-base font-bold text-[#1E1712] mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-[#7C7266] text-sm font-light leading-relaxed">
+                    {item.desc}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* ================================================================ */}
+      {/* NUMBERS SECTION                                                  */}
+      {/* ================================================================ */}
+      <div className="w-full bg-[#171210] text-[#FAF6EF] py-24 px-6 lg:px-20 relative overflow-hidden rounded-[30px] md:rounded-[50px] my-10 max-w-[1400px] mx-auto shadow-xl">
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#B08D57]/15 blur-[120px] pointer-events-none" />
+
+        <div className="max-w-[1300px] mx-auto flex flex-col lg:flex-row gap-16 items-center">
+          <div className="lg:w-1/3 text-center lg:text-left">
+            <span className="text-[#D9C08C] uppercase tracking-widest text-xs font-bold block mb-3">
+              Metrics of Trust
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight leading-none text-white">
+              Proven <br />
+              <span className="text-[#D9C08C] font-serif italic lowercase font-normal">
+                results
+              </span>
+            </h2>
+          </div>
+
+          <motion.div
+            className="lg:w-2/3 w-full grid grid-cols-2 md:grid-cols-4 gap-6 relative z-10"
+            onViewportEnter={() => setNumbersInView(true)}
+            viewport={{ once: true, amount: 0.4 }}
+          >
+            {numbersData.map((item, idx) => {
+              const { suffix } = parseNumberValue(item.value);
+              return (
+                <div
+                  key={idx}
+                  className="flex flex-col items-center lg:items-start p-6 bg-white/[0.03] border border-white/10 rounded-xl backdrop-blur-md"
+                >
+                  <span className="text-4xl md:text-5xl font-black tabular-nums tracking-tight text-white">
+                    {counts[idx]}
+                    <span className="text-[#D9C08C]">{suffix}</span>
+                  </span>
+                  <span className="text-xs uppercase tracking-wider text-neutral-300 mt-3 text-center lg:text-left">
+                    {item.label}
+                  </span>
+                </div>
+              );
+            })}
+          </motion.div>
+        </div>
+      </div>
+
+      {/* ================================================================ */}
+      {/* SERVICES SECTION                                                 */}
+      {/* ================================================================ */}
+      <div className="w-full bg-white py-24 px-6 lg:px-20">
+        <div className="max-w-[1300px] mx-auto">
+          <div className="flex flex-col items-center text-center mb-20">
+            <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#B08D57] mb-3">
+              Expertise Store
+            </span>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-[#1E1712]">
+              Professional Offerings
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {servicesData.map((service, idx) => (
               <motion.div
                 key={idx}
-                className="group relative flex flex-col md:flex-row gap-4 md:gap-10 items-start py-6 border-b border-white/10 last:border-b-0 pl-0 md:pl-6"
-                initial={{ opacity: 0, y: 32 }}
+                className="group bg-[#FAF6EF]/40 hover:bg-white p-8 rounded-2xl border border-[#B08D57]/10 hover:border-[#B08D57]/30 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-between relative overflow-hidden"
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: idx * 0.08, ease: EASE }}
-                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6, delay: idx * 0.05, ease: EASE }}
+                viewport={{ once: true }}
               >
-                <span
-                  className="hidden md:block absolute left-0 top-0 bottom-0 w-[2px] scale-y-0 group-hover:scale-y-100 origin-top transition-transform duration-500 ease-out"
-                  style={{ backgroundColor: ROSE }}
-                />
-
-                <div className="w-full md:w-[180px] md:ml-24 flex-shrink-0 text-center md:text-left">
-                  <p
-                    className="text-sm font-semibold mb-0"
-                    style={{ color: ROSE }}
-                  >
-                    [{service.number}]
-                  </p>
-                  <h3 className="text-lg md:text-xl font-bold whitespace-nowrap text-white">
+                <div>
+                  <div className="flex justify-between items-center mb-6">
+                    <span className="text-xs font-mono text-[#B08D57] font-bold bg-[#F1E9DA] px-2.5 py-1 rounded">
+                      [{service.number}]
+                    </span>
+                    <FiLayers className="text-neutral-300 group-hover:text-[#B08D57] transition-colors duration-300" />
+                  </div>
+                  <h3 className="text-xl font-bold text-[#1E1712] mb-3 group-hover:text-[#8A6C3F] transition-colors">
                     {service.title}
                   </h3>
-                </div>
-
-                <div className="flex-1 text-center md:ml-16 md:text-left">
-                  <div className="text-sm md:text-base font-semibold mb-1 md:mb-3 text-neutral-400">
-                    {service.items.map((item, i) => (
-                      <span key={i}>
-                        {item}
-                        {i !== service.items.length - 1 && " · "}
-                      </span>
-                    ))}
-                  </div>
-                  <p className="text-white/80 text-sm md:text-base max-w-full leading-snug">
+                  <p className="text-[#7C7266] text-sm font-light leading-relaxed mb-6">
                     {service.description}
                   </p>
                 </div>
-
-                <FiArrowUpRight
-                  className="hidden md:block absolute right-0 top-8 text-2xl opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-400"
-                  style={{ color: ROSE }}
-                />
+                <div className="flex flex-wrap gap-1.5 pt-4 border-t border-neutral-100">
+                  {service.items.map((tag, i) => (
+                    <span
+                      key={i}
+                      className="text-[11px] bg-neutral-100 text-[#7C7266] px-2.5 py-0.5 rounded-full font-medium"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </motion.div>
             ))}
           </div>
@@ -398,114 +544,111 @@ const Home = () => {
       </div>
 
       {/* ================================================================ */}
-      {/* PROJECTS                                                       */}
+      {/* PREMIUM PROJECTS GRID                                            */}
       {/* ================================================================ */}
-      <div className="w-full bg-white text-black py-10 px-4 md:py-20 md:px-20">
-        <motion.div
-          className="flex items-end justify-between mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: EASE }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-4xl md:text-6xl font-bold uppercase text-center md:text-left">
-            Projects
-          </h2>
-          <span className="hidden md:block text-sm text-neutral-500 tracking-wide">
-            Selected Work
-          </span>
-        </motion.div>
+      <div className="w-full bg-[#FAF6EF] py-24 px-6 lg:px-20 border-t border-b border-[#B08D57]/15">
+        <div className="max-w-[1300px] mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+            <div>
+              <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#B08D57] block mb-2">
+                Showcase Studio
+              </span>
+              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-[#1E1712]">
+                Selected Works
+              </h2>
+            </div>
+            <p className="text-[#7C7266] font-light max-w-xs text-sm md:text-right">
+              A curated selection of dynamic storefronts, WordPress layouts, and
+              React architectures.
+            </p>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {projectsData.map((project, idx) => (
-            <motion.div
-              key={idx}
-              className="group flex flex-col items-center cursor-pointer"
-              initial={{ y: 60, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: idx * 0.12, ease: EASE }}
-              viewport={{ once: true }}
-              onClick={() => project.path && navigate(project.path)}
-            >
-              <div className="w-full h-[420px] rounded-xl overflow-hidden shadow-lg relative bg-neutral-100">
-                <motion.img
-                  src={project.img}
-                  alt={project.title}
-                  className="w-full h-full object-cover object-top rounded-xl"
-                  whileHover={{ scale: 1.06 }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={{ duration: 0.6, ease: EASE }}
-                />
-                <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/15 transition-colors duration-400">
-                  <span
-                    className="w-14 h-14 rounded-full flex items-center justify-center text-white text-xl opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all duration-400"
-                    style={{ backgroundColor: ROSE }}
-                  >
-                    <FiArrowUpRight />
-                  </span>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {projectsData.map((project, idx) => (
+              <motion.div
+                key={idx}
+                className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer border border-[#B08D57]/10"
+                initial={{ y: 40, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.8, delay: idx * 0.05, ease: EASE }}
+                viewport={{ once: true }}
+                onClick={() => project.path !== "#" && navigate(project.path)}
+              >
+                <div className="w-full h-[300px] overflow-hidden relative bg-neutral-50 border-b border-neutral-100">
+                  <motion.img
+                    src={project.img}
+                    alt={project.title}
+                    className="w-full h-full object-cover object-top"
+                    whileHover={{ scale: 1.04 }}
+                    transition={{ duration: 0.5, ease: EASE }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#171210]/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-end p-6">
+                    <span className="text-white text-xs font-medium tracking-widest uppercase flex items-center gap-1">
+                      Explore Case <FiArrowUpRight />
+                    </span>
+                  </div>
                 </div>
-              </div>
 
-              <div className="mt-6 text-center w-full flex flex-col items-center">
-                <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
-                <Button
-                  text="View Project"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    project.path && navigate(project.path);
-                  }}
-                />
-              </div>
-            </motion.div>
-          ))}
+                <div className="p-6 flex flex-col justify-between flex-1 bg-white">
+                  <div>
+                    <span className="text-[11px] uppercase tracking-wider text-[#B08D57] font-bold block mb-1">
+                      {project.category}
+                    </span>
+                    <h3 className="text-xl font-bold text-[#1E1712] group-hover:text-[#8A6C3F] transition-colors">
+                      {project.title}
+                    </h3>
+                  </div>
+                  <div className="mt-6 pt-4 border-t border-neutral-50 flex items-center justify-between">
+                    <span className="text-xs text-neutral-400 font-light">
+                      Interactive Case
+                    </span>
+                    <div className="w-8 h-8 rounded-full bg-[#F1E9DA] group-hover:bg-[#B08D57] text-[#B08D57] group-hover:text-white flex items-center justify-center transition-colors duration-300">
+                      <FiArrowUpRight className="text-sm" />
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* ================================================================ */}
-      {/* FAQ                                                              */}
+      {/* FAQ SECTION                                                      */}
       {/* ================================================================ */}
-      <div className="w-full bg-black text-white py-10 px-4 md:py-16 md:px-10 lg:px-20 rounded-t-[40px] md:rounded-t-[140px]">
-        <motion.h2
-          className="text-4xl md:text-6xl md:mt-16 font-bold uppercase text-white text-center md:text-left mb-8 md:mb-16 flex-1"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: EASE }}
-          viewport={{ once: true }}
-        >
-          FAQs
-        </motion.h2>
+      <div className="w-full bg-[#0F0B09] text-[#FAF6EF] py-24 px-6 lg:px-20">
+        <div className="max-w-[1100px] mx-auto flex flex-col lg:flex-row gap-16">
+          <div className="lg:w-1/3">
+            <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#D9C08C] block mb-3">
+              Support FAQ
+            </span>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white">
+              Common Queries
+            </h2>
+          </div>
 
-        <div className="flex md:mr-14 md:-mt-32 justify-start md:justify-end w-full">
-          <div className="w-full md:w-3/4 flex flex-col gap-0 md:gap-2">
+          <div className="lg:w-2/3 w-full flex flex-col gap-3">
             {faqsData.map((item, idx) => {
               const isOpen = activeFAQ === idx;
               return (
-                <motion.div
+                <div
                   key={idx}
-                  className="border-b border-white/10 overflow-hidden last:border-b-0"
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: idx * 0.08, ease: EASE }}
-                  viewport={{ once: true }}
+                  className="border-b border-white/10 overflow-hidden bg-white/[0.02] rounded-xl px-4 md:px-6"
                 >
                   <button
                     onClick={() => setActiveFAQ(isOpen ? null : idx)}
-                    className="w-full flex justify-between items-center px-2 md:px-6 py-5 bg-transparent focus:outline-none text-left"
+                    className="w-full flex justify-between items-center py-5 focus:outline-none text-left"
                   >
                     <span
-                      className="font-semibold text-lg md:text-xl text-left transition-colors"
-                      style={{ color: isOpen ? ROSE : "#ffffff" }}
+                      className={`font-medium text-base md:text-lg transition-colors duration-300 ${isOpen ? "text-[#D9C08C]" : "text-white"}`}
                     >
                       {item.question}
                     </span>
-                    <motion.span
-                      animate={{ rotate: isOpen ? 180 : 0 }}
-                      transition={{ duration: 0.4, ease: EASE }}
-                      className="ml-2 text-xl"
-                      style={{ color: isOpen ? ROSE : "#ffffff" }}
+                    <span
+                      className={`text-lg ${isOpen ? "text-[#D9C08C]" : "text-white"}`}
                     >
                       {isOpen ? <FiMinus /> : <FiPlus />}
-                    </motion.span>
+                    </span>
                   </button>
 
                   <AnimatePresence initial={false}>
@@ -514,22 +657,59 @@ const Home = () => {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.4, ease: EASE }}
+                        transition={{ duration: 0.35, ease: EASE }}
                       >
-                        <div className="px-2 md:px-6 pb-5 text-white/70 text-base md:text-lg">
+                        <div className="pb-6 text-neutral-300 text-sm md:text-base font-light leading-relaxed">
                           {item.answer}
                         </div>
                       </motion.div>
                     )}
                   </AnimatePresence>
-                </motion.div>
+                </div>
               );
             })}
           </div>
         </div>
       </div>
 
-      <IdeaSection />
+      {/* ================================================================ */}
+      {/* FINAL CTA SECTION (replaces IdeaSection)                         */}
+      {/* ================================================================ */}
+      <div className="w-full bg-[#FAF6EF] py-24 px-6 lg:px-20">
+        <motion.div
+          className="max-w-[1200px] mx-auto rounded-[30px] md:rounded-[50px] bg-[#171210] px-8 md:px-16 py-20 text-center relative overflow-hidden"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: EASE }}
+          viewport={{ once: true }}
+        >
+          <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#B08D57]/15 blur-[140px] pointer-events-none" />
+
+          <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#D9C08C] mb-5 block relative z-10">
+            Start a Project
+          </span>
+          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-white max-w-2xl mx-auto leading-tight relative z-10">
+            Let's create something{" "}
+            <span className="font-serif italic lowercase font-normal text-[#D9C08C]">
+              remarkable
+            </span>{" "}
+            together.
+          </h2>
+          <p className="mt-6 text-neutral-300 font-light max-w-md mx-auto relative z-10">
+            Have a brief in mind? Tell me about it and I'll get back to you
+            within a day.
+          </p>
+
+          <motion.a
+            href="mailto:toobasaleem190@gmail.com"
+            className="mt-10 inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#B08D57] text-[#171210] font-bold text-sm uppercase tracking-widest relative z-10 hover:bg-[#D9C08C] transition-colors duration-300"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <FiMail /> Get In Touch <FiArrowRight />
+          </motion.a>
+        </motion.div>
+      </div>
     </div>
   );
 };
