@@ -1,7 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
-import Button from "../components/Button";
 
 function Navbar() {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -84,13 +83,13 @@ function Navbar() {
           {/* Logo */}
           <Link
             to="/"
-            className="text-xl md:text-2xl text-[#261214] font-serif italic tracking-wide font-normal z-50 hover:text-[#B76E79] transition-colors pl-2"
+            className="text-xl md:text-2xl text-[#261214] font-serif italic tracking-wide font-normal z-40 hover:text-[#B76E79] transition-colors pl-2"
             onClick={() => setMobileMenu(false)}
           >
             Tooba<span className="text-[#B76E79] font-sans not-italic">.</span>
           </Link>
 
-          {/* Desktop Menu - Perfectly Centered */}
+          {/* Desktop Menu */}
           <ul className="hidden md:flex gap-8 md:mt-0.5 absolute left-1/2 transform -translate-x-1/2">
             {pages
               .filter((page) => page.name !== "Contact")
@@ -107,56 +106,56 @@ function Navbar() {
               })}
           </ul>
 
-          {/* Right: Desktop Contact Button + Hamburger */}
+          {/* Right Section */}
           <div className="flex items-center gap-2">
-            {/* Desktop Contact Button - Fixed Text Visibility */}
+            {/* Desktop Contact Button (Using HTML button for guaranteed styling) */}
             <div className="hidden md:flex">
-              <Button
-                text="Contact"
-                className="bg-[#B76E79] text-white hover:bg-[#8C4A56] hover:text-white transition-all rounded-full px-5 py-2 text-xs font-semibold tracking-wider shadow-sm"
+              <button
+                className="bg-[#B76E79] text-white hover:bg-[#8C4A56] transition-all rounded-full px-6 py-2.5 text-xs font-semibold tracking-wider shadow-sm cursor-pointer"
                 onClick={() =>
                   (window.location.href =
                     "mailto:toobasaleem190@gmail.com?subject=Contact%20Inquiry&body=Hi%20Tooba,")
                 }
-              />
+              >
+                Contact
+              </button>
             </div>
 
-            {/* Mobile Hamburger */}
-            <div className="md:hidden z-55">
+            {/* Mobile Hamburger Button */}
+            <div className="md:hidden">
               <button
-                onClick={() => setMobileMenu(!mobileMenu)}
+                onClick={() => setMobileMenu(true)}
                 className="text-2xl text-[#261214] hover:text-[#B76E79] transition-colors p-2 flex items-center justify-center focus:outline-none"
-                aria-label="Toggle Menu"
+                aria-label="Open Menu"
               >
-                {mobileMenu ? (
-                  <FiX className="text-[#261214] size-6" />
-                ) : (
-                  <FiMenu className="text-[#261214] size-6" />
-                )}
+                <FiMenu className="w-6 h-6" />
               </button>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Mobile Blur Overlay */}
-      {mobileMenu && (
-        <div
-          className="fixed inset-0 bg-[#3D1E22]/35 backdrop-blur-sm z-45 md:hidden transition-opacity duration-300"
-          onClick={() => setMobileMenu(false)}
-        />
-      )}
-
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Full Screen Drawer Menu */}
       <div
-        className={`fixed top-0 right-0 h-screen w-[80vw] max-w-[300px] bg-[#FFF5F6] border-l border-[#B76E79]/10 shadow-2xl z-50 
+        className={`fixed top-0 right-0 h-screen w-screen bg-[#FFF5F6] z-50 
         transform transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:hidden
         ${mobileMenu ? "translate-x-0" : "translate-x-full"}`}
       >
-        <div className="flex flex-col h-full px-8 py-24 justify-between">
+        {/* Close Button Inside Drawer Top Right */}
+        <div className="absolute top-6 right-6">
+          <button
+            onClick={() => setMobileMenu(false)}
+            className="text-[#261214] hover:text-[#B76E79] transition-colors p-2 flex items-center justify-center focus:outline-none"
+            aria-label="Close Menu"
+          >
+            <FiX className="w-8 h-8" />
+          </button>
+        </div>
+
+        <div className="flex flex-col h-full px-10 py-24 justify-between">
           {/* Menu Items */}
-          <div className="flex flex-col gap-6">
-            <span className="text-[10px] uppercase tracking-[0.3em] text-[#B76E79] font-bold mb-2 block">
+          <div className="flex flex-col gap-8 mt-8">
+            <span className="text-[11px] uppercase tracking-[0.3em] text-[#B76E79] font-bold mb-2 block">
               Navigation
             </span>
             {pages.map((page, idx) => {
@@ -165,7 +164,7 @@ function Navbar() {
                 <Link
                   key={idx}
                   to={page.path}
-                  className={`text-lg font-normal tracking-wide py-2 border-b border-[#B76E79]/5 transition-colors block ${
+                  className={`text-2xl font-normal tracking-wide py-3 border-b border-[#B76E79]/10 transition-colors block ${
                     isActive
                       ? "text-[#B76E79] font-semibold"
                       : "text-[#261214] hover:text-[#B76E79]"
@@ -178,17 +177,18 @@ function Navbar() {
             })}
           </div>
 
-          {/* Mobile Footer Contact Button */}
-          <div className="w-full">
-            <Button
-              text="Get in Touch"
-              className="w-full py-3 bg-[#B76E79] text-white rounded-full font-medium tracking-wider shadow-lg shadow-[#B76E79]/20 active:scale-95 transition-transform"
+          {/* Mobile Full Width Contact Button */}
+          <div className="w-full mb-6">
+            <button
+              className="w-full py-4 bg-[#B76E79] text-white hover:bg-[#8C4A56] rounded-full text-sm font-semibold tracking-wider shadow-lg shadow-[#B76E79]/20 active:scale-95 transition-all cursor-pointer"
               onClick={() => {
                 setMobileMenu(false);
                 window.location.href =
                   "mailto:toobasaleem190@gmail.com?subject=Contact%20Inquiry&body=Hi%20Tooba,";
               }}
-            />
+            >
+              Get in Touch
+            </button>
           </div>
         </div>
       </div>
