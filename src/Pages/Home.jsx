@@ -27,9 +27,9 @@ const TEXT_DARK = "#1E1712";
 const TEXT_MUTED = "#7C7266";
 
 const numbersData = [
-  { value: "2+", label: "Years of Freelancing" },
-  { value: "10+", label: "Projects Completed" },
-  { value: "3+", label: "Industries Served" },
+  { value: "3+", label: "Years of Freelancing" },
+  { value: "20+", label: "Projects Completed" },
+  { value: "10+", label: "Industries Served" },
   { value: "100%", label: "Client Satisfaction" },
 ];
 
