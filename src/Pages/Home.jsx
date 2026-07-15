@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { FiPlus, FiMinus, FiArrowUpRight } from "react-icons/fi";
@@ -6,10 +6,10 @@ import Button from "../components/Button";
 import IdeaSection from "../components/IdeaSection";
 
 /* ==================================================================== */
-/*  DESIGN TOKENS                                                       */
-/*  rose      #B76E79   signature accent — ties into Rankify brand hue  */
-/*  roseDeep  #8C4A56   accent hover / emphasis                         */
-/*  One easing curve used everywhere so motion feels like one voice.    */
+/* DESIGN TOKENS                                                      */
+/* rose      #B76E79   signature accent — ties into Rankify brand hue  */
+/* roseDeep  #8C4A56   accent hover / emphasis                        */
+/* One easing curve used everywhere so motion feels like one voice.    */
 /* ==================================================================== */
 
 const EASE = [0.16, 1, 0.3, 1];
@@ -75,22 +75,6 @@ const projectsData = [
   { img: "/assets/img2.png", title: "etec", path: "/Etec" },
   { img: "/assets/img3.png", title: "store.shoppsm", path: "/shoppsmstore" },
   { img: "/assets/img4.png", title: "The College Cafe", path: "/College" },
-  // { img: "/assets/img5.png", title: "Project Name", path: "/project-route" },
-];
-
-const experiencesData = [
-  { title: "Freelancer", company: "Self-Employed", period: "2024 - Present" },
-  {
-    title: "WordPress Developer",
-    company: "GMCH Technologies",
-    period: "2024 - 2025",
-  },
-  {
-    title: "Frontend Developer",
-    company: "RaviNovus Tech",
-    period: "2026 - Present",
-  },
-  { title: "Student", company: "UAJK", period: "2022 - Present" },
 ];
 
 const faqsData = [
@@ -128,7 +112,7 @@ const parseNumberValue = (value) => {
 };
 
 /* ==================================================================== */
-/*  HOME — one single component, everything written inline              */
+/* HOME — one single component, everything written inline              */
 /* ==================================================================== */
 
 const Home = () => {
@@ -164,7 +148,7 @@ const Home = () => {
   return (
     <div className="w-full bg-white">
       {/* ================================================================ */}
-      {/*  HERO                                                            */}
+      {/* HERO                                                              */}
       {/* ================================================================ */}
       <div className="w-full flex items-center justify-center px-6 pt-32 md:pt-40 pb-20 relative overflow-hidden">
         <motion.div
@@ -234,7 +218,7 @@ const Home = () => {
       </div>
 
       {/* ================================================================ */}
-      {/*  ABOUT                                                           */}
+      {/* ABOUT                                                            */}
       {/* ================================================================ */}
       <div className="w-full overflow-visible relative z-20 bg-white">
         <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between px-4 sm:px-6 md:px-20 py-16 sm:py-20 md:py-28 gap-10">
@@ -304,7 +288,7 @@ const Home = () => {
       </div>
 
       {/* ================================================================ */}
-      {/*  NUMBERS                                                         */}
+      {/* NUMBERS                                                        */}
       {/* ================================================================ */}
       <div className="w-full bg-white py-16 px-4 md:px-20 flex flex-col md:flex-row gap-10 rounded-t-lg md:rounded-t-[180px] overflow-hidden">
         <motion.h2
@@ -346,7 +330,7 @@ const Home = () => {
       </div>
 
       {/* ================================================================ */}
-      {/*  SERVICES                                                        */}
+      {/* SERVICES                                                       */}
       {/* ================================================================ */}
       <div className="w-full bg-black text-white py-10 px-4 md:py-16 md:px-10 lg:px-20 rounded-t-[40px] md:rounded-t-[140px]">
         <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-start gap-10">
@@ -414,7 +398,7 @@ const Home = () => {
       </div>
 
       {/* ================================================================ */}
-      {/*  PROJECTS                                                        */}
+      {/* PROJECTS                                                       */}
       {/* ================================================================ */}
       <div className="w-full bg-white text-black py-10 px-4 md:py-20 md:px-20">
         <motion.div
@@ -478,67 +462,7 @@ const Home = () => {
       </div>
 
       {/* ================================================================ */}
-      {/*  WORK EXPERIENCE                                                 */}
-      {/* ================================================================ */}
-      <div className="bg-white py-16 px-6 md:py-24 md:px-20 flex flex-col md:flex-row gap-10">
-        <motion.h2
-          className="text-3xl md:text-6xl font-bold uppercase text-center md:text-left flex-1 whitespace-nowrap text-black"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: EASE }}
-          viewport={{ once: true }}
-        >
-          Work <br /> Experience
-        </motion.h2>
-
-        <div className="flex-1 max-w-[800px] text-black relative">
-          <div
-            className="absolute left-[5px] top-2 bottom-2 w-px hidden md:block"
-            style={{ background: "linear-gradient(#00000022, transparent)" }}
-          />
-          <div className="flex flex-col gap-10">
-            {experiencesData.map((exp, idx) => (
-              <motion.div
-                key={idx}
-                className="w-full flex flex-col gap-2 relative md:pl-8"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.7, delay: idx * 0.12, ease: EASE }}
-                viewport={{ once: true, amount: 0.4 }}
-              >
-                <span
-                  className="hidden md:block absolute left-0 top-1.5 w-[10px] h-[10px] rounded-full"
-                  style={{
-                    backgroundColor: ROSE,
-                    boxShadow: `0 0 0 4px ${ROSE}22`,
-                  }}
-                />
-
-                <div className="flex justify-between w-full items-start">
-                  <p className="text-base md:text-xl lg:text-2xl font-semibold">
-                    {exp.title}
-                  </p>
-                  <div className="flex flex-col items-end">
-                    <p className="text-sm md:text-lg font-medium">
-                      {exp.company}
-                    </p>
-                    <p className="text-xs md:text-sm text-neutral-500">
-                      {exp.period}
-                    </p>
-                  </div>
-                </div>
-
-                {idx !== experiencesData.length - 1 && (
-                  <hr className="w-full border-t border-black/10 mt-4" />
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ================================================================ */}
-      {/*  FAQ                                                             */}
+      {/* FAQ                                                              */}
       {/* ================================================================ */}
       <div className="w-full bg-black text-white py-10 px-4 md:py-16 md:px-10 lg:px-20 rounded-t-[40px] md:rounded-t-[140px]">
         <motion.h2
@@ -551,7 +475,7 @@ const Home = () => {
           FAQs
         </motion.h2>
 
-        <div className="flex-5 flex md:mr-14 md:-mt-32 justify-start md:justify-end">
+        <div className="flex md:mr-14 md:-mt-32 justify-start md:justify-end w-full">
           <div className="w-full md:w-3/4 flex flex-col gap-0 md:gap-2">
             {faqsData.map((item, idx) => {
               const isOpen = activeFAQ === idx;

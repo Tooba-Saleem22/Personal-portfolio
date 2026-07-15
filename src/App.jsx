@@ -1,15 +1,21 @@
-import { BrowserRouter } from "react-router-dom";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./Layout/Navbar";
 import Footer from "./Layout/Footer";
-import AppRoutes from "./Routes/AppRoutes";
+import Home from "./Pages/Home";
 import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <BrowserRouter>
-      <ScrollToTop /> {/* 👈 yahan add karo */}
+      <ScrollToTop />
       <Navbar />
-      <AppRoutes />
+
+      <Routes>
+        {/* Sirf Home Page ka route */}
+        <Route path="/" element={<Home />} />
+      </Routes>
+
       <Footer />
     </BrowserRouter>
   );
