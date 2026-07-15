@@ -56,10 +56,10 @@ function Navbar() {
 
   return (
     <>
-      {/* Floating Capsule Navbar */}
+      {/* Floating Capsule Navbar with Increased Vertical Padding */}
       <div
         className={`fixed top-4 left-1/2 -translate-x-1/2 w-[92%] md:w-[85%] max-w-[1200px] z-50 
-        bg-[#FFF5F6]/85 backdrop-blur-xl border border-[#B76E79]/20 px-6 py-3 md:py-2.5 rounded-full 
+        bg-[#FFF5F6]/85 backdrop-blur-xl border border-[#B76E79]/20 px-6 py-4 md:py-3.5 rounded-full 
         shadow-[0_10px_35px_rgba(183,110,121,0.08)] transition-all duration-500 ease-in-out ${
           showNavbar
             ? "translate-y-0 opacity-100"

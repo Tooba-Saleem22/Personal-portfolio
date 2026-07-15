@@ -5,6 +5,8 @@ import Footer from "./Layout/Footer";
 import Home from "./Pages/Home";
 // Projects Page ko import kiya
 import Projects from "./Pages/Projects";
+import Services from "./Pages/Services";
+import About from "./Pages/About";
 import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
@@ -19,6 +21,12 @@ function App() {
 
         {/* Projects Page Route */}
         <Route path="/projects" element={<Projects />} />
+
+        {/* Services Page Route */}
+        <Route path="/services" element={<Services />} />
+
+        {/* About Page Route */}
+        <Route path="/about" element={<About />} />
       </Routes>
 
       <Footer />
