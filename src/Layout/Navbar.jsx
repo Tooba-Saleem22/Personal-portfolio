@@ -114,7 +114,7 @@ function Navbar() {
             <div className="hidden md:flex">
               <Button
                 text="Contact"
-                className="bg-[#B76E79] text-white hover:bg-[#8C4A56] transition-all rounded-full px-5 py-1.5 text-xs font-semibold tracking-wider"
+                className="bg-[#B76E79] text-black hover:bg-[#8C4A56] transition-all rounded-full px-5 py-1.5 text-xs font-semibold tracking-wider"
                 onClick={() =>
                   (window.location.href =
                     "mailto:toobasaleem190@gmail.com?subject=Contact%20Inquiry&body=Hi%20Tooba,")
