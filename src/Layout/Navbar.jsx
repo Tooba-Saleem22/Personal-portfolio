@@ -22,7 +22,10 @@ function Navbar() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       if (currentScrollY > lastScrollY + 20 && currentScrollY > 80) {
-        setShowNavbar(false);
+        // Dropdowns closed on scroll hide
+        if (!mobileMenu) {
+          setShowNavbar(false);
+        }
       } else if (currentScrollY < lastScrollY - 10) {
         setShowNavbar(true);
       }
@@ -31,7 +34,19 @@ function Navbar() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, [lastScrollY, mobileMenu]);
+
+  // Prevent background scrolling when mobile menu is open
+  useEffect(() => {
+    if (mobileMenu) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [mobileMenu]);
 
   // Animated desktop links
   const AnimatedLink = ({ to, children }) => {
@@ -56,9 +71,9 @@ function Navbar() {
 
   return (
     <>
-      {/* Floating Capsule Navbar with Increased Vertical Padding */}
+      {/* Floating Capsule Navbar */}
       <div
-        className={`fixed top-4 left-1/2 -translate-x-1/2 w-[92%] md:w-[85%] max-w-[1200px] z-50 
+        className={`fixed top-4 left-1/2 -translate-x-1/2 w-[92%] md:w-[85%] max-w-[1200px] z-40 
         bg-[#FFF5F6]/85 backdrop-blur-xl border border-[#B76E79]/20 px-6 py-4 md:py-3.5 rounded-full 
         shadow-[0_10px_35px_rgba(183,110,121,0.08)] transition-all duration-500 ease-in-out ${
           showNavbar
@@ -71,6 +86,7 @@ function Navbar() {
           <Link
             to="/"
             className="text-xl md:text-2xl text-[#261214] font-serif italic tracking-wide font-normal z-50 hover:text-[#B76E79] transition-colors pl-2"
+            onClick={() => setMobileMenu(false)}
           >
             Tooba<span className="text-[#B76E79] font-sans not-italic">.</span>
           </Link>
@@ -106,13 +122,18 @@ function Navbar() {
               />
             </div>
 
-            {/* Mobile Hamburger */}
-            <div className="md:hidden z-50">
+            {/* Mobile Hamburger (Now has high z-index when open to stay on top of the drawer) */}
+            <div className="md:hidden z-55">
               <button
                 onClick={() => setMobileMenu(!mobileMenu)}
-                className="text-2xl text-[#261214] hover:text-[#B76E79] transition-colors p-2 flex items-center justify-center"
+                className="text-2xl text-[#261214] hover:text-[#B76E79] transition-colors p-2 flex items-center justify-center focus:outline-none"
+                aria-label="Toggle Menu"
               >
-                {mobileMenu ? <FiX /> : <FiMenu />}
+                {mobileMenu ? (
+                  <FiX className="text-[#261214] size-6" />
+                ) : (
+                  <FiMenu className="text-[#261214] size-6" />
+                )}
               </button>
             </div>
           </div>
@@ -122,14 +143,14 @@ function Navbar() {
       {/* Mobile Blur Overlay */}
       {mobileMenu && (
         <div
-          className="fixed inset-0 bg-[#3D1E22]/30 backdrop-blur-md z-40 md:hidden transition-opacity duration-300"
+          className="fixed inset-0 bg-[#3D1E22]/35 backdrop-blur-sm z-45 md:hidden transition-opacity duration-300"
           onClick={() => setMobileMenu(false)}
         />
       )}
 
       {/* Mobile Drawer Menu */}
       <div
-        className={`fixed top-0 right-0 h-screen w-[80vw] max-w-[320px] bg-[#FFF5F6] border-l border-[#B76E79]/10 shadow-2xl z-45 
+        className={`fixed top-0 right-0 h-screen w-[80vw] max-w-[300px] bg-[#FFF5F6] border-l border-[#B76E79]/10 shadow-2xl z-50 
         transform transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:hidden
         ${mobileMenu ? "translate-x-0" : "translate-x-full"}`}
       >
@@ -145,9 +166,9 @@ function Navbar() {
                 <Link
                   key={idx}
                   to={page.path}
-                  className={`text-lg font-normal tracking-wide py-2 border-b border-[#B76E79]/5 transition-colors ${
+                  className={`text-lg font-normal tracking-wide py-2 border-b border-[#B76E79]/5 transition-colors block ${
                     isActive
-                      ? "text-[#B76E79] font-medium"
+                      ? "text-[#B76E79] font-semibold"
                       : "text-[#261214] hover:text-[#B76E79]"
                   }`}
                   onClick={() => setMobileMenu(false)}
@@ -162,7 +183,7 @@ function Navbar() {
           <div className="w-full">
             <Button
               text="Get in Touch"
-              className="w-full py-3 bg-[#B76E79] text-white rounded-full font-medium tracking-wider shadow-lg shadow-[#B76E79]/20"
+              className="w-full py-3 bg-[#B76E79] text-white rounded-full font-medium tracking-wider shadow-lg shadow-[#B76E79]/20 active:scale-95 transition-transform"
               onClick={() => {
                 setMobileMenu(false);
                 window.location.href =
