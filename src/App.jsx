@@ -5,7 +5,7 @@ import Footer from "./Layout/Footer";
 import Home from "./Pages/Home";
 // Projects Page ko import kiya
 import Projects from "./Pages/Projects";
-import Services from "./Pages/Services";
+import Services from "./Pages/Servicesd";
 import About from "./Pages/About";
 import ScrollToTop from "./components/ScrollToTop";
 import Thedesignspark from "./pages/Thedesignspark";
