@@ -124,7 +124,7 @@ const projectsData = [
     img: "/assets/img1.png",
     title: "Thedesignspark",
     category: "Web Development",
-    path: "/thedesignspark",
+    path: "/Thedesignspark",
   },
   {
     img: "/assets/img2.png",

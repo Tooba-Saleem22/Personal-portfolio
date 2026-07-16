@@ -8,6 +8,8 @@ import Projects from "./Pages/Projects";
 import Services from "./Pages/Services";
 import About from "./Pages/About";
 import ScrollToTop from "./components/ScrollToTop";
+import Thedesignspark from "./pages/Thedesignspark";
+import Etec from "./Pages/Etec";
 
 function App() {
   return (
@@ -27,6 +29,10 @@ function App() {
 
         {/* About Page Route */}
         <Route path="/about" element={<About />} />
+
+        <Route path="/Thedesignspark" element={<Thedesignspark />} />
+
+        <Route path="/Etec" element={<Etec />} />
       </Routes>
 
       <Footer />
