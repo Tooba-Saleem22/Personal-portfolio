@@ -22,11 +22,11 @@ import Button from "../components/Button";
 const EASE_LUXURY = [0.16, 1, 0.3, 1];
 
 const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.9, ease: EASE_LUXURY },
+    transition: { duration: 0.8, ease: EASE_LUXURY },
   },
 };
 
@@ -35,8 +35,8 @@ const staggerContainer = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.1,
+      staggerChildren: 0.1,
+      delayChildren: 0.05,
     },
   },
 };
@@ -44,10 +44,10 @@ const staggerContainer = {
 const hoverCardEffect = {
   rest: { y: 0, scale: 1, boxShadow: "0px 4px 20px rgba(0,0,0,0.02)" },
   hover: {
-    y: -8,
-    scale: 1.015,
+    y: -6,
+    scale: 1.01,
     boxShadow: "0px 20px 40px rgba(176, 141, 87, 0.12)",
-    transition: { duration: 0.4, ease: EASE_LUXURY },
+    transition: { duration: 0.3, ease: EASE_LUXURY },
   },
 };
 
@@ -263,49 +263,52 @@ const Home = () => {
 
   return (
     <div className="w-full bg-[#FAF6EF] text-[#1E1712] selection:bg-[#B08D57]/20 font-sans antialiased overflow-x-hidden">
-      {/* HERO SECTION WITH FLOATING AMBIENT LIGHTING */}
-      <div className="w-full min-h-screen flex flex-col justify-center items-center px-6 pt-32 pb-20 relative">
+      {/* ================================================================ */}
+      {/* HERO SECTION                                                     */}
+      {/* ================================================================ */}
+      <div className="w-full min-h-screen flex flex-col justify-center items-center px-4 sm:px-6 pt-24 md:pt-32 pb-16 relative">
+        {/* Animated Background Orbs (Responsive sizes) */}
         <motion.div
-          className="absolute top-[-10%] left-[-10%] w-[700px] h-[700px] rounded-full blur-[180px] bg-[#B08D57]/15 pointer-events-none"
+          className="absolute top-[-5%] left-[-20%] md:left-[-10%] w-[320px] sm:w-[500px] md:w-[700px] h-[320px] sm:h-[500px] md:h-[700px] rounded-full blur-[100px] md:blur-[180px] bg-[#B08D57]/15 pointer-events-none"
           animate={{
-            x: [0, 40, -30, 0],
-            y: [0, -50, 20, 0],
-            scale: [1, 1.08, 0.95, 1],
+            x: [0, 30, -20, 0],
+            y: [0, -30, 20, 0],
+            scale: [1, 1.05, 0.95, 1],
           }}
           transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute bottom-[5%] right-[-10%] w-[650px] h-[650px] rounded-full blur-[160px] bg-[#D9C08C]/20 pointer-events-none"
+          className="absolute bottom-[5%] right-[-20%] md:right-[-10%] w-[300px] sm:w-[450px] md:w-[650px] h-[300px] sm:h-[450px] md:h-[650px] rounded-full blur-[90px] md:blur-[160px] bg-[#D9C08C]/20 pointer-events-none"
           animate={{
-            x: [0, -30, 40, 0],
-            y: [0, 40, -30, 0],
-            scale: [1, 0.95, 1.08, 1],
+            x: [0, -20, 30, 0],
+            y: [0, 30, -20, 0],
+            scale: [1, 0.95, 1.05, 1],
           }}
           transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
         />
 
         <div className="max-w-[1250px] w-full text-center flex flex-col items-center justify-center relative z-10">
+          {/* Status Badge */}
           <motion.div
-            className="flex items-center gap-2.5 mb-8 px-5 py-2 rounded-full border border-[#B08D57]/30 bg-white/80 backdrop-blur-md shadow-[0_4px_25px_rgba(176,141,87,0.1)]"
+            className="flex items-center gap-2 mb-6 md:mb-8 px-4 md:px-5 py-1.5 md:py-2 rounded-full border border-[#B08D57]/30 bg-white/80 backdrop-blur-md shadow-sm"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: EASE_LUXURY }}
-            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.8, ease: EASE_LUXURY }}
           >
-            <span className="relative flex h-2.5 w-2.5">
+            <span className="relative flex h-2 w-2 md:h-2.5 md:w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#B08D57] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#B08D57]" />
+              <span className="relative inline-flex rounded-full h-2 w-2 md:h-2.5 md:w-2.5 bg-[#B08D57]" />
             </span>
-            <span className="text-[11px] uppercase tracking-[0.25em] text-[#5C5247] font-semibold">
+            <span className="text-[10px] md:text-[11px] uppercase tracking-[0.18em] md:tracking-[0.25em] text-[#5C5247] font-semibold">
               Full-Stack MERN & WordPress Engineer
             </span>
           </motion.div>
 
           <motion.h4
-            className="text-2xl md:text-3xl font-light tracking-wide text-[#7C7266] mb-4"
+            className="text-xl sm:text-2xl md:text-3xl font-light tracking-wide text-[#7C7266] mb-3 md:mb-4"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.15 }}
+            transition={{ duration: 0.9, delay: 0.1 }}
           >
             Hello, I am{" "}
             <span className="font-serif italic font-normal text-[#8A6C3F]">
@@ -314,31 +317,32 @@ const Home = () => {
           </motion.h4>
 
           <motion.h1
-            className="text-[2.6rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] font-extrabold text-[#1E1712] leading-[1.04] tracking-tight max-w-5xl uppercase"
-            initial={{ opacity: 0, y: 35 }}
+            className="text-3xl sm:text-5xl md:text-7xl lg:text-[5.5rem] font-extrabold text-[#1E1712] leading-[1.1] md:leading-[1.04] tracking-tight max-w-5xl uppercase px-2"
+            initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.1, delay: 0.3, ease: EASE_LUXURY }}
+            transition={{ duration: 1, delay: 0.2, ease: EASE_LUXURY }}
           >
             Engineering Custom Web Apps{" "}
-            <span className="font-serif italic font-light text-[#B08D57] lowercase">
+            <span className="font-serif italic font-light text-[#B08D57] lowercase block sm:inline">
               & Modern
             </span>{" "}
             CMS Architecture.
           </motion.h1>
 
           <motion.p
-            className="mt-6 max-w-2xl text-[#6B6155] text-base md:text-lg font-light leading-relaxed tracking-wide"
+            className="mt-4 md:mt-6 max-w-2xl text-[#6B6155] text-sm sm:text-base md:text-lg font-light leading-relaxed tracking-wide px-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
+            transition={{ duration: 1, delay: 0.4 }}
           >
             Full-Stack Web Developer crafting scalable MERN applications,
             high-performance REST APIs, and bespoke WordPress builds focused on
             clean code and speed.
           </motion.p>
 
+          {/* Badges Stack */}
           <motion.div
-            className="mt-10 flex flex-wrap justify-center gap-3 max-w-3xl"
+            className="mt-8 md:mt-10 flex flex-wrap justify-center gap-2 sm:gap-3 max-w-3xl px-2"
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
@@ -347,12 +351,8 @@ const Home = () => {
               <motion.span
                 key={idx}
                 variants={fadeInUp}
-                whileHover={{
-                  scale: 1.08,
-                  backgroundColor: "rgba(176, 141, 87, 0.15)",
-                  borderColor: "rgba(176, 141, 87, 0.5)",
-                }}
-                className="px-4 py-2 rounded-full text-xs font-mono bg-white/60 text-[#3A2E1F] border border-[#B08D57]/25 shadow-sm backdrop-blur-sm cursor-default transition-colors"
+                whileHover={{ scale: 1.05 }}
+                className="px-3 py-1.5 md:px-4 md:py-2 rounded-full text-[11px] md:text-xs font-mono bg-white/70 text-[#3A2E1F] border border-[#B08D57]/25 shadow-sm backdrop-blur-sm"
               >
                 {badge}
               </motion.span>
@@ -361,15 +361,17 @@ const Home = () => {
         </div>
       </div>
 
-      {/* INFINITE MARQUEE STRIP */}
-      <div className="w-full bg-[#171210] text-[#D9C08C] py-4 border-y border-[#B08D57]/30 overflow-hidden relative shadow-inner">
+      {/* ================================================================ */}
+      {/* INFINITE MARQUEE STRIP                                           */}
+      {/* ================================================================ */}
+      <div className="w-full bg-[#171210] text-[#D9C08C] py-3.5 md:py-4 border-y border-[#B08D57]/30 overflow-hidden relative shadow-inner">
         <motion.div
-          className="flex whitespace-nowrap gap-12 text-xs font-mono tracking-[0.25em] uppercase font-bold"
+          className="flex whitespace-nowrap gap-6 md:gap-12 text-[10px] md:text-xs font-mono tracking-[0.2em] md:tracking-[0.25em] uppercase font-bold"
           animate={{ x: ["0%", "-50%"] }}
           transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
         >
           {[...Array(2)].map((_, i) => (
-            <div key={i} className="flex gap-12 items-center">
+            <div key={i} className="flex gap-6 md:gap-12 items-center shrink-0">
               <span>Full-Stack Development</span>
               <FiStar className="text-[#B08D57]" />
               <span>MERN Stack Architecture</span>
@@ -385,19 +387,21 @@ const Home = () => {
         </motion.div>
       </div>
 
-      {/* PHILOSOPHY STATEMENT */}
-      <div className="w-full bg-gradient-to-b from-[#FAF6EF] via-white to-white py-20 px-6 text-center">
+      {/* ================================================================ */}
+      {/* PHILOSOPHY STATEMENT                                             */}
+      {/* ================================================================ */}
+      <div className="w-full bg-gradient-to-b from-[#FAF6EF] via-white to-white py-14 md:py-20 px-4 sm:px-6 text-center">
         <motion.div
-          className="max-w-4xl mx-auto border-y border-[#B08D57]/20 py-12 relative"
+          className="max-w-4xl mx-auto border-y border-[#B08D57]/20 py-8 md:py-12 relative px-2"
           initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: EASE_LUXURY }}
+          transition={{ duration: 0.8, ease: EASE_LUXURY }}
           viewport={{ once: true }}
         >
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-4">
-            <FiCode className="text-[#B08D57] text-xl" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-3 md:px-4">
+            <FiCode className="text-[#B08D57] text-lg md:text-xl" />
           </div>
-          <p className="font-serif italic text-2xl md:text-3xl text-[#2C231A] font-light leading-relaxed">
+          <p className="font-serif italic text-lg sm:text-2xl md:text-3xl text-[#2C231A] font-light leading-relaxed">
             "High-end web engineering connects responsive frontend experience
             with robust backend database design — code that is fast, secure, and
             built to scale."
@@ -405,27 +409,29 @@ const Home = () => {
         </motion.div>
       </div>
 
-      {/* ABOUT SECTION */}
-      <div className="w-full bg-white relative z-20 py-24 shadow-[0_-10px_40px_rgba(176,141,87,0.03)]">
-        <div className="max-w-[1300px] mx-auto flex flex-col lg:flex-row items-center justify-between px-6 lg:px-16 gap-16">
+      {/* ================================================================ */}
+      {/* ABOUT SECTION                                                    */}
+      {/* ================================================================ */}
+      <div className="w-full bg-white relative z-20 py-16 md:py-24 shadow-[0_-10px_40px_rgba(176,141,87,0.03)]">
+        <div className="max-w-[1300px] mx-auto flex flex-col lg:flex-row items-center justify-between px-4 sm:px-6 lg:px-16 gap-10 md:gap-16">
           <motion.div
-            className="flex flex-col gap-6 lg:w-1/2 w-full text-center lg:text-left items-center lg:items-start"
-            initial={{ opacity: 0, x: -40 }}
+            className="flex flex-col gap-4 md:gap-6 lg:w-1/2 w-full text-center lg:text-left items-center lg:items-start"
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, ease: EASE_LUXURY }}
+            transition={{ duration: 0.8, ease: EASE_LUXURY }}
           >
             <div className="flex items-center gap-2 px-3 py-1 bg-[#F1E9DA] rounded-md">
-              <span className="text-xs tracking-[0.3em] uppercase font-bold text-[#B08D57]">
+              <span className="text-[10px] md:text-xs tracking-[0.25em] md:tracking-[0.3em] uppercase font-bold text-[#B08D57]">
                 Full-Stack & CMS Developer
               </span>
             </div>
 
-            <h2 className="text-3xl md:text-5xl font-extrabold uppercase tracking-tight text-[#1E1712]">
-              Scalable Systems <br />& Modern Code.
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-[#1E1712] leading-tight">
+              Scalable Systems <br className="hidden sm:inline" />& Modern Code.
             </h2>
 
-            <p className="text-[#7C7266] text-base md:text-lg leading-relaxed font-light">
+            <p className="text-[#7C7266] text-sm sm:text-base md:text-lg leading-relaxed font-light max-w-xl">
               I specialize in developing end-to-end web applications utilizing
               the MERN stack (MongoDB, Express, React, Node.js) along with
               custom WordPress theme solutions. My goal is to build
@@ -435,45 +441,43 @@ const Home = () => {
 
             <Button
               text="Let's Build Together"
-              className="mt-4 shadow-xl shadow-[#B08D57]/15 bg-[#B08D57] text-white hover:bg-[#8A6C3F] transition-all duration-300"
+              className="mt-2 md:mt-4 shadow-xl shadow-[#B08D57]/15 bg-[#B08D57] text-white hover:bg-[#8A6C3F] transition-all duration-300 w-full sm:w-auto"
               onClick={() =>
                 (window.location.href = "mailto:toobasaleem190@gmail.com")
               }
             />
           </motion.div>
 
+          {/* Image & Monogram */}
           <motion.div
-            className="lg:w-1/2 flex justify-center w-full relative"
+            className="lg:w-1/2 flex justify-center w-full relative mt-4 lg:mt-0"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, ease: EASE_LUXURY }}
+            transition={{ duration: 0.9, ease: EASE_LUXURY }}
             viewport={{ once: true }}
           >
-            <div className="absolute -inset-4 rounded-2xl bg-gradient-to-tr from-[#B08D57]/20 to-transparent blur-xl -z-10" />
-            <motion.div
-              className="w-full max-w-sm h-[470px] overflow-hidden rounded-2xl shadow-2xl border-4 border-white relative"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.5 }}
-            >
+            <div className="absolute -inset-2 sm:-inset-4 rounded-2xl bg-gradient-to-tr from-[#B08D57]/20 to-transparent blur-xl -z-10" />
+
+            <div className="w-full max-w-[280px] sm:max-w-sm h-[360px] sm:h-[450px] overflow-hidden rounded-2xl shadow-2xl border-4 border-white relative">
               <img
                 src="/assets/dp.jfif"
                 alt="Tooba Saleem Developer"
                 className="w-full h-full object-cover object-top filter brightness-[1.01]"
               />
-            </motion.div>
+            </div>
 
+            {/* Monogram Seal Mobile Responsive Position */}
             <motion.div
-              className="absolute -bottom-6 -left-6 w-28 h-28 rounded-full bg-[#171210] border border-[#B08D57]/40 flex flex-col items-center justify-center shadow-2xl"
-              initial={{ opacity: 0, rotate: -20, scale: 0.8 }}
-              whileInView={{ opacity: 1, rotate: 0, scale: 1 }}
-              transition={{ duration: 1, delay: 0.3, ease: EASE_LUXURY }}
+              className="absolute -bottom-4 -left-2 sm:-bottom-6 sm:-left-6 w-20 h-20 sm:w-28 sm:h-28 rounded-full bg-[#171210] border border-[#B08D57]/40 flex flex-col items-center justify-center shadow-2xl"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: EASE_LUXURY }}
               viewport={{ once: true }}
-              whileHover={{ rotate: 10, scale: 1.05 }}
             >
-              <span className="font-serif italic text-2xl text-[#D9C08C]">
+              <span className="font-serif italic text-lg sm:text-2xl text-[#D9C08C]">
                 T·S
               </span>
-              <span className="text-[8px] uppercase tracking-[0.2em] text-[#B08D57] mt-1 font-semibold">
+              <span className="text-[7px] sm:text-[8px] uppercase tracking-[0.2em] text-[#B08D57] mt-0.5 font-semibold">
                 MERN & WP Dev
               </span>
             </motion.div>
@@ -481,46 +485,45 @@ const Home = () => {
         </div>
       </div>
 
-      {/* PROCESS SECTION */}
-      <div className="w-full bg-[#FAF6EF] py-24 px-6 lg:px-20 border-t border-[#B08D57]/15">
+      {/* ================================================================ */}
+      {/* PROCESS SECTION                                                  */}
+      {/* ================================================================ */}
+      <div className="w-full bg-[#FAF6EF] py-16 md:py-24 px-4 sm:px-6 lg:px-20 border-t border-[#B08D57]/15">
         <div className="max-w-[1300px] mx-auto">
-          <div className="text-center mb-16">
-            <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#B08D57] mb-2 block">
+          <div className="text-center mb-10 md:mb-16">
+            <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] md:tracking-[0.3em] font-bold text-[#B08D57] mb-2 block">
               Engineering Method
             </span>
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-[#1E1712]">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-[#1E1712]">
               Development Lifecycle
             </h2>
           </div>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.1 }}
             variants={staggerContainer}
           >
             {processData.map((item, idx) => (
               <motion.div
                 key={idx}
                 variants={fadeInUp}
-                initial="rest"
-                whileHover="hover"
-                custom={hoverCardEffect}
-                className="bg-white p-8 rounded-2xl border border-[#B08D57]/20 relative shadow-sm transition-all duration-300 group"
+                className="bg-white p-6 sm:p-8 rounded-2xl border border-[#B08D57]/20 relative shadow-sm transition-all duration-300 group"
               >
-                <div className="flex justify-between items-start mb-4">
-                  <span className="text-5xl font-serif italic text-[#D9C08C]/70 font-light group-hover:text-[#B08D57] transition-colors">
+                <div className="flex justify-between items-start mb-3 md:mb-4">
+                  <span className="text-4xl sm:text-5xl font-serif italic text-[#D9C08C]/70 font-light group-hover:text-[#B08D57] transition-colors">
                     {item.step}
                   </span>
-                  <span className="text-[10px] font-mono uppercase bg-[#FAF6EF] text-[#B08D57] px-2 py-1 rounded border border-[#B08D57]/20">
+                  <span className="text-[9px] md:text-[10px] font-mono uppercase bg-[#FAF6EF] text-[#B08D57] px-2 py-1 rounded border border-[#B08D57]/20">
                     Phase {item.step}
                   </span>
                 </div>
-                <h3 className="text-lg font-bold text-[#1E1712] mb-3">
+                <h3 className="text-base sm:text-lg font-bold text-[#1E1712] mb-2 sm:mb-3">
                   {item.title}
                 </h3>
-                <p className="text-[#7C7266] text-sm font-light leading-relaxed">
+                <p className="text-[#7C7266] text-xs sm:text-sm font-light leading-relaxed">
                   {item.desc}
                 </p>
               </motion.div>
@@ -529,23 +532,25 @@ const Home = () => {
         </div>
       </div>
 
-      {/* TECHNICAL VALUES SECTION */}
-      <div className="w-full bg-white py-24 px-6 lg:px-20 border-t border-[#B08D57]/10">
+      {/* ================================================================ */}
+      {/* TECHNICAL VALUES SECTION                                         */}
+      {/* ================================================================ */}
+      <div className="w-full bg-white py-16 md:py-24 px-4 sm:px-6 lg:px-20 border-t border-[#B08D57]/10">
         <div className="max-w-[1300px] mx-auto">
-          <div className="text-center mb-16">
-            <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#B08D57] mb-2 block">
+          <div className="text-center mb-10 md:mb-16">
+            <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] md:tracking-[0.3em] font-bold text-[#B08D57] mb-2 block">
               Standards
             </span>
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-[#1E1712]">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-[#1E1712]">
               Why Work With Me
             </h2>
           </div>
 
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.1 }}
             variants={staggerContainer}
           >
             {valuesData.map((item, idx) => {
@@ -554,21 +559,15 @@ const Home = () => {
                 <motion.div
                   key={idx}
                   variants={fadeInUp}
-                  whileHover={{
-                    y: -6,
-                    backgroundColor: "#ffffff",
-                    borderColor: "rgba(176, 141, 87, 0.4)",
-                    boxShadow: "0 15px 30px rgba(176,141,87,0.1)",
-                  }}
-                  className="p-7 rounded-2xl bg-[#FAF6EF] border border-[#B08D57]/15 transition-all duration-300"
+                  className="p-6 sm:p-7 rounded-2xl bg-[#FAF6EF] border border-[#B08D57]/15 transition-all duration-300"
                 >
-                  <div className="w-11 h-11 rounded-full bg-[#171210] flex items-center justify-center mb-5 shadow-md">
-                    <Icon className="text-[#D9C08C] text-lg" />
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#171210] flex items-center justify-center mb-4 sm:mb-5 shadow-md">
+                    <Icon className="text-[#D9C08C] text-base sm:text-lg" />
                   </div>
-                  <h3 className="text-base font-bold text-[#1E1712] mb-2">
+                  <h3 className="text-sm sm:text-base font-bold text-[#1E1712] mb-1.5 sm:mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-[#7C7266] text-sm font-light leading-relaxed">
+                  <p className="text-[#7C7266] text-xs sm:text-sm font-light leading-relaxed">
                     {item.desc}
                   </p>
                 </motion.div>
@@ -578,16 +577,18 @@ const Home = () => {
         </div>
       </div>
 
-      {/* METRICS / NUMBERS SECTION */}
-      <div className="w-full bg-[#171210] text-[#FAF6EF] py-24 px-6 lg:px-20 relative overflow-hidden rounded-[30px] md:rounded-[50px] my-10 max-w-[1400px] mx-auto shadow-2xl border border-[#B08D57]/20">
-        <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-[#B08D57]/15 blur-[140px] pointer-events-none" />
+      {/* ================================================================ */}
+      {/* METRICS / NUMBERS SECTION                                        */}
+      {/* ================================================================ */}
+      <div className="w-full bg-[#171210] text-[#FAF6EF] py-14 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-20 relative overflow-hidden rounded-[20px] sm:rounded-[30px] md:rounded-[50px] my-6 md:my-10 max-w-[1400px] mx-auto shadow-2xl border border-[#B08D57]/20">
+        <div className="absolute top-0 right-0 w-[250px] md:w-[450px] h-[250px] md:h-[450px] bg-[#B08D57]/15 blur-[80px] md:blur-[140px] pointer-events-none" />
 
-        <div className="max-w-[1300px] mx-auto flex flex-col lg:flex-row gap-16 items-center">
+        <div className="max-w-[1300px] mx-auto flex flex-col lg:flex-row gap-10 md:gap-16 items-center">
           <div className="lg:w-1/3 text-center lg:text-left">
-            <span className="text-[#D9C08C] uppercase tracking-widest text-xs font-bold block mb-3">
+            <span className="text-[#D9C08C] uppercase tracking-widest text-[10px] md:text-xs font-bold block mb-2 md:mb-3">
               Developer Metrics
             </span>
-            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight leading-none text-white">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight leading-none text-white">
               Track Record & <br />
               <span className="text-[#D9C08C] font-serif italic lowercase font-normal">
                 experience
@@ -596,49 +597,47 @@ const Home = () => {
           </div>
 
           <motion.div
-            className="lg:w-2/3 w-full grid grid-cols-2 md:grid-cols-4 gap-6 relative z-10"
+            className="lg:w-2/3 w-full grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 relative z-10"
             onViewportEnter={() => setNumbersInView(true)}
-            viewport={{ once: true, amount: 0.4 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             {numbersData.map((item, idx) => {
               const { suffix } = parseNumberValue(item.value);
               return (
-                <motion.div
+                <div
                   key={idx}
-                  whileHover={{
-                    scale: 1.04,
-                    borderColor: "rgba(176, 141, 87, 0.5)",
-                  }}
-                  className="flex flex-col items-center lg:items-start p-6 bg-white/[0.03] border border-white/10 rounded-2xl backdrop-blur-md transition-all duration-300"
+                  className="flex flex-col items-center lg:items-start p-4 sm:p-6 bg-white/[0.03] border border-white/10 rounded-2xl backdrop-blur-md"
                 >
-                  <span className="text-4xl md:text-5xl font-black tabular-nums tracking-tight text-white">
+                  <span className="text-3xl sm:text-4xl md:text-5xl font-black tabular-nums tracking-tight text-white">
                     {counts[idx]}
                     <span className="text-[#D9C08C]">{suffix}</span>
                   </span>
-                  <span className="text-xs uppercase tracking-wider text-neutral-300 mt-3 text-center lg:text-left font-light">
+                  <span className="text-[10px] sm:text-xs uppercase tracking-wider text-neutral-300 mt-2 md:mt-3 text-center lg:text-left font-light">
                     {item.label}
                   </span>
-                </motion.div>
+                </div>
               );
             })}
           </motion.div>
         </div>
       </div>
 
-      {/* SERVICES SECTION */}
-      <div className="w-full bg-white py-24 px-6 lg:px-20">
+      {/* ================================================================ */}
+      {/* SERVICES SECTION                                                 */}
+      {/* ================================================================ */}
+      <div className="w-full bg-white py-16 md:py-24 px-4 sm:px-6 lg:px-20">
         <div className="max-w-[1300px] mx-auto">
-          <div className="flex flex-col items-center text-center mb-20">
-            <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#B08D57] mb-3">
+          <div className="flex flex-col items-center text-center mb-12 md:mb-20">
+            <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] md:tracking-[0.3em] font-bold text-[#B08D57] mb-2 md:mb-3">
               Technical Offerings
             </span>
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-[#1E1712]">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-[#1E1712]">
               Engineering Services
             </h2>
           </div>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
@@ -648,33 +647,27 @@ const Home = () => {
               <motion.div
                 key={idx}
                 variants={fadeInUp}
-                whileHover={{
-                  y: -8,
-                  backgroundColor: "#ffffff",
-                  boxShadow: "0 20px 40px rgba(176, 141, 87, 0.12)",
-                  borderColor: "rgba(176, 141, 87, 0.4)",
-                }}
-                className="group bg-[#FAF6EF]/40 p-8 rounded-2xl border border-[#B08D57]/15 shadow-sm transition-all duration-500 flex flex-col justify-between relative overflow-hidden"
+                className="group bg-[#FAF6EF]/40 p-6 sm:p-8 rounded-2xl border border-[#B08D57]/15 shadow-sm transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
               >
                 <div>
-                  <div className="flex justify-between items-center mb-6">
-                    <span className="text-xs font-mono text-[#B08D57] font-bold bg-[#F1E9DA] px-2.5 py-1 rounded border border-[#B08D57]/20">
+                  <div className="flex justify-between items-center mb-4 sm:mb-6">
+                    <span className="text-[10px] md:text-xs font-mono text-[#B08D57] font-bold bg-[#F1E9DA] px-2.5 py-1 rounded border border-[#B08D57]/20">
                       [{service.number}]
                     </span>
-                    <FiCode className="text-neutral-400 group-hover:text-[#B08D57] transition-colors duration-300 text-lg" />
+                    <FiCode className="text-neutral-400 group-hover:text-[#B08D57] transition-colors duration-300 text-base sm:text-lg" />
                   </div>
-                  <h3 className="text-xl font-bold text-[#1E1712] mb-3 group-hover:text-[#8A6C3F] transition-colors">
+                  <h3 className="text-lg sm:text-xl font-bold text-[#1E1712] mb-2 sm:mb-3">
                     {service.title}
                   </h3>
-                  <p className="text-[#7C7266] text-sm font-light leading-relaxed mb-6">
+                  <p className="text-[#7C7266] text-xs sm:text-sm font-light leading-relaxed mb-6">
                     {service.description}
                   </p>
                 </div>
-                <div className="flex flex-wrap gap-1.5 pt-4 border-t border-neutral-100">
+                <div className="flex flex-wrap gap-1.5 pt-4 border-t border-neutral-200/60">
                   {service.items.map((tag, i) => (
                     <span
                       key={i}
-                      className="text-[11px] font-mono bg-neutral-100 text-[#6B6155] px-2.5 py-0.5 rounded-full font-medium"
+                      className="text-[10px] sm:text-[11px] font-mono bg-neutral-100 text-[#6B6155] px-2 py-0.5 rounded font-medium"
                     >
                       {tag}
                     </span>
@@ -686,77 +679,69 @@ const Home = () => {
         </div>
       </div>
 
-      {/* PROJECTS SHOWCASE */}
-      <div className="w-full bg-[#FAF6EF] py-24 px-6 lg:px-20 border-t border-b border-[#B08D57]/15">
+      {/* ================================================================ */}
+      {/* PROJECTS SHOWCASE                                                */}
+      {/* ================================================================ */}
+      <div className="w-full bg-[#FAF6EF] py-16 md:py-24 px-4 sm:px-6 lg:px-20 border-t border-b border-[#B08D57]/15">
         <div className="max-w-[1300px] mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 md:mb-16 gap-3">
             <div>
-              <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#B08D57] block mb-2">
+              <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] md:tracking-[0.3em] font-bold text-[#B08D57] block mb-1.5">
                 Engineering Showcase
               </span>
-              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-[#1E1712]">
+              <h2 className="text-3xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-[#1E1712]">
                 Selected Builds
               </h2>
             </div>
-            <p className="text-[#7C7266] font-light max-w-xs text-sm md:text-right">
+            <p className="text-[#7C7266] font-light max-w-xs text-xs sm:text-sm md:text-right">
               A curated selection of custom full-stack web applications,
               e-commerce stores, and custom WordPress setups.
             </p>
           </div>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: true, amount: 0.05 }}
             variants={staggerContainer}
           >
             {projectsData.map((project, idx) => (
               <motion.div
                 key={idx}
                 variants={fadeInUp}
-                whileHover={{ y: -10 }}
-                className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer border border-[#B08D57]/15"
+                className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm transition-all duration-300 cursor-pointer border border-[#B08D57]/15"
                 onClick={() => project.path !== "#" && navigate(project.path)}
               >
-                <div className="w-full h-[300px] overflow-hidden relative bg-neutral-50 border-b border-neutral-100">
-                  <motion.img
+                <div className="w-full h-[220px] sm:h-[260px] md:h-[300px] overflow-hidden relative bg-neutral-50 border-b border-neutral-100">
+                  <img
                     src={project.img}
                     alt={project.title}
-                    className="w-full h-full object-cover object-top"
-                    whileHover={{ scale: 1.08 }}
-                    transition={{ duration: 0.6, ease: EASE_LUXURY }}
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#171210]/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-end p-6">
-                    <span className="text-white text-xs font-medium tracking-widest uppercase flex items-center gap-1.5">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#171210]/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 sm:p-6">
+                    <span className="text-white text-[11px] font-medium tracking-widest uppercase flex items-center gap-1.5">
                       Explore Case Study <FiArrowUpRight />
                     </span>
                   </div>
                 </div>
 
-                <div className="p-6 flex flex-col justify-between flex-1 bg-white">
+                <div className="p-5 sm:p-6 flex flex-col justify-between flex-1 bg-white">
                   <div>
-                    <span className="text-[11px] font-mono uppercase tracking-wider text-[#B08D57] font-bold block mb-1">
+                    <span className="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-[#B08D57] font-bold block mb-1">
                       {project.category}
                     </span>
-                    <h3 className="text-xl font-bold text-[#1E1712] group-hover:text-[#8A6C3F] transition-colors">
+                    <h3 className="text-lg sm:text-xl font-bold text-[#1E1712] group-hover:text-[#8A6C3F] transition-colors">
                       {project.title}
                     </h3>
                   </div>
-                  <div className="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between">
-                    <span className="text-xs text-neutral-400 font-light">
+                  <div className="mt-5 pt-4 border-t border-neutral-100 flex items-center justify-between">
+                    <span className="text-[11px] sm:text-xs text-neutral-400 font-light">
                       Interactive Build
                     </span>
-                    <motion.div
-                      className="w-8 h-8 rounded-full bg-[#F1E9DA] text-[#B08D57] flex items-center justify-center"
-                      whileHover={{
-                        scale: 1.15,
-                        backgroundColor: "#B08D57",
-                        color: "#ffffff",
-                      }}
-                    >
-                      <FiArrowUpRight className="text-sm" />
-                    </motion.div>
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#F1E9DA] text-[#B08D57] flex items-center justify-center">
+                      <FiArrowUpRight className="text-xs sm:text-sm" />
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -765,42 +750,42 @@ const Home = () => {
         </div>
       </div>
 
-      {/* FAQ SECTION */}
-      <div className="w-full bg-[#0F0B09] text-[#FAF6EF] py-24 px-6 lg:px-20">
-        <div className="max-w-[1100px] mx-auto flex flex-col lg:flex-row gap-16">
+      {/* ================================================================ */}
+      {/* FAQ SECTION                                                      */}
+      {/* ================================================================ */}
+      <div className="w-full bg-[#0F0B09] text-[#FAF6EF] py-16 md:py-24 px-4 sm:px-6 lg:px-20">
+        <div className="max-w-[1100px] mx-auto flex flex-col lg:flex-row gap-10 md:gap-16">
           <div className="lg:w-1/3">
-            <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#D9C08C] block mb-3">
+            <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] md:tracking-[0.3em] font-bold text-[#D9C08C] block mb-2 md:mb-3">
               Technical FAQ
             </span>
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-white">
               Common Queries
             </h2>
           </div>
 
-          <div className="lg:w-2/3 w-full flex flex-col gap-3">
+          <div className="lg:w-2/3 w-full flex flex-col gap-2.5 sm:gap-3">
             {faqsData.map((item, idx) => {
               const isOpen = activeFAQ === idx;
               return (
                 <div
                   key={idx}
-                  className="border-b border-white/10 overflow-hidden bg-white/[0.02] rounded-xl px-4 md:px-6 transition-colors duration-300 hover:bg-white/[0.04]"
+                  className="border-b border-white/10 overflow-hidden bg-white/[0.02] rounded-xl px-4 md:px-6 transition-colors duration-300"
                 >
                   <button
                     onClick={() => setActiveFAQ(isOpen ? null : idx)}
-                    className="w-full flex justify-between items-center py-5 focus:outline-none text-left"
+                    className="w-full flex justify-between items-center py-4 md:py-5 focus:outline-none text-left gap-4"
                   >
                     <span
-                      className={`font-medium text-base md:text-lg transition-colors duration-300 ${isOpen ? "text-[#D9C08C]" : "text-white"}`}
+                      className={`font-medium text-sm sm:text-base md:text-lg transition-colors duration-300 ${isOpen ? "text-[#D9C08C]" : "text-white"}`}
                     >
                       {item.question}
                     </span>
-                    <motion.span
-                      animate={{ rotate: isOpen ? 180 : 0 }}
-                      transition={{ duration: 0.3 }}
-                      className={`text-lg ${isOpen ? "text-[#D9C08C]" : "text-white"}`}
+                    <span
+                      className={`text-base sm:text-lg shrink-0 ${isOpen ? "text-[#D9C08C]" : "text-white"}`}
                     >
                       {isOpen ? <FiMinus /> : <FiPlus />}
-                    </motion.span>
+                    </span>
                   </button>
 
                   <AnimatePresence initial={false}>
@@ -809,9 +794,9 @@ const Home = () => {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.4, ease: EASE_LUXURY }}
+                        transition={{ duration: 0.35, ease: EASE_LUXURY }}
                       >
-                        <div className="pb-6 text-neutral-300 text-sm md:text-base font-light leading-relaxed">
+                        <div className="pb-5 text-neutral-300 text-xs sm:text-sm md:text-base font-light leading-relaxed">
                           {item.answer}
                         </div>
                       </motion.div>
@@ -824,43 +809,38 @@ const Home = () => {
         </div>
       </div>
 
-      {/* FINAL CTA SECTION */}
-      <div className="w-full bg-[#FAF6EF] py-24 px-6 lg:px-20">
+      {/* ================================================================ */}
+      {/* FINAL CTA SECTION                                                */}
+      {/* ================================================================ */}
+      <div className="w-full bg-[#FAF6EF] py-16 md:py-24 px-4 sm:px-6 lg:px-20">
         <motion.div
-          className="max-w-[1200px] mx-auto rounded-[30px] md:rounded-[50px] bg-[#171210] px-8 md:px-16 py-20 text-center relative overflow-hidden border border-[#B08D57]/30 shadow-2xl"
-          initial={{ opacity: 0, y: 30 }}
+          className="max-w-[1200px] mx-auto rounded-[20px] sm:rounded-[30px] md:rounded-[50px] bg-[#171210] px-5 sm:px-10 md:px-16 py-14 md:py-20 text-center relative overflow-hidden border border-[#B08D57]/30 shadow-2xl"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: EASE_LUXURY }}
+          transition={{ duration: 0.8, ease: EASE_LUXURY }}
           viewport={{ once: true }}
         >
-          <motion.div
-            className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#B08D57]/20 blur-[150px] pointer-events-none"
-            animate={{ scale: [1, 1.15, 1] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          />
+          <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-[#B08D57]/20 blur-[100px] md:blur-[150px] pointer-events-none" />
 
-          <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#D9C08C] mb-5 block relative z-10">
+          <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] md:tracking-[0.3em] font-bold text-[#D9C08C] mb-3 md:mb-5 block relative z-10">
             Start A Project
           </span>
-          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-white max-w-2xl mx-auto leading-tight relative z-10">
+          <h2 className="text-2xl sm:text-4xl md:text-6xl font-black uppercase tracking-tight text-white max-w-2xl mx-auto leading-tight relative z-10">
             Ready to build a{" "}
             <span className="font-serif italic lowercase font-normal text-[#D9C08C]">
               custom web solution
             </span>
             ?
           </h2>
-          <p className="mt-6 text-neutral-300 font-light max-w-md mx-auto relative z-10">
+          <p className="mt-4 md:mt-6 text-neutral-300 font-light text-xs sm:text-sm md:text-base max-w-md mx-auto relative z-10">
             Have a brief or technical project scope? Send an email and let's
             discuss your web app or WordPress stack.
           </p>
 
           <motion.a
             href="mailto:toobasaleem190@gmail.com"
-            className="mt-10 inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#B08D57] text-[#171210] font-bold text-sm uppercase tracking-widest relative z-10 hover:bg-[#D9C08C] transition-colors duration-300 shadow-xl"
-            whileHover={{
-              scale: 1.06,
-              boxShadow: "0 10px 25px rgba(176,141,87,0.4)",
-            }}
+            className="mt-8 md:mt-10 inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full bg-[#B08D57] text-[#171210] font-bold text-xs sm:text-sm uppercase tracking-widest relative z-10 hover:bg-[#D9C08C] transition-colors duration-300 shadow-xl w-full sm:w-auto"
+            whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.96 }}
           >
             <FiMail /> Get In Touch <FiArrowRight />
