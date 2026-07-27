@@ -6,29 +6,69 @@ import {
   FiMinus,
   FiArrowUpRight,
   FiArrowRight,
-  FiLayers,
-  FiCheckCircle,
-  FiCompass,
+  FiTerminal,
   FiCpu,
-  FiAward,
+  FiCode,
+  FiDatabase,
   FiMail,
+  FiGitBranch,
+  FiStar,
 } from "react-icons/fi";
 import Button from "../components/Button";
 
 /* ==================================================================== */
-/* QUIET-LUXURY DESIGN TOKENS — Ivory / Espresso / Antique Gold        */
+/* MOTION VARIANTS & EASE CURVES                                         */
 /* ==================================================================== */
-const EASE = [0.16, 1, 0.3, 1];
-const GOLD = "#B08D57"; // Antique brass gold — primary accent
-const GOLD_LIGHT = "#D9C08C"; // Champagne highlight
-const ESPRESSO = "#171210"; // Warm near-black, not pure black
-const ESPRESSO_DEEP = "#0F0B09"; // Darkest section (FAQ)
-const TEXT_DARK = "#1E1712";
-const TEXT_MUTED = "#7C7266";
+const EASE_LUXURY = [0.16, 1, 0.3, 1];
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.9, ease: EASE_LUXURY },
+  },
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const hoverCardEffect = {
+  rest: { y: 0, scale: 1, boxShadow: "0px 4px 20px rgba(0,0,0,0.02)" },
+  hover: {
+    y: -8,
+    scale: 1.015,
+    boxShadow: "0px 20px 40px rgba(176, 141, 87, 0.12)",
+    transition: { duration: 0.4, ease: EASE_LUXURY },
+  },
+};
+
+/* ==================================================================== */
+/* DATA SOURCES                                                         */
+/* ==================================================================== */
+const techBadges = [
+  "React.js",
+  "Node.js",
+  "Express.js",
+  "MongoDB",
+  "WordPress Custom",
+  "WooCommerce",
+  "Tailwind CSS",
+  "REST APIs",
+  "JavaScript ES6+",
+];
 
 const numbersData = [
-  { value: "3+", label: "Years of Freelancing" },
-  { value: "20+", label: "Projects Completed" },
+  { value: "3+", label: "Years Engineering Web Solutions" },
+  { value: "20+", label: "Full-Stack & CMS Deployments" },
   { value: "10+", label: "Industries Served" },
   { value: "100%", label: "Client Satisfaction" },
 ];
@@ -36,86 +76,86 @@ const numbersData = [
 const processData = [
   {
     step: "01",
-    title: "Discovery & Strategy",
-    desc: "Understanding your brand vision, target audience, and structuring a tailored layout and information map.",
+    title: "Architecture & Schema Setup",
+    desc: "Analyzing project requirements, mapping database schemas, choosing the optimal tech stack (MERN vs WordPress), and planning scalable system architecture.",
   },
   {
     step: "02",
-    title: "Aesthetic Web Design",
-    desc: "Crafting refined premium interfaces with restrained tones, sleek typography, and pixel-perfect responsiveness.",
+    title: "Clean Code Engineering",
+    desc: "Writing modular React components, building secure REST APIs with Node/Express, or developing custom WordPress themes with clean PHP & Tailwind.",
   },
   {
     step: "03",
-    title: "Clean Code Execution",
-    desc: "Developing with blazing fast React architectures or versatile custom WordPress structures.",
+    title: "Optimization & Cloud Launch",
+    desc: "Database query tuning, cross-browser performance testing, API endpoint security, and seamless deployment to Vercel, VPS, or web hosting.",
   },
 ];
 
 const valuesData = [
   {
-    icon: FiCompass,
-    title: "Clear Direction",
-    desc: "Every project starts with a strategy, not a template — so the final site actually serves your goals.",
+    icon: FiTerminal,
+    title: "Clean Codebase",
+    desc: "Modular, fully documented React components and WordPress structures designed for long-term maintainability.",
   },
   {
     icon: FiCpu,
-    title: "Engineering Rigour",
-    desc: "Clean, maintainable code across React and WordPress, built to stay fast as it scales.",
+    title: "Speed & Performance",
+    desc: "Optimized React state management, fast REST API responses, and lightweight WordPress builds for max Lighthouse scores.",
   },
   {
-    icon: FiAward,
-    title: "Considered Craft",
-    desc: "Nothing ships until the spacing, type, and motion feel deliberate — not just finished.",
+    icon: FiDatabase,
+    title: "Full-Stack Architecture",
+    desc: "End-to-end capabilities from dynamic frontend interfaces to MongoDB schema design and server management.",
   },
   {
-    icon: FiCheckCircle,
-    title: "Dependable Delivery",
-    desc: "Transparent timelines and ongoing support, so launch day isn't the end of the relationship.",
+    icon: FiGitBranch,
+    title: "Reliable Execution",
+    desc: "Strict version control with Git, structured testing, transparent timelines, and continuous post-launch support.",
   },
 ];
 
 const servicesData = [
   {
     number: "01",
-    title: "Web Design",
-    items: ["Layout", "Colors", "UI"],
+    title: "MERN Stack Development",
+    items: ["React.js", "Node.js", "Express", "MongoDB"],
     description:
-      "Clean and modern layouts that make your website look professional, attractive, and easy to use on every device.",
+      "Custom full-stack web applications engineered with MERN—fast, secure, and built to scale effortlessly with complex business logic.",
   },
   {
     number: "02",
-    title: "Frontend Development",
-    items: ["React", "UI", "Interactive Design"],
+    title: "Custom WordPress Engineering",
+    items: ["Custom Themes", "Elementor", "WooCommerce", "CMS Architecture"],
     description:
-      "Fast and responsive websites built with clean code and smooth user experience.",
+      "Bespoke WordPress websites with lightweight custom theme development, tailored WooCommerce stores, and client-friendly dashboards.",
   },
   {
     number: "03",
-    title: "WordPress Websites",
-    items: ["Elementor", "Blogs", "Business Sites"],
+    title: "Frontend Development",
+    items: ["React", "JavaScript (ES6+)", "Tailwind CSS", "REST APIs"],
     description:
-      "Easy to manage WordPress websites for businesses, portfolios, and personal brands.",
+      "Transforming complex UI/UX designs into pixel-perfect, highly responsive frontend web interfaces integrated seamlessly with backend APIs.",
   },
   {
     number: "04",
-    title: "Shopify Stores",
-    items: ["Products", "Payments", "Design"],
+    title: "API & Backend Systems",
+    items: ["Node.js", "Express.js", "REST APIs", "JWT Auth"],
     description:
-      "Complete online stores that are ready to sell, with beautiful design and smooth checkout.",
+      "Designing secure RESTful APIs, database schema modeling, authentication workflows, and third-party API integrations.",
   },
   {
     number: "05",
-    title: "UI to Website",
-    items: ["Figma", "XD", "PSD"],
+    title: "E-Commerce Solutions",
+    items: ["WooCommerce", "Shopify", "Payment Gateways", "Custom Flow"],
     description:
-      "I convert your designs into fully working, responsive websites with pixel-perfect layout.",
+      "Scalable e-commerce store architecture, custom catalog views, optimized checkout flows, and secure multi-currency payment setups.",
   },
   {
     number: "06",
-    title: "Website Redesign",
-    items: ["Speed", "Mobile", "Modern Look"],
+    title: "Web Performance & Refactoring",
+    items: ["Core Web Vitals", "Code Audit", "SEO Basics", "Bug Fixes"],
     description:
-      "I improve old or broken websites by giving them a fresh design, better layout, and smoother performance.",
+      "Refactoring legacy code, fixing frontend/backend bugs, optimizing page speed, and enhancing overall user experience metrics.",
   },
 ];
 
@@ -123,66 +163,68 @@ const projectsData = [
   {
     img: "/assets/img1.png",
     title: "Thedesignspark",
-    category: "Web Development",
+    category: "Full-Stack Web Application",
     path: "/Thedesignspark",
   },
   {
     img: "/assets/img2.png",
-    title: "Etec Website",
-    category: "Custom Frontend",
+    title: "Etec Web App",
+    category: "Custom React Frontend",
     path: "/Etec",
   },
   {
     img: "/assets/img3.png",
     title: "store.shoppsm",
-    category: "E-Commerce",
+    category: "E-Commerce Platform",
     path: "/shoppsmstore",
   },
   {
     img: "/assets/img4.png",
     title: "The College Cafe",
-    category: "Brand Website",
+    category: "WordPress Business Platform",
     path: "/College",
   },
   {
     img: "/assets/img5.png",
-    title: "Upcoming Premium Project 01",
-    category: "UI & Design",
+    title: "Upcoming Full-Stack Platform",
+    category: "MERN Stack Build",
     path: "#",
   },
   {
     img: "/assets/img6.png",
-    title: "Upcoming Premium Project 02",
-    category: "WordPress Custom",
+    title: "Upcoming Enterprise CMS",
+    category: "WordPress Custom Development",
     path: "#",
   },
 ];
 
 const faqsData = [
   {
-    question: "What services do you offer?",
+    question: "What core tech stack do you specialize in?",
     answer:
-      "I specialize in Frontend, WordPress, and Full Stack development, delivering responsive and user-friendly websites.",
+      "I specialize in full-stack MERN development (MongoDB, Express.js, React.js, Node.js) as well as custom WordPress theme & plugin integration.",
   },
   {
-    question: "How long does a project take?",
+    question:
+      "Can you convert Figma/XD designs into functional web applications?",
     answer:
-      "Standard projects are usually completed within 1–2 weeks, while more extensive projects may take 3–6 weeks.",
+      "Yes, I convert Figma or XD UI components into pixel-perfect React builds or fully customizable, lightweight WordPress themes with zero bloat.",
   },
   {
-    question: "What is your pricing model?",
+    question: "How long does a typical web development project take?",
     answer:
-      "Pricing is based on project scope, complexity, and requirements. Custom quotes are provided for transparency.",
+      "Standard WordPress or landing page builds usually take 1–2 weeks, while full-stack MERN applications take 3–6 weeks depending on feature complexity.",
   },
   {
-    question: "Do you provide post-launch support?",
+    question:
+      "Do you handle custom backend architectures and database modeling?",
     answer:
-      "Yes, I provide ongoing website maintenance, updates, and support after launch to ensure smooth performance.",
+      "Yes, I build secure RESTful APIs using Node.js and Express, handle MongoDB database design, implement JWT authentication, and integrate third-party APIs.",
   },
   {
-    question: "Do you work with individuals, startups, or businesses?",
+    question: "Do you provide post-launch maintenance and technical support?",
     answer:
-      "I work with clients of all sizes, including individuals, startups, and established businesses.",
+      "Yes, I offer ongoing technical maintenance, performance monitoring, server setup, bug fixing, and continuous feature updates.",
   },
 ];
 
@@ -220,112 +262,180 @@ const Home = () => {
   }, [numbersInView]);
 
   return (
-    <div className="w-full bg-[#FAF6EF] text-[#1E1712] selection:bg-[#B08D57]/20 font-sans antialiased">
-      {/* ================================================================ */}
-      {/* HERO SECTION                                                     */}
-      {/* ================================================================ */}
-      <div className="w-full min-h-screen flex items-center justify-center px-6 pt-32 pb-20 relative overflow-hidden">
-        <div className="absolute top-[-15%] left-[-10%] w-[700px] h-[700px] rounded-full blur-[160px] bg-[#B08D57]/12 pointer-events-none" />
-        <div className="absolute bottom-[10%] right-[-10%] w-[600px] h-[600px] rounded-full blur-[140px] bg-[#D9C08C]/15 pointer-events-none" />
+    <div className="w-full bg-[#FAF6EF] text-[#1E1712] selection:bg-[#B08D57]/20 font-sans antialiased overflow-x-hidden">
+      {/* HERO SECTION WITH FLOATING AMBIENT LIGHTING */}
+      <div className="w-full min-h-screen flex flex-col justify-center items-center px-6 pt-32 pb-20 relative">
+        <motion.div
+          className="absolute top-[-10%] left-[-10%] w-[700px] h-[700px] rounded-full blur-[180px] bg-[#B08D57]/15 pointer-events-none"
+          animate={{
+            x: [0, 40, -30, 0],
+            y: [0, -50, 20, 0],
+            scale: [1, 1.08, 0.95, 1],
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-[5%] right-[-10%] w-[650px] h-[650px] rounded-full blur-[160px] bg-[#D9C08C]/20 pointer-events-none"
+          animate={{
+            x: [0, -30, 40, 0],
+            y: [0, 40, -30, 0],
+            scale: [1, 0.95, 1.08, 1],
+          }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+        />
 
-        <div className="max-w-[1200px] w-full text-center flex flex-col items-center justify-center relative z-10">
+        <div className="max-w-[1250px] w-full text-center flex flex-col items-center justify-center relative z-10">
           <motion.div
-            className="flex items-center gap-2.5 mb-8 px-6 py-2 rounded-full border border-[#B08D57]/25 bg-white/70 backdrop-blur-xl shadow-[0_4px_20px_rgba(176,141,87,0.08)]"
+            className="flex items-center gap-2.5 mb-8 px-5 py-2 rounded-full border border-[#B08D57]/30 bg-white/80 backdrop-blur-md shadow-[0_4px_25px_rgba(176,141,87,0.1)]"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: EASE }}
+            transition={{ duration: 0.9, ease: EASE_LUXURY }}
+            whileHover={{ scale: 1.05 }}
           >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#B08D57] opacity-70" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#B08D57]" />
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#B08D57] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#B08D57]" />
             </span>
-            <span className="text-[10px] uppercase tracking-[0.25em] text-[#7C7266] font-bold">
-              Available for Bespoke High-End Development
+            <span className="text-[11px] uppercase tracking-[0.25em] text-[#5C5247] font-semibold">
+              Full-Stack MERN & WordPress Engineer
             </span>
           </motion.div>
 
           <motion.h4
-            className="text-2xl md:text-3xl font-light tracking-wide text-[#7C7266] mb-3"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
+            className="text-2xl md:text-3xl font-light tracking-wide text-[#7C7266] mb-4"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.15 }}
           >
             Hello, I am{" "}
             <span className="font-serif italic font-normal text-[#8A6C3F]">
-              Tooba
+              Tooba Saleem
             </span>
           </motion.h4>
 
           <motion.h1
-            className="text-[2.7rem] sm:text-6xl md:text-7xl lg:text-[6rem] font-extrabold text-[#1E1712] leading-[1.02] tracking-tight max-w-5xl uppercase"
+            className="text-[2.6rem] sm:text-6xl md:text-7xl lg:text-[5.5rem] font-extrabold text-[#1E1712] leading-[1.04] tracking-tight max-w-5xl uppercase"
             initial={{ opacity: 0, y: 35 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.1, delay: 0.3, ease: EASE }}
+            transition={{ duration: 1.1, delay: 0.3, ease: EASE_LUXURY }}
           >
-            Crafting Digital Elegant{" "}
+            Engineering Custom Web Apps{" "}
             <span className="font-serif italic font-light text-[#B08D57] lowercase">
-              solutions
+              & Modern
             </span>{" "}
-            & Code.
+            CMS Architecture.
           </motion.h1>
 
           <motion.p
-            className="mt-8 max-w-xl text-[#7C7266] text-base md:text-lg font-light leading-relaxed tracking-wide"
+            className="mt-6 max-w-2xl text-[#6B6155] text-base md:text-lg font-light leading-relaxed tracking-wide"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.6 }}
+            transition={{ duration: 1, delay: 0.5 }}
           >
-            A premium portfolio space tailored for custom web development, clean
-            MERN deployments, and immaculate WordPress layouts.
+            Full-Stack Web Developer crafting scalable MERN applications,
+            high-performance REST APIs, and bespoke WordPress builds focused on
+            clean code and speed.
           </motion.p>
+
+          <motion.div
+            className="mt-10 flex flex-wrap justify-center gap-3 max-w-3xl"
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+          >
+            {techBadges.map((badge, idx) => (
+              <motion.span
+                key={idx}
+                variants={fadeInUp}
+                whileHover={{
+                  scale: 1.08,
+                  backgroundColor: "rgba(176, 141, 87, 0.15)",
+                  borderColor: "rgba(176, 141, 87, 0.5)",
+                }}
+                className="px-4 py-2 rounded-full text-xs font-mono bg-white/60 text-[#3A2E1F] border border-[#B08D57]/25 shadow-sm backdrop-blur-sm cursor-default transition-colors"
+              >
+                {badge}
+              </motion.span>
+            ))}
+          </motion.div>
         </div>
       </div>
 
-      {/* ================================================================ */}
-      {/* PHILOSOPHY QUOTE SECTION                                         */}
-      {/* ================================================================ */}
-      <div className="w-full bg-gradient-to-b from-[#FAF6EF] to-white py-16 px-6 text-center">
-        <div className="max-w-4xl mx-auto border-y border-[#B08D57]/20 py-12">
-          <p className="font-serif italic text-2xl md:text-3xl text-[#3A2E1F] font-light leading-relaxed">
-            "Design is not just what it looks like and feels like. Design is how
-            it seamlessly functions under elegant lines of code."
+      {/* INFINITE MARQUEE STRIP */}
+      <div className="w-full bg-[#171210] text-[#D9C08C] py-4 border-y border-[#B08D57]/30 overflow-hidden relative shadow-inner">
+        <motion.div
+          className="flex whitespace-nowrap gap-12 text-xs font-mono tracking-[0.25em] uppercase font-bold"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+        >
+          {[...Array(2)].map((_, i) => (
+            <div key={i} className="flex gap-12 items-center">
+              <span>Full-Stack Development</span>
+              <FiStar className="text-[#B08D57]" />
+              <span>MERN Stack Architecture</span>
+              <FiStar className="text-[#B08D57]" />
+              <span>Custom WordPress Themes</span>
+              <FiStar className="text-[#B08D57]" />
+              <span>RESTful APIs & Node.js</span>
+              <FiStar className="text-[#B08D57]" />
+              <span>WooCommerce Engineering</span>
+              <FiStar className="text-[#B08D57]" />
+            </div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* PHILOSOPHY STATEMENT */}
+      <div className="w-full bg-gradient-to-b from-[#FAF6EF] via-white to-white py-20 px-6 text-center">
+        <motion.div
+          className="max-w-4xl mx-auto border-y border-[#B08D57]/20 py-12 relative"
+          initial={{ opacity: 0, scale: 0.98 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, ease: EASE_LUXURY }}
+          viewport={{ once: true }}
+        >
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-4">
+            <FiCode className="text-[#B08D57] text-xl" />
+          </div>
+          <p className="font-serif italic text-2xl md:text-3xl text-[#2C231A] font-light leading-relaxed">
+            "High-end web engineering connects responsive frontend experience
+            with robust backend database design — code that is fast, secure, and
+            built to scale."
           </p>
-        </div>
+        </motion.div>
       </div>
 
-      {/* ================================================================ */}
-      {/* ABOUT SECTION                                                    */}
-      {/* ================================================================ */}
+      {/* ABOUT SECTION */}
       <div className="w-full bg-white relative z-20 py-24 shadow-[0_-10px_40px_rgba(176,141,87,0.03)]">
         <div className="max-w-[1300px] mx-auto flex flex-col lg:flex-row items-center justify-between px-6 lg:px-16 gap-16">
           <motion.div
             className="flex flex-col gap-6 lg:w-1/2 w-full text-center lg:text-left items-center lg:items-start"
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, ease: EASE }}
+            transition={{ duration: 1, ease: EASE_LUXURY }}
           >
             <div className="flex items-center gap-2 px-3 py-1 bg-[#F1E9DA] rounded-md">
               <span className="text-xs tracking-[0.3em] uppercase font-bold text-[#B08D57]">
-                The Designer & Dev
+                Full-Stack & CMS Developer
               </span>
             </div>
 
             <h2 className="text-3xl md:text-5xl font-extrabold uppercase tracking-tight text-[#1E1712]">
-              Aesthetically Driven, <br />
-              Driven By Code.
+              Scalable Systems <br />& Modern Code.
             </h2>
 
             <p className="text-[#7C7266] text-base md:text-lg leading-relaxed font-light">
-              I am a specialized web developer focusing on premium layouts and
-              seamless modern interfaces. My vision pairs restrained, elevated
-              tones and clean grids with pixel-perfect frontend engineering to
-              provide businesses an unforgettable brand identity online.
+              I specialize in developing end-to-end web applications utilizing
+              the MERN stack (MongoDB, Express, React, Node.js) along with
+              custom WordPress theme solutions. My goal is to build
+              well-structured, maintainable code bases that give businesses
+              complete control, high reliability, and fast load speeds.
             </p>
 
             <Button
-              text="Let's Collaborate"
-              className="mt-4 shadow-lg shadow-[#B08D57]/15 bg-[#B08D57] text-white hover:bg-[#8A6C3F] transition-all duration-300"
+              text="Let's Build Together"
+              className="mt-4 shadow-xl shadow-[#B08D57]/15 bg-[#B08D57] text-white hover:bg-[#8A6C3F] transition-all duration-300"
               onClick={() =>
                 (window.location.href = "mailto:toobasaleem190@gmail.com")
               }
@@ -334,101 +444,125 @@ const Home = () => {
 
           <motion.div
             className="lg:w-1/2 flex justify-center w-full relative"
-            initial={{ opacity: 0, scale: 0.96 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, ease: EASE }}
+            transition={{ duration: 1.2, ease: EASE_LUXURY }}
             viewport={{ once: true }}
           >
-            <div className="absolute -inset-4 rounded-2xl bg-gradient-to-tr from-[#B08D57]/15 to-transparent blur-xl -z-10" />
-            <div className="w-full max-w-sm h-[470px] overflow-hidden rounded-2xl shadow-2xl border-4 border-white">
+            <div className="absolute -inset-4 rounded-2xl bg-gradient-to-tr from-[#B08D57]/20 to-transparent blur-xl -z-10" />
+            <motion.div
+              className="w-full max-w-sm h-[470px] overflow-hidden rounded-2xl shadow-2xl border-4 border-white relative"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.5 }}
+            >
               <img
                 src="/assets/dp.jfif"
-                alt="Tooba Saleem Portfolio"
+                alt="Tooba Saleem Developer"
                 className="w-full h-full object-cover object-top filter brightness-[1.01]"
               />
-            </div>
+            </motion.div>
 
-            {/* Signature monogram seal */}
             <motion.div
-              className="absolute -bottom-6 -left-6 w-28 h-28 rounded-full bg-[#171210] border border-[#B08D57]/40 flex flex-col items-center justify-center shadow-xl"
-              initial={{ opacity: 0, rotate: -15, scale: 0.8 }}
+              className="absolute -bottom-6 -left-6 w-28 h-28 rounded-full bg-[#171210] border border-[#B08D57]/40 flex flex-col items-center justify-center shadow-2xl"
+              initial={{ opacity: 0, rotate: -20, scale: 0.8 }}
               whileInView={{ opacity: 1, rotate: 0, scale: 1 }}
-              transition={{ duration: 1, delay: 0.3, ease: EASE }}
+              transition={{ duration: 1, delay: 0.3, ease: EASE_LUXURY }}
               viewport={{ once: true }}
+              whileHover={{ rotate: 10, scale: 1.05 }}
             >
               <span className="font-serif italic text-2xl text-[#D9C08C]">
                 T·S
               </span>
-              <span className="text-[8px] uppercase tracking-[0.2em] text-[#B08D57] mt-1">
-                Est. Freelance
+              <span className="text-[8px] uppercase tracking-[0.2em] text-[#B08D57] mt-1 font-semibold">
+                MERN & WP Dev
               </span>
             </motion.div>
           </motion.div>
         </div>
       </div>
 
-      {/* ================================================================ */}
-      {/* THE PROCESS SECTION                                              */}
-      {/* ================================================================ */}
+      {/* PROCESS SECTION */}
       <div className="w-full bg-[#FAF6EF] py-24 px-6 lg:px-20 border-t border-[#B08D57]/15">
         <div className="max-w-[1300px] mx-auto">
           <div className="text-center mb-16">
             <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#B08D57] mb-2 block">
-              Methodology
+              Engineering Method
             </span>
             <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-[#1E1712]">
-              How I Work
+              Development Lifecycle
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={staggerContainer}
+          >
             {processData.map((item, idx) => (
-              <div
+              <motion.div
                 key={idx}
-                className="bg-white p-8 rounded-2xl border border-[#B08D57]/15 relative shadow-sm group hover:shadow-md transition-all duration-300"
+                variants={fadeInUp}
+                initial="rest"
+                whileHover="hover"
+                custom={hoverCardEffect}
+                className="bg-white p-8 rounded-2xl border border-[#B08D57]/20 relative shadow-sm transition-all duration-300 group"
               >
-                <span className="text-5xl font-serif italic text-[#D9C08C]/60 font-light block mb-4 group-hover:text-[#B08D57]/70 transition-colors">
-                  {item.step}
-                </span>
-                <h3 className="text-lg font-bold text-[#1E1712] mb-2">
+                <div className="flex justify-between items-start mb-4">
+                  <span className="text-5xl font-serif italic text-[#D9C08C]/70 font-light group-hover:text-[#B08D57] transition-colors">
+                    {item.step}
+                  </span>
+                  <span className="text-[10px] font-mono uppercase bg-[#FAF6EF] text-[#B08D57] px-2 py-1 rounded border border-[#B08D57]/20">
+                    Phase {item.step}
+                  </span>
+                </div>
+                <h3 className="text-lg font-bold text-[#1E1712] mb-3">
                   {item.title}
                 </h3>
                 <p className="text-[#7C7266] text-sm font-light leading-relaxed">
                   {item.desc}
                 </p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
 
-      {/* ================================================================ */}
-      {/* WHY WORK WITH ME — VALUES STRIP                                  */}
-      {/* ================================================================ */}
+      {/* TECHNICAL VALUES SECTION */}
       <div className="w-full bg-white py-24 px-6 lg:px-20 border-t border-[#B08D57]/10">
         <div className="max-w-[1300px] mx-auto">
           <div className="text-center mb-16">
             <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#B08D57] mb-2 block">
-              The Difference
+              Standards
             </span>
             <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-[#1E1712]">
               Why Work With Me
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={staggerContainer}
+          >
             {valuesData.map((item, idx) => {
               const Icon = item.icon;
               return (
                 <motion.div
                   key={idx}
-                  className="p-7 rounded-2xl bg-[#FAF6EF] border border-[#B08D57]/10 hover:border-[#B08D57]/30 hover:shadow-md transition-all duration-300"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: idx * 0.05, ease: EASE }}
-                  viewport={{ once: true }}
+                  variants={fadeInUp}
+                  whileHover={{
+                    y: -6,
+                    backgroundColor: "#ffffff",
+                    borderColor: "rgba(176, 141, 87, 0.4)",
+                    boxShadow: "0 15px 30px rgba(176,141,87,0.1)",
+                  }}
+                  className="p-7 rounded-2xl bg-[#FAF6EF] border border-[#B08D57]/15 transition-all duration-300"
                 >
-                  <div className="w-11 h-11 rounded-full bg-[#171210] flex items-center justify-center mb-5">
+                  <div className="w-11 h-11 rounded-full bg-[#171210] flex items-center justify-center mb-5 shadow-md">
                     <Icon className="text-[#D9C08C] text-lg" />
                   </div>
                   <h3 className="text-base font-bold text-[#1E1712] mb-2">
@@ -440,25 +574,23 @@ const Home = () => {
                 </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </div>
 
-      {/* ================================================================ */}
-      {/* NUMBERS SECTION                                                  */}
-      {/* ================================================================ */}
-      <div className="w-full bg-[#171210] text-[#FAF6EF] py-24 px-6 lg:px-20 relative overflow-hidden rounded-[30px] md:rounded-[50px] my-10 max-w-[1400px] mx-auto shadow-xl">
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#B08D57]/15 blur-[120px] pointer-events-none" />
+      {/* METRICS / NUMBERS SECTION */}
+      <div className="w-full bg-[#171210] text-[#FAF6EF] py-24 px-6 lg:px-20 relative overflow-hidden rounded-[30px] md:rounded-[50px] my-10 max-w-[1400px] mx-auto shadow-2xl border border-[#B08D57]/20">
+        <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-[#B08D57]/15 blur-[140px] pointer-events-none" />
 
         <div className="max-w-[1300px] mx-auto flex flex-col lg:flex-row gap-16 items-center">
           <div className="lg:w-1/3 text-center lg:text-left">
             <span className="text-[#D9C08C] uppercase tracking-widest text-xs font-bold block mb-3">
-              Metrics of Trust
+              Developer Metrics
             </span>
             <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight leading-none text-white">
-              Proven <br />
+              Track Record & <br />
               <span className="text-[#D9C08C] font-serif italic lowercase font-normal">
-                results
+                experience
               </span>
             </h2>
           </div>
@@ -471,54 +603,65 @@ const Home = () => {
             {numbersData.map((item, idx) => {
               const { suffix } = parseNumberValue(item.value);
               return (
-                <div
+                <motion.div
                   key={idx}
-                  className="flex flex-col items-center lg:items-start p-6 bg-white/[0.03] border border-white/10 rounded-xl backdrop-blur-md"
+                  whileHover={{
+                    scale: 1.04,
+                    borderColor: "rgba(176, 141, 87, 0.5)",
+                  }}
+                  className="flex flex-col items-center lg:items-start p-6 bg-white/[0.03] border border-white/10 rounded-2xl backdrop-blur-md transition-all duration-300"
                 >
                   <span className="text-4xl md:text-5xl font-black tabular-nums tracking-tight text-white">
                     {counts[idx]}
                     <span className="text-[#D9C08C]">{suffix}</span>
                   </span>
-                  <span className="text-xs uppercase tracking-wider text-neutral-300 mt-3 text-center lg:text-left">
+                  <span className="text-xs uppercase tracking-wider text-neutral-300 mt-3 text-center lg:text-left font-light">
                     {item.label}
                   </span>
-                </div>
+                </motion.div>
               );
             })}
           </motion.div>
         </div>
       </div>
 
-      {/* ================================================================ */}
-      {/* SERVICES SECTION                                                 */}
-      {/* ================================================================ */}
+      {/* SERVICES SECTION */}
       <div className="w-full bg-white py-24 px-6 lg:px-20">
         <div className="max-w-[1300px] mx-auto">
           <div className="flex flex-col items-center text-center mb-20">
             <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#B08D57] mb-3">
-              Expertise Store
+              Technical Offerings
             </span>
             <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-[#1E1712]">
-              Professional Offerings
+              Engineering Services
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={staggerContainer}
+          >
             {servicesData.map((service, idx) => (
               <motion.div
                 key={idx}
-                className="group bg-[#FAF6EF]/40 hover:bg-white p-8 rounded-2xl border border-[#B08D57]/10 hover:border-[#B08D57]/30 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col justify-between relative overflow-hidden"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: idx * 0.05, ease: EASE }}
-                viewport={{ once: true }}
+                variants={fadeInUp}
+                whileHover={{
+                  y: -8,
+                  backgroundColor: "#ffffff",
+                  boxShadow: "0 20px 40px rgba(176, 141, 87, 0.12)",
+                  borderColor: "rgba(176, 141, 87, 0.4)",
+                }}
+                className="group bg-[#FAF6EF]/40 p-8 rounded-2xl border border-[#B08D57]/15 shadow-sm transition-all duration-500 flex flex-col justify-between relative overflow-hidden"
               >
                 <div>
                   <div className="flex justify-between items-center mb-6">
-                    <span className="text-xs font-mono text-[#B08D57] font-bold bg-[#F1E9DA] px-2.5 py-1 rounded">
+                    <span className="text-xs font-mono text-[#B08D57] font-bold bg-[#F1E9DA] px-2.5 py-1 rounded border border-[#B08D57]/20">
                       [{service.number}]
                     </span>
-                    <FiLayers className="text-neutral-300 group-hover:text-[#B08D57] transition-colors duration-300" />
+                    <FiCode className="text-neutral-400 group-hover:text-[#B08D57] transition-colors duration-300 text-lg" />
                   </div>
                   <h3 className="text-xl font-bold text-[#1E1712] mb-3 group-hover:text-[#8A6C3F] transition-colors">
                     {service.title}
@@ -531,7 +674,7 @@ const Home = () => {
                   {service.items.map((tag, i) => (
                     <span
                       key={i}
-                      className="text-[11px] bg-neutral-100 text-[#7C7266] px-2.5 py-0.5 rounded-full font-medium"
+                      className="text-[11px] font-mono bg-neutral-100 text-[#6B6155] px-2.5 py-0.5 rounded-full font-medium"
                     >
                       {tag}
                     </span>
@@ -539,39 +682,41 @@ const Home = () => {
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
 
-      {/* ================================================================ */}
-      {/* PREMIUM PROJECTS GRID                                            */}
-      {/* ================================================================ */}
+      {/* PROJECTS SHOWCASE */}
       <div className="w-full bg-[#FAF6EF] py-24 px-6 lg:px-20 border-t border-b border-[#B08D57]/15">
         <div className="max-w-[1300px] mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
             <div>
               <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#B08D57] block mb-2">
-                Showcase Studio
+                Engineering Showcase
               </span>
               <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-[#1E1712]">
-                Selected Works
+                Selected Builds
               </h2>
             </div>
             <p className="text-[#7C7266] font-light max-w-xs text-sm md:text-right">
-              A curated selection of dynamic storefronts, WordPress layouts, and
-              React architectures.
+              A curated selection of custom full-stack web applications,
+              e-commerce stores, and custom WordPress setups.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={staggerContainer}
+          >
             {projectsData.map((project, idx) => (
               <motion.div
                 key={idx}
-                className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer border border-[#B08D57]/10"
-                initial={{ y: 40, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: idx * 0.05, ease: EASE }}
-                viewport={{ once: true }}
+                variants={fadeInUp}
+                whileHover={{ y: -10 }}
+                className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer border border-[#B08D57]/15"
                 onClick={() => project.path !== "#" && navigate(project.path)}
               >
                 <div className="w-full h-[300px] overflow-hidden relative bg-neutral-50 border-b border-neutral-100">
@@ -579,48 +724,53 @@ const Home = () => {
                     src={project.img}
                     alt={project.title}
                     className="w-full h-full object-cover object-top"
-                    whileHover={{ scale: 1.04 }}
-                    transition={{ duration: 0.5, ease: EASE }}
+                    whileHover={{ scale: 1.08 }}
+                    transition={{ duration: 0.6, ease: EASE_LUXURY }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#171210]/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-end p-6">
-                    <span className="text-white text-xs font-medium tracking-widest uppercase flex items-center gap-1">
-                      Explore Case <FiArrowUpRight />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#171210]/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-end p-6">
+                    <span className="text-white text-xs font-medium tracking-widest uppercase flex items-center gap-1.5">
+                      Explore Case Study <FiArrowUpRight />
                     </span>
                   </div>
                 </div>
 
                 <div className="p-6 flex flex-col justify-between flex-1 bg-white">
                   <div>
-                    <span className="text-[11px] uppercase tracking-wider text-[#B08D57] font-bold block mb-1">
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-[#B08D57] font-bold block mb-1">
                       {project.category}
                     </span>
                     <h3 className="text-xl font-bold text-[#1E1712] group-hover:text-[#8A6C3F] transition-colors">
                       {project.title}
                     </h3>
                   </div>
-                  <div className="mt-6 pt-4 border-t border-neutral-50 flex items-center justify-between">
+                  <div className="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between">
                     <span className="text-xs text-neutral-400 font-light">
-                      Interactive Case
+                      Interactive Build
                     </span>
-                    <div className="w-8 h-8 rounded-full bg-[#F1E9DA] group-hover:bg-[#B08D57] text-[#B08D57] group-hover:text-white flex items-center justify-center transition-colors duration-300">
+                    <motion.div
+                      className="w-8 h-8 rounded-full bg-[#F1E9DA] text-[#B08D57] flex items-center justify-center"
+                      whileHover={{
+                        scale: 1.15,
+                        backgroundColor: "#B08D57",
+                        color: "#ffffff",
+                      }}
+                    >
                       <FiArrowUpRight className="text-sm" />
-                    </div>
+                    </motion.div>
                   </div>
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
 
-      {/* ================================================================ */}
-      {/* FAQ SECTION                                                      */}
-      {/* ================================================================ */}
+      {/* FAQ SECTION */}
       <div className="w-full bg-[#0F0B09] text-[#FAF6EF] py-24 px-6 lg:px-20">
         <div className="max-w-[1100px] mx-auto flex flex-col lg:flex-row gap-16">
           <div className="lg:w-1/3">
             <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#D9C08C] block mb-3">
-              Support FAQ
+              Technical FAQ
             </span>
             <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white">
               Common Queries
@@ -633,7 +783,7 @@ const Home = () => {
               return (
                 <div
                   key={idx}
-                  className="border-b border-white/10 overflow-hidden bg-white/[0.02] rounded-xl px-4 md:px-6"
+                  className="border-b border-white/10 overflow-hidden bg-white/[0.02] rounded-xl px-4 md:px-6 transition-colors duration-300 hover:bg-white/[0.04]"
                 >
                   <button
                     onClick={() => setActiveFAQ(isOpen ? null : idx)}
@@ -644,11 +794,13 @@ const Home = () => {
                     >
                       {item.question}
                     </span>
-                    <span
+                    <motion.span
+                      animate={{ rotate: isOpen ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
                       className={`text-lg ${isOpen ? "text-[#D9C08C]" : "text-white"}`}
                     >
                       {isOpen ? <FiMinus /> : <FiPlus />}
-                    </span>
+                    </motion.span>
                   </button>
 
                   <AnimatePresence initial={false}>
@@ -657,7 +809,7 @@ const Home = () => {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.35, ease: EASE }}
+                        transition={{ duration: 0.4, ease: EASE_LUXURY }}
                       >
                         <div className="pb-6 text-neutral-300 text-sm md:text-base font-light leading-relaxed">
                           {item.answer}
@@ -672,39 +824,44 @@ const Home = () => {
         </div>
       </div>
 
-      {/* ================================================================ */}
-      {/* FINAL CTA SECTION (replaces IdeaSection)                         */}
-      {/* ================================================================ */}
+      {/* FINAL CTA SECTION */}
       <div className="w-full bg-[#FAF6EF] py-24 px-6 lg:px-20">
         <motion.div
-          className="max-w-[1200px] mx-auto rounded-[30px] md:rounded-[50px] bg-[#171210] px-8 md:px-16 py-20 text-center relative overflow-hidden"
+          className="max-w-[1200px] mx-auto rounded-[30px] md:rounded-[50px] bg-[#171210] px-8 md:px-16 py-20 text-center relative overflow-hidden border border-[#B08D57]/30 shadow-2xl"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: EASE }}
+          transition={{ duration: 1, ease: EASE_LUXURY }}
           viewport={{ once: true }}
         >
-          <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#B08D57]/15 blur-[140px] pointer-events-none" />
+          <motion.div
+            className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#B08D57]/20 blur-[150px] pointer-events-none"
+            animate={{ scale: [1, 1.15, 1] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          />
 
           <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#D9C08C] mb-5 block relative z-10">
-            Start a Project
+            Start A Project
           </span>
           <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-white max-w-2xl mx-auto leading-tight relative z-10">
-            Let's create something{" "}
+            Ready to build a{" "}
             <span className="font-serif italic lowercase font-normal text-[#D9C08C]">
-              remarkable
-            </span>{" "}
-            together.
+              custom web solution
+            </span>
+            ?
           </h2>
           <p className="mt-6 text-neutral-300 font-light max-w-md mx-auto relative z-10">
-            Have a brief in mind? Tell me about it and I'll get back to you
-            within a day.
+            Have a brief or technical project scope? Send an email and let's
+            discuss your web app or WordPress stack.
           </p>
 
           <motion.a
             href="mailto:toobasaleem190@gmail.com"
-            className="mt-10 inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#B08D57] text-[#171210] font-bold text-sm uppercase tracking-widest relative z-10 hover:bg-[#D9C08C] transition-colors duration-300"
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }}
+            className="mt-10 inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#B08D57] text-[#171210] font-bold text-sm uppercase tracking-widest relative z-10 hover:bg-[#D9C08C] transition-colors duration-300 shadow-xl"
+            whileHover={{
+              scale: 1.06,
+              boxShadow: "0 10px 25px rgba(176,141,87,0.4)",
+            }}
+            whileTap={{ scale: 0.96 }}
           >
             <FiMail /> Get In Touch <FiArrowRight />
           </motion.a>
