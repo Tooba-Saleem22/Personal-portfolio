@@ -1,99 +1,122 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import {
-  FiArrowUpRight,
   FiArrowRight,
   FiArrowLeft,
   FiMail,
+  FiPlus,
+  FiMinus,
 } from "react-icons/fi";
 
 /* ==================================================================== */
-/* QUIET-LUXURY DESIGN TOKENS — matches Home.jsx / Projects.jsx / Services.jsx */
+/* QUIET-LUXURY DESIGN TOKENS — matches Home.jsx / Services.jsx          */
 /* ==================================================================== */
 const EASE = [0.16, 1, 0.3, 1];
-const GOLD = "#B08D57";
-const GOLD_LIGHT = "#D9C08C";
-const ESPRESSO = "#171210";
-const TEXT_MUTED = "#7C7266";
 
 const skillsData = [
-  "React",
-  "JavaScript",
-  "Tailwind CSS",
-  "WordPress",
-  "Elementor",
-  "Shopify",
-  "Figma to Code",
-  "Framer Motion",
-  "REST APIs",
+  "React.js",
+  "Node.js",
+  "Express.js",
+  "MongoDB",
   "MERN Stack",
-  "Responsive Design",
-  "SEO Basics",
+  "JavaScript (ES6+)",
+  "Tailwind CSS",
+  "WordPress Development",
+  "Elementor",
+  "REST APIs",
+  "Figma to Code",
+  "SEO & Web Optimization",
+  "Git / GitHub",
 ];
 
 const timelineData = [
   {
-    year: "2023",
-    title: "Started Freelancing",
-    desc: "Began taking on frontend and WordPress projects for small businesses and individuals — learning what clients actually need, not just what looks good in a portfolio.",
+    step: "01",
+    year: "Late 2023",
+    title: "The Beginning",
+    desc: "Started my freelancing journey with curiosity, exploring different paths and discovering how the digital world works.",
   },
   {
+    step: "02",
     year: "2024",
-    title: "Moved Into React",
-    desc: "Shifted focus toward custom React builds and component-driven development, taking on more technically involved projects and e-commerce work.",
+    title: "WordPress & First Clients",
+    desc: "Dived deep into WordPress development, started reaching out to clients, and closed my first freelance deals.",
   },
   {
+    step: "03",
     year: "2025",
-    title: "Refined the Craft",
-    desc: "Narrowed in on a premium, considered aesthetic across every project — treating design and code as equally important parts of the same deliverable.",
+    title: "Custom Code & MERN Stack",
+    desc: "Transitioned from page builders to custom development — mastering React.js and building full-stack MERN web applications.",
   },
   {
+    step: "04",
     year: "2026",
-    title: "Present Day",
-    desc: "Working with businesses and individuals who want a site that looks and performs like it was built by a studio, not assembled from a template.",
+    title: "Agency & Business Growth",
+    desc: "Partnering with businesses and building my own web agency startup to deliver high-performing digital solutions.",
   },
 ];
 
 const numbersData = [
-  { value: "3+", label: "Years of Freelancing" },
+  { value: "3+", label: "Years Experience" },
   { value: "20+", label: "Projects Completed" },
   { value: "10+", label: "Industries Served" },
   { value: "100%", label: "Client Satisfaction" },
 ];
 
+const faqsData = [
+  {
+    question: "What is your primary development tech stack?",
+    answer:
+      "I specialize in the MERN stack (MongoDB, Express.js, React.js, Node.js) along with Tailwind CSS for modern web apps. Additionally, I build custom, easy-to-manage sites using WordPress & Elementor.",
+  },
+  {
+    question: "Are you available for full-time freelance or agency projects?",
+    answer:
+      "Yes! I collaborate directly with business owners, founders, and agencies on long-term contracts, custom project development, or agency partnerships.",
+  },
+  {
+    question: "How do we collaborate on custom feature requests?",
+    answer:
+      "We begin with a thorough technical discovery process to scope out requirements, followed by milestone-based agile development with periodic demo updates.",
+  },
+];
+
 const About = () => {
   const navigate = useNavigate();
+  const [openFAQ, setOpenFAQ] = useState(null);
 
   return (
     <div className="w-full bg-[#FAF6EF] text-[#1E1712] selection:bg-[#B08D57]/20 font-sans antialiased">
       {/* ================================================================ */}
-      {/* HEADER + INTRO                                                   */}
+      {/* HEADER — Back Home Button Placed Above Main Text Block           */}
       {/* ================================================================ */}
-      <div className="w-full px-6 pt-32 pb-16 relative overflow-hidden">
-        <div className="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] rounded-full blur-[150px] bg-[#B08D57]/12 pointer-events-none" />
+      <div className="w-full px-6 pt-32 pb-20 relative overflow-hidden">
+        <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full blur-[150px] bg-[#B08D57]/12 pointer-events-none" />
 
         <div className="max-w-[1300px] mx-auto relative z-10">
-          <button
-            onClick={() => navigate("/")}
-            className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] font-bold text-[#7C7266] hover:text-[#B08D57] transition-colors mb-10"
-          >
-            <FiArrowLeft /> Back Home
-          </button>
+          <div className="flex flex-col lg:flex-row gap-12 items-end justify-between">
+            {/* Left Text Block */}
+            <div className="max-w-3xl">
+              {/* Back Home Button directly above text */}
+              <button
+                onClick={() => navigate("/")}
+                className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] font-bold text-[#7C7266] hover:text-[#B08D57] transition-colors mb-6"
+              >
+                <FiArrowLeft /> Back Home
+              </button>
 
-          <div className="flex flex-col lg:flex-row gap-16 items-center lg:items-end justify-between">
-            <div className="max-w-2xl">
               <motion.span
                 className="text-xs uppercase tracking-[0.3em] font-bold text-[#B08D57] block mb-4"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: EASE }}
               >
-                The Designer & Dev
+                Full Stack Developer & Agency Founder
               </motion.span>
 
               <motion.h1
-                className="text-5xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight text-[#1E1712] leading-[1.02]"
+                className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black uppercase tracking-tight text-[#1E1712] leading-[1.02]"
                 initial={{ opacity: 0, y: 25 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.1, ease: EASE }}
@@ -105,19 +128,20 @@ const About = () => {
               </motion.h1>
 
               <motion.p
-                className="mt-6 text-[#7C7266] text-base md:text-lg font-light leading-relaxed"
+                className="mt-6 max-w-xl text-[#7C7266] text-base md:text-lg font-light leading-relaxed"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 0.3 }}
               >
-                A web developer who cares as much about how a site looks as how
-                it's built — clean interfaces, considered layouts, and code that
-                stays maintainable long after launch.
+                A Full Stack Web Developer and entrepreneur building custom MERN
+                stack applications, WordPress systems, and digital growth
+                solutions for businesses.
               </motion.p>
             </div>
 
+            {/* Profile Graphic Badge */}
             <motion.div
-              className="relative shrink-0"
+              className="relative shrink-0 mt-8 lg:mt-0"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.2, ease: EASE }}
@@ -144,58 +168,78 @@ const About = () => {
       </div>
 
       {/* ================================================================ */}
-      {/* PHILOSOPHY QUOTE                                                 */}
+      {/* PHILOSOPHY BANNER                                                */}
       {/* ================================================================ */}
-      <div className="w-full bg-gradient-to-b from-[#FAF6EF] to-white py-16 px-6 text-center">
-        <div className="max-w-4xl mx-auto border-y border-[#B08D57]/20 py-12">
+      <div className="w-full bg-gradient-to-b from-[#FAF6EF] to-white py-16 px-6 text-center border-t border-[#B08D57]/15">
+        <div className="max-w-4xl mx-auto py-6">
           <p className="font-serif italic text-2xl md:text-3xl text-[#3A2E1F] font-light leading-relaxed">
-            "A website should feel like it was made on purpose — every choice,
-            from the spacing to the code, made for a reason."
+            "From exploring possibilities to building scalable digital solutions
+            — growth comes from constant learning and continuous action."
           </p>
         </div>
       </div>
 
       {/* ================================================================ */}
-      {/* MY STORY                                                         */}
+      {/* WORKFLOW / JOURNEY TIMELINE — Left-Aligned Single Line Layout    */}
       {/* ================================================================ */}
-      <div className="w-full bg-white py-24 px-6 lg:px-20">
+      <div className="w-full bg-white py-24 px-6 lg:px-20 border-t border-[#B08D57]/10">
         <div className="max-w-[900px] mx-auto">
-          <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#B08D57] block mb-4 text-center">
-            My Story
-          </span>
-          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-[#1E1712] text-center mb-10">
-            How I Got Here
-          </h2>
-          <div className="flex flex-col gap-6 text-[#3A2E1F] text-base md:text-lg font-light leading-relaxed">
-            <p>
-              I started out simply curious about how websites worked — pulling
-              apart layouts, tweaking colours, trying to understand why some
-              sites felt effortless to use and others didn't. That curiosity
-              turned into freelancing, and freelancing turned into a focus:
-              building sites that are as considered in their design as they are
-              solid in their code.
-            </p>
-            <p>
-              Today I work across React, WordPress, and Shopify — but the
-              approach stays the same regardless of the tool. Understand what
-              the site needs to do, design around that, then build it cleanly
-              enough that it's still easy to maintain a year from now.
-            </p>
+          <div className="text-center mb-16">
+            <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#B08D57] mb-2 block">
+              Evolution & Milestones
+            </span>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-[#1E1712]">
+              The Real Journey
+            </h2>
+          </div>
+
+          <div className="relative pl-6 sm:pl-10 border-l-2 border-[#B08D57]/20 flex flex-col gap-10">
+            {timelineData.map((item, idx) => (
+              <motion.div
+                key={idx}
+                className="relative bg-[#FAF6EF] p-6 sm:p-8 rounded-2xl border border-[#B08D57]/15 shadow-sm hover:shadow-md transition-shadow"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: idx * 0.08, ease: EASE }}
+                viewport={{ once: true }}
+              >
+                {/* Connector Dot on Left Line */}
+                <div className="absolute -left-[31px] sm:-left-[47px] top-8 w-5 h-5 rounded-full bg-[#FAF6EF] border-2 border-[#B08D57] flex items-center justify-center">
+                  <div className="w-2 h-2 rounded-full bg-[#B08D57]" />
+                </div>
+
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-xs uppercase tracking-widest font-bold text-[#B08D57] bg-[#B08D57]/10 px-3 py-1 rounded-full">
+                    {item.year}
+                  </span>
+                  <span className="font-serif italic text-2xl text-[#D9C08C]">
+                    {item.step}
+                  </span>
+                </div>
+
+                <h3 className="text-xl font-bold text-[#1E1712] mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-[#7C7266] text-sm font-light leading-relaxed">
+                  {item.desc}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>
 
       {/* ================================================================ */}
-      {/* SKILLS / TOOLS                                                   */}
+      {/* SKILLS & EXPERTISE LIST                                         */}
       {/* ================================================================ */}
-      <div className="w-full bg-[#FAF6EF] py-24 px-6 lg:px-20 border-t border-[#B08D57]/10">
-        <div className="max-w-[1300px] mx-auto">
-          <div className="text-center mb-16">
+      <div className="w-full bg-[#FAF6EF] py-24 px-6 lg:px-20 border-t border-[#B08D57]/15">
+        <div className="max-w-[1100px] mx-auto">
+          <div className="text-center mb-12">
             <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#B08D57] mb-2 block">
-              Toolkit
+              Technical Stack
             </span>
             <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-[#1E1712]">
-              Skills & Tools
+              Skills & Expertise
             </h2>
           </div>
 
@@ -203,7 +247,7 @@ const About = () => {
             {skillsData.map((skill, idx) => (
               <motion.span
                 key={idx}
-                className="px-5 py-2.5 rounded-full bg-white border border-[#B08D57]/15 text-sm font-medium text-[#3A2E1F] hover:border-[#B08D57]/40 hover:text-[#B08D57] transition-colors duration-300"
+                className="px-5 py-2.5 rounded-full bg-white border border-[#B08D57]/15 text-sm font-medium text-[#3A2E1F] hover:border-[#B08D57]/40 hover:text-[#B08D57] transition-colors duration-300 shadow-sm"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: idx * 0.03, ease: EASE }}
@@ -217,56 +261,9 @@ const About = () => {
       </div>
 
       {/* ================================================================ */}
-      {/* TIMELINE                                                         */}
+      {/* STATS STRIP — matches Services.jsx Estimation Section           */}
       {/* ================================================================ */}
-      <div className="w-full bg-white py-24 px-6 lg:px-20">
-        <div className="max-w-[900px] mx-auto">
-          <div className="text-center mb-16">
-            <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#B08D57] mb-2 block">
-              Timeline
-            </span>
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-[#1E1712]">
-              The Journey So Far
-            </h2>
-          </div>
-
-          <div className="flex flex-col">
-            {timelineData.map((item, idx) => (
-              <motion.div
-                key={idx}
-                className="flex gap-6 md:gap-10 pb-12 last:pb-0 relative"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: idx * 0.08, ease: EASE }}
-                viewport={{ once: true }}
-              >
-                <div className="flex flex-col items-center shrink-0">
-                  <span className="w-3 h-3 rounded-full bg-[#B08D57]" />
-                  {idx !== timelineData.length - 1 && (
-                    <span className="w-px flex-1 bg-[#B08D57]/20 mt-2" />
-                  )}
-                </div>
-                <div className="pb-2">
-                  <span className="font-serif italic text-xl text-[#B08D57] block mb-1">
-                    {item.year}
-                  </span>
-                  <h3 className="text-lg md:text-xl font-bold text-[#1E1712] mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-[#7C7266] text-sm md:text-base font-light leading-relaxed max-w-lg">
-                    {item.desc}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ================================================================ */}
-      {/* NUMBERS STRIP                                                    */}
-      {/* ================================================================ */}
-      <div className="w-full bg-[#171210] text-[#FAF6EF] py-24 px-6 lg:px-20 relative overflow-hidden rounded-[30px] md:rounded-[50px] my-10 max-w-[1400px] mx-auto shadow-xl">
+      <div className="w-full bg-[#171210] text-[#FAF6EF] py-20 px-6 lg:px-20 relative overflow-hidden rounded-[30px] md:rounded-[50px] my-10 max-w-[1400px] mx-auto shadow-xl">
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#B08D57]/15 blur-[120px] pointer-events-none" />
         <div className="max-w-[1300px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 relative z-10">
           {numbersData.map((item, idx) => (
@@ -277,7 +274,7 @@ const About = () => {
               <span className="text-4xl md:text-5xl font-black tracking-tight text-white">
                 {item.value}
               </span>
-              <span className="text-xs uppercase tracking-wider text-neutral-300 mt-3 text-center">
+              <span className="text-xs uppercase tracking-wider text-neutral-300 mt-3 text-center font-light">
                 {item.label}
               </span>
             </div>
@@ -286,11 +283,74 @@ const About = () => {
       </div>
 
       {/* ================================================================ */}
-      {/* CLOSING CTA                                                      */}
+      {/* FAQ SECTION — matches Services.jsx Dark Accordion              */}
+      {/* ================================================================ */}
+      <div className="w-full bg-[#0F0B09] text-[#FAF6EF] py-24 px-6 lg:px-20 rounded-t-[40px] md:rounded-t-[80px]">
+        <div className="max-w-[1100px] mx-auto flex flex-col lg:flex-row gap-16">
+          <div className="lg:w-1/3">
+            <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#D9C08C] block mb-3">
+              Questions
+            </span>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-white">
+              Get To Know Me
+            </h2>
+          </div>
+
+          <div className="lg:w-2/3 w-full flex flex-col gap-3">
+            {faqsData.map((item, idx) => {
+              const isOpen = openFAQ === idx;
+              return (
+                <div
+                  key={idx}
+                  className="border-b border-white/10 overflow-hidden bg-white/[0.02] rounded-xl px-4 md:px-6"
+                >
+                  <button
+                    onClick={() => setOpenFAQ(isOpen ? null : idx)}
+                    className="w-full flex justify-between items-center py-5 focus:outline-none text-left"
+                  >
+                    <span
+                      className={`font-medium text-base md:text-lg transition-colors duration-300 ${
+                        isOpen ? "text-[#D9C08C]" : "text-white"
+                      }`}
+                    >
+                      {item.question}
+                    </span>
+                    <span
+                      className={`text-lg ${
+                        isOpen ? "text-[#D9C08C]" : "text-white"
+                      }`}
+                    >
+                      {isOpen ? <FiMinus /> : <FiPlus />}
+                    </span>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.35, ease: EASE }}
+                      >
+                        <div className="pb-6 text-neutral-300 text-sm md:text-base font-light leading-relaxed">
+                          {item.answer}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* ================================================================ */}
+      {/* CLOSING CTA — matches Services.jsx                              */}
       {/* ================================================================ */}
       <div className="w-full px-6 py-24">
         <motion.div
-          className="max-w-[1200px] mx-auto rounded-[30px] md:rounded-[50px] bg-[#0F0B09] px-8 md:px-16 py-20 text-center relative overflow-hidden"
+          className="max-w-[1200px] mx-auto rounded-[30px] md:rounded-[50px] bg-[#171210] px-8 md:px-16 py-20 text-center relative overflow-hidden"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: EASE }}
@@ -302,9 +362,9 @@ const About = () => {
             Let's Talk
           </span>
           <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-white max-w-2xl mx-auto leading-tight relative z-10">
-            Curious if I'm{" "}
+            Let's build something{" "}
             <span className="font-serif italic lowercase font-normal text-[#D9C08C]">
-              the right fit?
+              extraordinary together.
             </span>
           </h2>
 
