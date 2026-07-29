@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import {
-  FiArrowUpRight,
   FiArrowRight,
   FiArrowLeft,
   FiMail,
@@ -14,136 +13,132 @@ import {
 /* QUIET-LUXURY DESIGN TOKENS — matches Home.jsx / Projects.jsx         */
 /* ==================================================================== */
 const EASE = [0.16, 1, 0.3, 1];
-const GOLD = "#B08D57";
-const GOLD_LIGHT = "#D9C08C";
-const ESPRESSO = "#171210";
-const TEXT_MUTED = "#7C7266";
 
 const servicesData = [
   {
     number: "01",
-    title: "Web Design",
-    tagline: "Layouts that look as good as they work",
+    title: "Full Stack Development",
+    tagline: "End-to-end web applications built with MERN stack",
     description:
-      "Clean, modern interfaces built around your brand and your audience — not a generic template. Every layout is planned before a single pixel is placed, so the site looks intentional on every screen size.",
+      "Complete, scalable web applications built from scratch using MongoDB, Express.js, React.js, and Node.js. From database architecture and secure APIs to a responsive frontend UI.",
     deliverables: [
-      "Custom layout & wireframes",
-      "Responsive design (mobile → desktop)",
-      "Brand-aligned colour & type system",
-      "Figma source files",
+      "Custom MERN stack architecture",
+      "RESTful API design & integration",
+      "Database schema & authentication",
+      "Deployment & server setup",
     ],
-    tags: ["Layout", "Colour Systems", "UI"],
+    tags: ["MongoDB", "Express.js", "React.js", "Node.js"],
   },
   {
     number: "02",
     title: "Frontend Development",
-    tagline: "Fast, clean, built to last",
+    tagline: "Fast, interactive, and responsive React interfaces",
     description:
-      "Interactive, performant websites built with React and modern tooling. Code is structured for maintainability, so future updates don't mean starting over.",
+      "High-performance user interfaces built with React.js and modern tooling. Clean component structure, smooth animations, and optimized state management for seamless user experiences.",
     deliverables: [
       "React component architecture",
-      "Smooth animation & interaction",
-      "Performance & SEO basics",
-      "Cross-browser testing",
+      "Interactive UI & animations",
+      "Responsive layout for all devices",
+      "State management & API integration",
     ],
-    tags: ["React", "Framer Motion", "Interactive Design"],
+    tags: ["React.js", "Tailwind CSS", "Framer Motion", "JavaScript"],
   },
   {
     number: "03",
-    title: "WordPress Websites",
-    tagline: "Easy for you to manage, day one",
+    title: "Backend & API Development",
+    tagline: "Secure, robust server-side systems",
     description:
-      "Custom WordPress builds for businesses, portfolios, and personal brands — designed so you can update content yourself without touching code.",
+      "Scalable backend architectures built with Node.js and Express.js, integrated with MongoDB databases. Reliable business logic, middleware configuration, and secure API endpoints.",
     deliverables: [
-      "Elementor / custom theme build",
-      "Editable content blocks",
-      "Blog & CMS setup",
-      "Basic training walkthrough",
+      "REST API design & integration",
+      "Database modeling & queries",
+      "User authentication & authorization",
+      "Server performance optimization",
     ],
-    tags: ["Elementor", "Blogs", "Business Sites"],
+    tags: ["Node.js", "Express.js", "MongoDB", "REST APIs"],
   },
   {
     number: "04",
-    title: "Shopify Stores",
-    tagline: "Ready to sell from launch day",
+    title: "WordPress Development",
+    tagline: "Custom CMS setups that are simple to manage",
     description:
-      "Complete online stores with a smooth checkout, clear product presentation, and design that builds trust with first-time buyers.",
+      "Custom WordPress builds tailored to your specific functionality requirements. Designed so you can manage, edit, and expand your site content effortlessly without writing code.",
     deliverables: [
-      "Store setup & theme customisation",
-      "Product & collection structure",
-      "Payment & shipping configuration",
-      "Launch checklist",
+      "Custom theme & Elementor builds",
+      "Plugin configuration & setup",
+      "CMS & blog structure",
+      "Walkthrough & content training",
     ],
-    tags: ["Products", "Payments", "Design"],
+    tags: ["WordPress", "Elementor", "CMS", "Custom Themes"],
   },
   {
     number: "05",
-    title: "UI to Website",
-    tagline: "Your design, built pixel-for-pixel",
+    title: "UI/Design to Code",
+    tagline: "Converting Figma or XD files into functional React code",
     description:
-      "Already have a Figma, XD, or PSD design? I convert it into a fully working, responsive website that matches your file precisely — down to spacing and type.",
+      "Already have your design ready in Figma, XD, or PSD? I transform your visuals into pixel-perfect, clean, and responsive React.js components matching every exact detail.",
     deliverables: [
-      "Pixel-accurate implementation",
-      "Responsive breakpoints",
-      "Interaction & hover states",
-      "Design-to-code QA pass",
+      "Pixel-precise implementation",
+      "Fully responsive breakpoints",
+      "Interactive UI state logic",
+      "Clean & reusable codebase",
     ],
-    tags: ["Figma", "XD", "PSD"],
+    tags: ["Figma to React", "XD to React", "PSD to Code"],
   },
   {
     number: "06",
-    title: "Website Redesign",
-    tagline: "The same site, finally working for you",
+    title: "Web App Refactoring & Optimization",
+    tagline: "Upgrade and speed up your existing web application",
     description:
-      "For sites that feel outdated or slow. I audit what's holding the current version back and rebuild it with a modern layout, better performance, and a mobile experience that actually works.",
+      "For existing sites or apps that are slow, complex to maintain, or outdated. I audit your code, refactor frontend components, rebuild backend logic, and optimize speed.",
     deliverables: [
-      "Existing site audit",
-      "Modern layout & visual refresh",
-      "Speed & mobile optimisation",
-      "Content migration",
+      "Codebase & performance audit",
+      "Full stack refactoring",
+      "Speed & database optimization",
+      "Bug fixes & feature updates",
     ],
-    tags: ["Speed", "Mobile", "Modern Look"],
+    tags: ["Refactoring", "Performance", "Code Audit"],
   },
 ];
 
 const processData = [
   {
     step: "01",
-    title: "Discovery Call",
-    desc: "We talk through your goals, audience, and what the site needs to achieve — no jargon, just a clear plan.",
+    title: "Discovery & Planning",
+    desc: "We discuss your project goals, technical requirements, stack selection, and functionality needs — setting up a realistic milestone plan.",
   },
   {
     step: "02",
-    title: "Design & Build",
-    desc: "You'll see layout concepts early, then a working build as it comes together — feedback welcome at every stage.",
+    title: "Development & Testing",
+    desc: "I write clean code for your frontend, backend, or full application, providing progressive functional demos for your feedback along the way.",
   },
   {
     step: "03",
-    title: "Launch & Support",
-    desc: "I handle deployment and stay on for fixes, tweaks, or questions after the site goes live.",
+    title: "Deployment & Support",
+    desc: "We deploy the application smoothly to production. I provide continuous post-launch support and bug fixes to keep everything running.",
   },
 ];
 
 const faqsData = [
   {
-    question: "How do I know which service I need?",
+    question: "Do you design websites or just write code?",
     answer:
-      "If you're not sure, just describe what you're trying to achieve on a call — I'll recommend the right scope rather than upselling everything.",
+      "I focus on web development (Full Stack MERN & WordPress). If you already have design files (Figma/XD/PSD), I convert them accurately into functional code. If not, I can work with your existing brand guidelines to build modern layouts.",
   },
   {
-    question: "Do you work with an existing design, or from scratch?",
+    question: "Can you handle both backend and frontend tasks?",
     answer:
-      "Both. I can build directly from a Figma/XD/PSD file, or design the layout with you from the ground up.",
+      "Yes! As a MERN stack developer, I work on both client-side React code and server-side Node.js / Express / MongoDB architecture.",
   },
   {
-    question: "What do you need from me to get started?",
+    question: "What do you need from me to start a project?",
     answer:
-      "Brand assets if you have them, a sense of sites you like, and rough content (or I can help structure that too).",
+      "Project specifications, technical goals, design files (if available), and relevant API/asset details. If you're unsure, we can define the scope together during planning.",
   },
   {
-    question: "Is support included after launch?",
+    question: "Is post-launch support included?",
     answer:
-      "Yes — every project includes a post-launch window for fixes and small updates, with ongoing maintenance available after that.",
+      "Yes — every development project includes post-launch testing and bug-fixing support to ensure everything runs smoothly in production.",
   },
 ];
 
@@ -174,7 +169,7 @@ const Services = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: EASE }}
           >
-            Expertise Store
+            Technical Expertise
           </motion.span>
 
           <motion.h1
@@ -183,9 +178,9 @@ const Services = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.1, ease: EASE }}
           >
-            What I{" "}
+            Development{" "}
             <span className="font-serif italic lowercase font-light text-[#B08D57]">
-              offer
+              services
             </span>
           </motion.h1>
 
@@ -195,8 +190,9 @@ const Services = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            Six ways to work together, from a brand-new site to a redesign of
-            one that's holding you back. Tap a service to see what's included.
+            Full stack MERN web applications, standalone React frontends, robust
+            Node/Express backends, and WordPress solutions built for reliability
+            and scale.
           </motion.p>
         </div>
       </div>
@@ -303,10 +299,10 @@ const Services = () => {
         <div className="max-w-[1300px] mx-auto">
           <div className="text-center mb-16">
             <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#B08D57] mb-2 block">
-              How We'll Work
+              Development Workflow
             </span>
             <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-[#1E1712]">
-              A Simple Process
+              How We Build Together
             </h2>
           </div>
 
@@ -342,15 +338,15 @@ const Services = () => {
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#B08D57]/15 blur-[120px] pointer-events-none" />
         <div className="max-w-[900px] mx-auto text-center relative z-10">
           <span className="text-[#D9C08C] uppercase tracking-widest text-xs font-bold block mb-4">
-            Pricing
+            Project Estimation
           </span>
           <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-white mb-5">
-            Quoted to the Project, Not a Price List
+            Tailored to Scope & Requirements
           </h2>
           <p className="text-neutral-300 font-light leading-relaxed max-w-xl mx-auto">
-            Every brief is different, so every quote is too. Share what you need
-            and I'll come back with a clear scope and price — no surprises once
-            we start.
+            Every technical brief has distinct performance, database, and
+            feature requirements. Share your scope and I'll provide a detailed
+            technical roadmap and transparent estimate.
           </p>
         </div>
       </div>
@@ -431,7 +427,7 @@ const Services = () => {
             Ready When You Are
           </span>
           <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-white max-w-2xl mx-auto leading-tight relative z-10">
-            Tell me about{" "}
+            Let's build{" "}
             <span className="font-serif italic lowercase font-normal text-[#D9C08C]">
               your project
             </span>
