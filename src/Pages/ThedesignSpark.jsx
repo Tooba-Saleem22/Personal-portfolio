@@ -28,11 +28,7 @@ const projectMeta = {
   liveUrl: "#",
 };
 
-const galleryImages = [
-  "/assets/img1.png",
-  "/assets/img1.png",
-  "/assets/img1.png",
-];
+const galleryImages = ["/assets/DS1.png", "/assets/DS2.png", "/assets/DS3.png"];
 
 const featuresData = [
   {
@@ -125,7 +121,7 @@ const ThedesignSpark = () => {
           transition={{ duration: 1, delay: 0.2, ease: EASE }}
         >
           <img
-            src="/assets/img1.png"
+            src="/assets/DS1.png"
             alt={projectMeta.title}
             className="w-full h-full object-cover object-top"
           />
