@@ -29,9 +29,9 @@ const projectMeta = {
 };
 
 const galleryImages = [
-  "/assets/img2.png",
-  "/assets/img2.png",
-  "/assets/img2.png",
+  "/assets/etec2.png",
+  "/assets/etec3.png",
+  "/assets/etec4.png",
 ];
 
 const featuresData = [
@@ -125,7 +125,7 @@ const Etec = () => {
           transition={{ duration: 1, delay: 0.2, ease: EASE }}
         >
           <img
-            src="/assets/img2.png"
+            src="/assets/etec1.png"
             alt={projectMeta.title}
             className="w-full h-full object-cover object-top"
           />
