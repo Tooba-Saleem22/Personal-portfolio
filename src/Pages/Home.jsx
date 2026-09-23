@@ -182,19 +182,7 @@ const projectsData = [
     img: "/assets/img4.png",
     title: "The College Cafe",
     category: "WordPress Business Platform",
-    path: "/College",
-  },
-  {
-    img: "/assets/img5.png",
-    title: "Upcoming Full-Stack Platform",
-    category: "MERN Stack Build",
-    path: "#",
-  },
-  {
-    img: "/assets/img6.png",
-    title: "Upcoming Enterprise CMS",
-    category: "WordPress Custom Development",
-    path: "#",
+    path: "/CollegeCafe",
   },
 ];
 

@@ -36,12 +36,12 @@ const projectsData = [
   },
   {
     img: "/assets/img3.png",
-    title: "store.shoppsm",
-    category: "E-Commerce",
-    year: "2024",
+    title: "Western Eagle Security",
+    category: "Security Services",
+    year: "2026",
     description:
-      "A conversion-focused storefront with a streamlined checkout and a product grid that keeps browsing effortless.",
-    path: "/shoppsmstore",
+      "A professional security services website showcasing tailored protection solutions, 24/7 support, mobile patrol, and construction security across Alberta.",
+    path: "/WES",
   },
   {
     img: "/assets/img4.png",
@@ -51,24 +51,6 @@ const projectsData = [
     description:
       "A warm, editorial brand site that translates an in-person cafe experience into a considered digital one.",
     path: "/College",
-  },
-  {
-    img: "/assets/img5.png",
-    title: "Upcoming Premium Project 01",
-    category: "UI & Design",
-    year: "2026",
-    description:
-      "In development — a premium interface exploration currently in the design phase.",
-    path: "#",
-  },
-  {
-    img: "/assets/img6.png",
-    title: "Upcoming Premium Project 02",
-    category: "WordPress Custom",
-    year: "2026",
-    description:
-      "In development — a fully custom WordPress build focused on speed and editorial flexibility.",
-    path: "#",
   },
 ];
 
