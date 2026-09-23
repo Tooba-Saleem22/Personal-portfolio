@@ -11,6 +11,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Thedesignspark from "./pages/Thedesignspark";
 import Etec from "./Pages/Etec";
 import WES from "./Pages/WES";
+import CollegeCafe from "./Pages/CollegeCafe";
 function App() {
   return (
     <BrowserRouter>
@@ -34,6 +35,7 @@ function App() {
 
         <Route path="/Etec" element={<Etec />} />
         <Route path="/WES" element={<WES />} />
+        <Route path="/CollegeCafe" element={<CollegeCafe />} />
       </Routes>
 
       <Footer />

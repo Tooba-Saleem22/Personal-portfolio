@@ -29,9 +29,9 @@ const projectMeta = {
 };
 
 const galleryImages = [
-  "https://collegecafeeducation.com/assets/logo-nav-1x.png",
-  "https://collegecafeeducation.com/assets/img-1b82eb97.png",
-  "https://collegecafeeducation.com/assets/img-2a4f0132.png",
+  "/assets/clgcafe2.png",
+  "/assets/clgcafe3.png",
+  "/assets/clgcafe4.png",
 ];
 
 const featuresData = [
@@ -125,7 +125,7 @@ const CollegeCafe = () => {
           transition={{ duration: 1, delay: 0.2, ease: EASE }}
         >
           <img
-            src="https://collegecafeeducation.com/assets/logo-nav-1x.png"
+            src="/assets/clgcafe1.png"
             alt="The College Café website"
             className="w-full h-full object-cover object-top"
           />
