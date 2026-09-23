@@ -174,9 +174,9 @@ const projectsData = [
   },
   {
     img: "/assets/img3.png",
-    title: "store.shoppsm",
-    category: "E-Commerce Platform",
-    path: "/shoppsmstore",
+    title: "Westren Eagle Security",
+    category: "Service-based Business Website",
+    path: "/WES",
   },
   {
     img: "/assets/img4.png",

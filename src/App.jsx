@@ -10,7 +10,7 @@ import About from "./Pages/About";
 import ScrollToTop from "./components/ScrollToTop";
 import Thedesignspark from "./pages/Thedesignspark";
 import Etec from "./Pages/Etec";
-
+import WES from "./Pages/WES";
 function App() {
   return (
     <BrowserRouter>
@@ -33,6 +33,7 @@ function App() {
         <Route path="/Thedesignspark" element={<Thedesignspark />} />
 
         <Route path="/Etec" element={<Etec />} />
+        <Route path="/WES" element={<WES />} />
       </Routes>
 
       <Footer />
