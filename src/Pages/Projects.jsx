@@ -46,11 +46,20 @@ const projectsData = [
   {
     img: "/assets/img4.png",
     title: "The College Cafe",
-    category: "Brand Website",
-    year: "2024",
+    category: "College Admissions Consulting",
+    year: "2026",
     description:
-      "A warm, editorial brand site that translates an in-person cafe experience into a considered digital one.",
-    path: "/College",
+      "A professional WordPress website designed to present personalized college admissions consulting services with a clear and trustworthy user experience.",
+    path: "/CollegeCafe",
+  },
+  {
+    img: "/assets/img2.png",
+    title: "Quizzi Academia",
+    category: "E-Learning Platform",
+    year: "2026",
+    description:
+      "A smart e-learning platform combining interactive quizzes, personalized YouTube recommendations, an AI learning assistant, and an admin dashboard.",
+    path: "/quizzi-academia",
   },
 ];
 
