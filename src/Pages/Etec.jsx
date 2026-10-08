@@ -50,8 +50,8 @@ const featuresData = [
 ];
 
 const nextProject = {
-  title: "store.shoppsm",
-  path: "/shoppsmstore",
+  title: "Western Eagle Security",
+  path: "/WES",
 };
 
 const Etec = () => {

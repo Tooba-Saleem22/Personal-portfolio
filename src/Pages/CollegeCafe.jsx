@@ -10,7 +10,7 @@ import {
 } from "react-icons/fi";
 
 /* ==================================================================== */
-/* QUIET-LUXURY DESIGN TOKENS — matches Home.jsx / Projects.jsx         */
+/* QUIET-LUXURY DESIGN TOKENS                                           */
 /* ==================================================================== */
 const EASE = [0.16, 1, 0.3, 1];
 const GOLD = "#B08D57";
@@ -18,42 +18,57 @@ const GOLD_LIGHT = "#D9C08C";
 const ESPRESSO = "#171210";
 const TEXT_MUTED = "#7C7266";
 
+/* ==================================================================== */
+/* PROJECT META                                                         */
+/* ==================================================================== */
 const projectMeta = {
   title: "The College Café",
-  category: "College Admissions Consulting Website",
+  category: "College Admissions Consulting · WordPress",
   year: "2026",
-  role: "Web Design & Frontend Development",
-  timeline: "3 Weeks",
-  tools: ["React", "Tailwind CSS", "Framer Motion", "Figma"],
+  role: "WordPress Development & UI",
+  timeline: "4 Weeks",
+  tools: ["WordPress", "Elementor", "HTML", "CSS", "JavaScript"],
   liveUrl: "https://collegecafeeducation.com/",
 };
 
+/* ==================================================================== */
+/* GALLERY                                                              */
+/* ==================================================================== */
 const galleryImages = [
   "/assets/clgcafe2.png",
   "/assets/clgcafe3.png",
   "/assets/clgcafe4.png",
 ];
 
+/* ==================================================================== */
+/* KEY FEATURES                                                         */
+/* ==================================================================== */
 const featuresData = [
   {
-    title: "Admissions-Focused Experience",
-    desc: "The website clearly presents College Café's admissions consulting services and helps students understand how personalized guidance can support their college journey.",
+    title: "Clear Admissions Services",
+    desc: "A structured service experience that helps students and families quickly understand admissions strategy, essay development, profile positioning, interviews, and financial aid support.",
   },
   {
-    title: "Trust & Credibility",
-    desc: "Admissions experience, student outcomes, testimonials, university track record, and founder information are presented to build confidence with prospective students and families.",
+    title: "Personalized Admissions Journey",
+    desc: "The website presents a clear five-step process, taking students from discovery and strategy through application development, refinement, and final support.",
   },
   {
-    title: "Clear Conversion Paths",
-    desc: "Strong calls to action guide visitors toward getting started, exploring services, and learning about the Admissions Bootcamp without making the experience feel overwhelming.",
+    title: "Trust-Focused Experience",
+    desc: "Student stories, admissions experience, university results, and founder information were presented throughout the site to build credibility and confidence.",
   },
 ];
 
+/* ==================================================================== */
+/* NEXT PROJECT                                                         */
+/* ==================================================================== */
 const nextProject = {
-  title: "Etec Website",
-  path: "/Etec",
+  title: "Quizzi Academia",
+  path: "/quizzi-academia",
 };
 
+/* ==================================================================== */
+/* COMPONENT                                                            */
+/* ==================================================================== */
 const CollegeCafe = () => {
   const navigate = useNavigate();
 
@@ -70,7 +85,8 @@ const CollegeCafe = () => {
             onClick={() => navigate("/projects")}
             className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] font-bold text-[#7C7266] hover:text-[#B08D57] transition-colors mb-10"
           >
-            <FiArrowLeft /> Back to Works
+            <FiArrowLeft />
+            Back to Works
           </button>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
@@ -90,9 +106,9 @@ const CollegeCafe = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.1, ease: EASE }}
               >
-                The College
+                College{" "}
                 <span className="font-serif italic lowercase font-light text-[#B08D57]">
-                  Café
+                  café
                 </span>
               </motion.h1>
             </div>
@@ -107,7 +123,8 @@ const CollegeCafe = () => {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 0.3 }}
               >
-                Visit Live Site <FiExternalLink />
+                Visit Live Site
+                <FiExternalLink />
               </motion.a>
             )}
           </div>
@@ -146,23 +163,25 @@ const CollegeCafe = () => {
             <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#B08D57] block mb-4">
               Overview
             </span>
+
             <h2 className="text-2xl md:text-4xl font-extrabold text-[#1E1712] mb-6 leading-snug">
-              A modern college admissions consulting website designed to
-              communicate personalized guidance, credibility, and clear next
-              steps for students and families.
+              A polished admissions consulting website designed to guide
+              students toward the right college.
             </h2>
+
             <p className="text-[#3A2E1F] text-base md:text-lg font-light leading-relaxed mb-6">
-              The College Café needed a warm, professional online presence that
-              clearly communicates its college admissions consulting services.
-              The website was structured to explain the admissions journey,
-              showcase the company's experience and student stories, and make it
-              easy for prospective clients to get started.
+              The College Café needed a professional online presence that could
+              clearly communicate its personalized college admissions consulting
+              services while making the journey easier to understand for
+              students and families.
             </p>
+
             <p className="text-[#3A2E1F] text-base md:text-lg font-light leading-relaxed">
-              The result is a responsive React website with a clear visual
-              hierarchy, admissions-focused content sections, testimonials,
-              process information, founder storytelling, and strong calls to
-              action that make the student journey easy to understand.
+              Built with WordPress and Elementor, the website combines a clean
+              editorial layout with structured service sections, a clear
+              admissions process, student stories, founder information, and
+              strong calls to action to create a trustworthy and approachable
+              experience.
             </p>
           </motion.div>
 
@@ -177,24 +196,31 @@ const CollegeCafe = () => {
               <span className="text-[11px] uppercase tracking-[0.2em] font-bold text-[#B08D57] block mb-1.5">
                 Role
               </span>
+
               <span className="text-[#1E1712] font-medium">
                 {projectMeta.role}
               </span>
             </div>
+
             <div className="h-px bg-[#B08D57]/15" />
+
             <div>
               <span className="text-[11px] uppercase tracking-[0.2em] font-bold text-[#B08D57] block mb-1.5">
                 Timeline
               </span>
+
               <span className="text-[#1E1712] font-medium">
                 {projectMeta.timeline}
               </span>
             </div>
+
             <div className="h-px bg-[#B08D57]/15" />
+
             <div>
               <span className="text-[11px] uppercase tracking-[0.2em] font-bold text-[#B08D57] block mb-2">
                 Tools Used
               </span>
+
               <div className="flex flex-wrap gap-1.5">
                 {projectMeta.tools.map((tool, i) => (
                   <span
@@ -219,6 +245,7 @@ const CollegeCafe = () => {
             <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#B08D57] mb-2 block">
               The Details
             </span>
+
             <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-[#1E1712]">
               Key Features
             </h2>
@@ -231,15 +258,21 @@ const CollegeCafe = () => {
                 className="bg-white p-8 rounded-2xl border border-[#B08D57]/12 shadow-sm hover:shadow-md transition-all duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: idx * 0.08, ease: EASE }}
+                transition={{
+                  duration: 0.6,
+                  delay: idx * 0.08,
+                  ease: EASE,
+                }}
                 viewport={{ once: true }}
               >
                 <span className="font-serif italic text-3xl text-[#D9C08C] font-light block mb-4">
                   0{idx + 1}
                 </span>
+
                 <h3 className="text-lg font-bold text-[#1E1712] mb-2">
                   {item.title}
                 </h3>
+
                 <p className="text-[#7C7266] text-sm font-light leading-relaxed">
                   {item.desc}
                 </p>
@@ -258,6 +291,7 @@ const CollegeCafe = () => {
             <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#B08D57] mb-2 block">
               Visuals
             </span>
+
             <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-[#1E1712]">
               A Closer Look
             </h2>
@@ -270,12 +304,16 @@ const CollegeCafe = () => {
                 className="h-[280px] rounded-2xl overflow-hidden border border-[#B08D57]/10 bg-[#FAF6EF]"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: idx * 0.08, ease: EASE }}
+                transition={{
+                  duration: 0.6,
+                  delay: idx * 0.08,
+                  ease: EASE,
+                }}
                 viewport={{ once: true }}
               >
                 <img
                   src={img}
-                  alt={`${projectMeta.title} detail ${idx + 1}`}
+                  alt={`The College Café website detail ${idx + 1}`}
                   className="w-full h-full object-cover object-top"
                 />
               </motion.div>
@@ -300,10 +338,12 @@ const CollegeCafe = () => {
             <span className="text-[11px] uppercase tracking-[0.25em] font-bold text-[#D9C08C] block mb-2">
               Next Case Study
             </span>
+
             <h3 className="text-2xl md:text-4xl font-extrabold uppercase tracking-tight text-white group-hover:text-[#D9C08C] transition-colors">
               {nextProject.title}
             </h3>
           </div>
+
           <span className="shrink-0 w-14 h-14 rounded-full border border-[#B08D57]/40 flex items-center justify-center text-[#D9C08C] group-hover:bg-[#B08D57] group-hover:text-[#171210] transition-colors duration-300">
             <FiArrowUpRight className="text-xl" />
           </span>
@@ -326,10 +366,11 @@ const CollegeCafe = () => {
           <span className="text-xs uppercase tracking-[0.3em] font-bold text-[#D9C08C] mb-5 block relative z-10">
             Start a Project
           </span>
+
           <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-white max-w-2xl mx-auto leading-tight relative z-10">
-            Want a site like{" "}
+            Need a website built{" "}
             <span className="font-serif italic lowercase font-normal text-[#D9C08C]">
-              this one?
+              like this?
             </span>
           </h2>
 
@@ -339,7 +380,9 @@ const CollegeCafe = () => {
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
           >
-            <FiMail /> Get In Touch <FiArrowRight />
+            <FiMail />
+            Get In Touch
+            <FiArrowRight />
           </motion.a>
         </motion.div>
       </div>
